@@ -1,0 +1,281 @@
+# baseURI: https://linked.data.gov.au/def/csdm/surveyfeatures.shapes
+# imports: http://datashapes.org/dash
+# imports: https://linked.data.gov.au/def/csdm/commonpatterns.shapes
+# imports: https://linked.data.gov.au/def/csdm/surveyfeatures
+
+@prefix com:              <https://linked.data.gov.au/def/csdm/commonpatterns/> .
+@prefix dash:             <http://datashapes.org/dash#> .
+@prefix dct:              <http://purl.org/dc/terms/> .
+@prefix geosparql:        <http://www.opengis.net/ont/geosparql#> .
+@prefix landinfra:        <http://www.opengis.net/def/schema/landinfra/core/> .
+@prefix metadata:         <http://topbraid.org/metadata#> .
+@prefix ontologyprojects: <http://teamwork.topbraidlive.org/ontologyprojects#> .
+@prefix owl:              <http://www.w3.org/2002/07/owl#> .
+@prefix prof:             <http://www.w3.org/ns/dx/prof/> .
+@prefix rdf:              <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:             <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh:               <http://www.w3.org/ns/shacl#> .
+@prefix skos:             <http://www.w3.org/2004/02/skos/core#> .
+@prefix specs:            <https://linked.data.gov.au/def/csdm/impspecs/> .
+@prefix surv:             <https://linked.data.gov.au/def/csdm/surveyfeatures/> .
+@prefix teamwork:         <http://topbraid.org/teamwork#> .
+@prefix xsd:              <http://www.w3.org/2001/XMLSchema#> .
+
+<https://linked.data.gov.au/def/csdm/surveyfeatures.shapes>
+    a owl:Ontology ;
+    # owl:imports <http://datashapes.org/dash> ;
+    # owl:imports <https://linked.data.gov.au/def/csdm/commonpatterns.shapes> ;
+    # owl:imports <https://linked.data.gov.au/def/csdm/surveyfeatures> ;
+.
+
+surv:AdoptedVector
+    a sh:NodeShape ;
+.
+
+surv:AllowableCoordinateReferenceSystem
+    a sh:NodeShape ;
+.
+
+surv:Angle
+    a sh:NodeShape ;
+.
+
+surv:BoundaryMark
+    a           sh:NodeShape ;
+    sh:property surv:Monument-form ;
+.
+
+surv:CadastralMark
+    a sh:NodeShape ;
+.
+
+surv:ConditionCode
+    a               owl:Class ;
+    a               sh:NodeShape ;
+    rdfs:label      "Mark Condition Code" ;
+    rdfs:subClassOf skos:Concept ;
+.
+
+surv:Distance
+    a sh:NodeShape ;
+.
+
+surv:GeodeticReferenceMark
+    a sh:NodeShape ;
+.
+
+surv:InstrumentPoint
+    a           sh:NodeShape ;
+    sh:property surv:InstrumentPoint-hasGeometry ;
+    sh:property surv:InstrumentPoint-setup ;
+.
+
+surv:InstrumentPoint-hasGeometry
+    a            sh:PropertyShape ;
+    sh:path      <http://www.opengis.net/ont/geosparql#hasGeometry> ;
+    rdfs:comment "An instrument point must have a determined location" ;
+    sh:group     <http://topbraid.org/tosh#PropertyAxiomsPropertyGroup> ;
+    sh:minCount  1 ;
+.
+
+surv:InstrumentPoint-setup
+    a        sh:PropertyShape ;
+    sh:path  surv:setup ;
+    sh:class surv:Setup ;
+.
+
+surv:Monument
+    a           sh:NodeShape ;
+    sh:property surv:Monument-condition ;
+    sh:property surv:Monument-form ;
+    sh:property surv:Monument-replaces ;
+    sh:property surv:SurveyMark-state ;
+.
+
+surv:Monument-condition
+    a        sh:PropertyShape ;
+    sh:path  surv:condition ;
+    sh:class surv:ConditionCode ;
+    sh:name  "condition" ;
+.
+
+surv:Monument-form
+    a           sh:PropertyShape ;
+    sh:path     surv:form ;
+    sh:class    surv:MonumentForm ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+.
+
+surv:Monument-replaces
+    a        sh:PropertyShape ;
+    sh:path  surv:replaces ;
+    sh:class surv:Monument ;
+    sh:name  "replaces" ;
+.
+
+surv:NoOccupation
+    a sh:NodeShape ;
+.
+
+surv:ObservedVector
+    a sh:NodeShape ;
+.
+
+surv:Occupation
+    a sh:NodeShape ;
+.
+
+surv:OccupationMark
+    a sh:NodeShape ;
+.
+
+surv:Setup
+    a sh:NodeShape ;
+.
+
+surv:Survey
+    a sh:NodeShape ;
+.
+
+surv:SurveyMark
+    a           sh:NodeShape ;
+    sh:property surv:SurveyMark-monumentedBy ;
+.
+
+surv:SurveyMark-monumentedBy
+    a           sh:PropertyShape ;
+    sh:path     surv:monumentedBy ;
+    sh:class    surv:Monument ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name     "monumentedBy" ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+.
+
+surv:SurveyMark-state
+    a           sh:PropertyShape ;
+    sh:path     surv:state ;
+    sh:class    surv:SurveyPointState ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name     "state" ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+.
+
+surv:SurveyMarkCondition
+    a sh:NodeShape ;
+.
+
+surv:SurveyPoint
+    a           sh:NodeShape ;
+    sh:name     "Survey Point" ;
+    sh:property surv:SurveyPoint-hasGeometry ;
+    sh:property surv:SurveyPoint-name ;
+    sh:property surv:SurveyPoint-provenance ;
+    sh:property surv:SurveyPoint-purpose ;
+.
+
+surv:SurveyPoint-hasGeometry
+    a           sh:PropertyShape ;
+    sh:path     <http://www.opengis.net/ont/geosparql#hasGeometry> ;
+    rdfs:comment
+                "Note that a Survey Point may not have a geometry declared - it may be identified and described and its location determined at a future date." ;
+    sh:class    geosparql:Point ;
+    sh:group    <http://topbraid.org/tosh#PropertyAxiomsPropertyGroup> ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+.
+
+surv:SurveyPoint-name
+    a           sh:PropertyShape ;
+    sh:path     com:name ;
+    dash:viewer dash:DetailsViewer ;
+    sh:class    com:CompoundName ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name     "name" ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+.
+
+surv:SurveyPoint-provenance
+    a           sh:PropertyShape ;
+    sh:path     surv:provenance ;
+    sh:class    surv:SurveyPointProvenance ;
+    sh:nodeKind sh:IRI ;
+.
+
+surv:SurveyPoint-purpose
+    a           sh:PropertyShape ;
+    sh:path     surv:purpose ;
+    sh:class    surv:SurveyPointPurpose ;
+    sh:minCount 1 ;
+    sh:name     "purpose" ;
+    sh:nodeKind sh:IRI ;
+.
+
+surv:SurveyPointProvenance
+    a sh:NodeShape ;
+.
+
+surv:SurveyedLine
+    a           sh:NodeShape ;
+    sh:property surv:SurveyedLine-purpose ;
+    sh:property surv:SurveyedLine-distance ;
+    sh:property surv:SurveyedLine-from ;
+    sh:property surv:SurveyedLine-horizontalAngle ;
+    sh:property surv:SurveyedLine-target ;
+    sh:property surv:SurveyedLine-verticalAngle ;
+.
+
+surv:SurveyedLine-distance
+    a        sh:PropertyShape ;
+    sh:path  surv:distance ;
+    sh:class surv:Distance ;
+.
+
+surv:SurveyedLine-from
+    a           sh:PropertyShape ;
+    sh:path     surv:from ;
+    sh:class    surv:SurveyPoint ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+.
+
+surv:SurveyedLine-purpose
+    a           sh:PropertyShape ;
+    sh:path     surv:vectorPurpose ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+.
+
+surv:SurveyedLine-horizontalAngle
+    a        sh:PropertyShape ;
+    sh:path  surv:horizontalAngle ;
+    sh:class surv:Angle ;
+.
+
+surv:SurveyedLine-source
+    a        sh:PropertyShape ;
+    sh:path  surv:from ;
+    sh:class surv:SurveyMark ;
+.
+
+surv:SurveyedLine-target
+    a           sh:PropertyShape ;
+    sh:path     surv:target ;
+    sh:class    surv:SurveyMark ;
+    sh:class    surv:SurveyPoint ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+.
+
+surv:SurveyedLine-verticalAngle
+    a           sh:PropertyShape ;
+    sh:path     surv:verticalAngle ;
+    sh:class    surv:Angle ;
+    sh:nodeKind sh:BlankNodeOrLiteral ;
+.

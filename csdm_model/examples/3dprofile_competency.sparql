@@ -1,0 +1,125 @@
+# infer topology between features through shared boundary features
+CONSTRUCT {
+  ?a geo:touches ?b 
+  ?b geo:touches ?a
+  }
+WHERE
+{ ?a geo:touches ?face . ?b geo:touches ?face }
+
+# extract a shared 3D face boundary object based on orientation of a GML component present in two geometries
+CONSTRUCT {
+  ?face a geo3:BoundaryFace .
+  ?face o3:touchesInward ?ga .
+  ?face geo3:touchesOutward ?gb .
+  ?face geo3:hasGeometry ?faceGeom .
+}
+WHERE
+{
+   # for case where we know topology
+   ?a geo:touches ?b .
+   ?a geo:hasGeometry ?ga .
+   ?b geo:hasGeometry ?gb .
+   # function to create or extract the oriented geometry where ?ga is inside and ?gb is outside
+   BIND( geo3:touchesAt(?ga,?gb) as ?faceGeom )
+	
+}
+
+# gml: needs to generalised
+gml:CompositeSolid owl:equivalentClass|rdfs:subClassOf (?)  iso19107:CompositeSolid|geo:CompositeSolid|geogeom:CompositeSolid (?)
+#TODO write up options in roadmap in some namespace TBD 
+
+# invert orientation of a geometry
+
+# assume these can reverse orientation using any internal encoding (GML etc)
+
+gml:reverse(OrientableSurface)
+gml:reverse(LinearRing)
+gml:reverse(Polygon)
+gml:reverse(Curve) 
+
+gml:group_close_geom(?geom, ?targettype):  group set of ?geom into a close geometry of the target type (or throw error if not possible)
+gml:can_close_geom(?geom, ?targettype):  validate if possible to group set of ?geom into a geometry of the target type (or throw error if not possible)
+
+
+# build faces for a solid regardless of orientation of component geometries
+
+CONSTRUCT 
+{
+ ?feature geo:hasGeometry ?orientedGeom .
+}
+WHERE
+{ 
+	?feature geo:hasGeometry ?unorientedGeom .
+	{
+		SELECT ( geo3:group_close_geom(?geom, gml:CompositeSolid)  AS ?orientedGeom )
+		WHERE
+		{
+			?feature geo3:hasBoundary ?boundaryFeature .
+			?boundaryFeature geo:hasGeometry ?rawgeom .			
+			{  
+				{ 
+					?boundaryFeature geo3:touchesInward ?feature .
+					BIND ( ?rawgeom as ?geom )
+				}
+				UNION
+				{
+					?boundaryFeature geo3:touchesOutward ?feature .
+					BIND ( gml:reverse(?rawgeom) as ?geom )
+				}
+			}
+		} GROUP BY ?feature
+	 }
+}
+	
+
+# validate geometry is complete from component parts
+# GeoSPARQL currently makes no statements about allowability and requirements for use of reference by id in microformats such as GML...
+# need to generalise this to support any microformat with ids...
+# here using gml: as a placeholder..
+#
+# ASK returns True/False if statements match the query.
+ASK
+WHERE
+{  
+  ?feature geo:hasGeometry ?g .
+  ?g geo:asGML ?ggml .
+  
+  # function to get all ids
+  BIND ( gml:idrefs(?ggml) as ?idreflist )
+  
+  # now need to find all components and check idrefs are present (and transitively unless primitives are found 
+  { 
+  	# define a group function to create a composite geometry object
+  	#  - note this needs an additional heterogenous geometry collection class
+  	# 
+  	# and/or a function to get a list of idrefs and ids present 
+  	#  - if a comma separated string can use basic GROUP_CONCAT to collate these..
+  	#
+  	SELECT
+  		 ( gml:group_geometry(?pgml) AS ?component_collection )
+  	     (GROUP_CONCAT(?geomids,SEPARATOR=",") AS ?geoms_present )
+  	     (GROUP_CONCAT(?geomidrefs,SEPARATOR=",") AS ?geom_refs )
+	  WHERE
+	  { 
+		  ?feature geo:hasGeometryPart ?p .
+		  ?p geo:asGML ?pgml . 
+		  BIND ( gml:ids(?pgml) as ?geomids )
+		  BIND ( gml:idrefs(?pgml) as ?geomidrefs )
+	  }	  		  
+	  GROUP BY ?feature
+  }
+  
+  # use a function able to parse geometry collection
+  FILTER ( gml:idrefsIn(?ggml, ?component_collection ) 
+  
+  # or check both original and any transitve ids are present - using a simple list reconcilation 
+  
+  FILTER ( gml:idrefsInList(?idreflist, ?geoms_present ) AND gml:idrefsInList(?geom_refs, ?geoms_present )
+   
+  
+  # all ids in ?pgml are also present in { ?pgml }
+  
+  # can we postulate a more efficient function that does all this in the background?
+  
+}
+ 

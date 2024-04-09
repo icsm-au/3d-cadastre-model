@@ -1,0 +1,59 @@
+name: Documentation Ontologies
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+env:
+  PYLODE_COMMIT: f60b2087e706967480ad5080770f8a66444cc81d
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2.2"
+
+      - name: Install Ruby Gems
+        run: bundle install
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install pyLODE v2 with vocpub
+        run: pip install pylode==2.13.2 html5
+
+      - name: Create Ontology Documentation 🔧
+        run: |
+          mkdir docs
+          ./ci_scripts/run.sh
+
+      - name: Deploy - make static files available in GH pages for pylode build
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          BRANCH: gh-pages
+          FOLDER: docs/
+
+      - name: Install pyLODE with supermodel functionality
+        run: pip install git+https://github.com/RDFLib/pyLODE@${{ env.PYLODE_COMMIT }}
+
+      - name: Create pylode-generated CSDM documentation
+        run: |
+          mkdir -p docs/docs docs/docs/icsm-profile docs/docs/nz-profile docs/docs/wa-profile docs/docs/vic-profile
+          pylode -p supermodel -o docs/docs/index.html csdm_model/csdm.ttl
+          pylode -p supermodel -o docs/docs/icsm-profile/index.html https://icsm-au.github.io/3d-csdm-profiles/profiles/icsm-common.ttl
+          pylode -p supermodel -o docs/docs/nz-profile/index.html https://icsm-au.github.io/3d-csdm-profiles/profiles/nz-profile.ttl
+          pylode -p supermodel -o docs/docs/wa-profile/index.html https://icsm-au.github.io/3d-csdm-profiles/profiles/wa-profile.ttl
+          pylode -p supermodel -o docs/docs/vic-profile/index.html https://icsm-au.github.io/3d-csdm-profiles/profiles/vic-profile.ttl
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          BRANCH: gh-pages
+          FOLDER: docs/

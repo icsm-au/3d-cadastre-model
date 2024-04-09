@@ -1,0 +1,163 @@
+# baseURI: https://linked.data.gov.au/def/csdm/container.shapes
+# imports: http://datashapes.org/dash
+# imports: http://www.w3.org/ns/dx/prof.shapes
+# imports: https://linked.data.gov.au/def/csdm/container
+
+@prefix container: <https://linked.data.gov.au/def/csdm/container/> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://linked.data.gov.au/def/csdm/container.shapes>
+  a owl:Ontology ;
+  # owl:imports <http://datashapes.org/dash> ;
+  # owl:imports <http://www.w3.org/ns/dx/prof.shapes> ;
+  # owl:imports <https://linked.data.gov.au/def/csdm/container> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+container:CSD
+  sh:property container:CSD-adoptedObservations ;
+  sh:property container:CSD-bearingRotation ;
+  sh:property container:CSD-description ;
+  sh:property container:CSD-horizontalCRS ;
+  sh:property container:CSD-occupationFeatures ;
+  sh:property container:CSD-occupationObservations ;
+  sh:property container:CSD-parcels ;
+  sh:property container:CSD-points ;
+  sh:property container:CSD-purpose ;
+  sh:property container:CSD-referencedCSD ;
+  sh:property container:CSD-surveyProvenance ;
+  sh:property container:CSD-surveyType ;
+  sh:property container:CSD-vectorObservations ;
+  sh:property container:CSD-verticalDatum ;
+.
+container:CSD-adoptedObservations
+  a sh:PropertyShape ;
+  sh:path container:adoptedObservations ;
+  sh:class <http://www.w3.org/ns/sosa/ObservationCollection> ;
+  sh:description "Adopted observations (collection)" ;
+  sh:name "Adopted Observations" ;
+  sh:nodeKind sh:IRI ;
+  sh:propertyGroup <https://linked.data.gov.au/def/csdm/surveyprov/SurveyElements> ;
+.
+container:CSD-bearingRotation
+  a sh:PropertyShape ;
+  sh:path container:bearingRotation ;
+  sh:description " Bearing Rotation to adopt when referencing vectors in this CSD." ;
+  sh:name "bearing rotation" ;
+.
+container:CSD-description
+  a sh:PropertyShape ;
+  sh:path <http://purl.org/dc/terms/description> ;
+  sh:description "Description of Survey.  Note this should not repeat information in provenance, appellation or other machine readable forms and be limited to additional information." ;
+  sh:name "Description" ;
+.
+container:CSD-horizontalCRS
+  a sh:PropertyShape ;
+  sh:path container:horizontalCRS ;
+  sh:description "Horizontal CRS - in form to be defined by encoding requirements." ;
+  sh:maxCount 1 ;
+  sh:minCount 1 ;
+  sh:name "horizontalCRS" ;
+.
+container:CSD-occupationFeatures
+  a sh:PropertyShape ;
+  sh:path container:occupationFeatures ;
+  sh:class <http://www.opengis.net/ont/geosparql#Feature> ;
+  sh:description "A set of feature descriptions for occupation evidence. May be referenced by occupation observations for extended detail, or presence of such features inferred by presence of observations. This property supports use of multipe collections of features sourced from other systems." ;
+  sh:name "Occupation features" ;
+  sh:nodeKind sh:IRI ;
+  sh:propertyGroup <https://linked.data.gov.au/def/csdm/surveyprov/SurveyElements> ;
+.
+container:CSD-occupationObservations
+  a sh:PropertyShape ;
+  sh:path container:occupationObservations ;
+  sh:class <http://www.w3.org/ns/sosa/ObservationCollection> ;
+  sh:description "Optional observations about the nature of occupations, allowing arbitrary additional details to be recorded." ;
+  sh:name "occupation observations" ;
+  sh:propertyGroup <https://linked.data.gov.au/def/csdm/surveyprov/SurveyElements> ;
+.
+container:CSD-parcels
+  a sh:PropertyShape ;
+  sh:path container:parcels ;
+  sh:class <https://linked.data.gov.au/def/csdm/geometry/FeatureCollection> ;
+  sh:name "parcels" ;
+  sh:nodeKind sh:IRI ;
+.
+container:CSD-points
+  a sh:PropertyShape ;
+  sh:path container:points ;
+  sh:class <https://linked.data.gov.au/def/csdm/geometry/FeatureCollection> ;
+  sh:name "points" ;
+  sh:nodeKind sh:IRI ;
+.
+container:CSD-purpose
+  a sh:PropertyShape ;
+  sh:path container:purpose ;
+  sh:class <https://linked.data.gov.au/def/csdm/surveyfeatures/SurveyPurpose> ;
+  sh:minCount 1 ;
+  sh:nodeKind sh:IRI ;
+.
+container:CSD-referencedCSD
+  a sh:PropertyShape ;
+  sh:path container:referencedCSD ;
+  sh:class container:CSD ;
+  sh:description "A CSD containing referenced survey features and observations" ;
+  sh:name "referenced CSD" ;
+  sh:nodeKind sh:IRI ;
+  sh:propertyGroup <https://linked.data.gov.au/def/csdm/surveyprov/SurveyElements> ;
+.
+
+container:CSD-surveyProvenance
+  a sh:PropertyShape ;
+  sh:path container:surveyProvenance ;
+  sh:class <http://www.w3.org/ns/prov#Bundle> ;
+  sh:description "A bundle of survey provenance information must be present." ;
+  sh:maxCount 1 ;
+  sh:minCount 1 ;
+  sh:name "survey provenance" ;
+.
+container:CSD-surveyType
+  a sh:PropertyShape ;
+  sh:path container:surveyType ;
+  sh:class <https://linked.data.gov.au/def/csdm/surveyprov/SurveyType> ;
+  sh:maxCount 1 ;
+  sh:minCount 1 ;
+  sh:nodeKind sh:IRI ;
+.
+container:CSD-vectorObservations
+  a sh:PropertyShape ;
+  sh:path container:vectorObservations ;
+  sh:class <http://www.w3.org/ns/sosa/ObservationCollection> ;
+  sh:description "The set of observations of surveyed vectors between SurveyPoints" ;
+  sh:maxCount 1 ;
+  sh:name "vector observations" ;
+  sh:propertyGroup <https://linked.data.gov.au/def/csdm/surveyprov/SurveyElements> ;
+.
+container:CSD-verticalDatum
+  a sh:PropertyShape ;
+  sh:path container:verticalDatum ;
+  sh:description "Vertical Datum - in form to be defined by encoding requirements." ;
+  sh:maxCount 1 ;
+  sh:name "vertical datum" ;
+.
+container:surveyType
+  a rdf:Property ;
+  rdfs:label "survey type" ;
+.
+<https://linked.data.gov.au/def/csdm/surveyprov/SurveyElements>
+  a sh:PropertyGroup ;
+  rdfs:label "Survey Elements" ;
+.
+<https://linked.data.gov.au/def/csdm/surveyprov/SurveyType>
+  a owl:Class ;
+  a sh:NodeShape ;
+  rdfs:isDefinedBy <https://linked.data.gov.au/def/csdm/container> ;
+  rdfs:label "Survey Type" ;
+  rdfs:subClassOf <https://linked.data.gov.au/def/csdm/commonpatterns/RelevantJurisdictionalCodelist> ;
+  skos:definition "A codelist of survey  types relevant to a particular jurisdiction.  i.e. whether the survey was part-compiled, compiled, computed or surveyed." ;
+.

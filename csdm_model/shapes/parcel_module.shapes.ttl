@@ -1,0 +1,244 @@
+# baseURI: https://linked.data.gov.au/def/csdm/parcel.shapes
+# imports: http://datashapes.org/dash
+# imports: https://linked.data.gov.au/def/csdm/geometry.shapes
+# imports: https://linked.data.gov.au/def/csdm/parcels
+
+@prefix :                 <https://linked.data.gov.au/def/csdm/parcels/> .
+@prefix com:              <https://linked.data.gov.au/def/csdm/commonpatterns/> .
+@prefix dash:             <http://datashapes.org/dash#> .
+@prefix dc:               <http://purl.org/dc/elements/1.1/> .
+@prefix dcam:             <http://purl.org/dc/dcam/> .
+@prefix dcterms:          <http://purl.org/dc/terms/> .
+@prefix geo:              <http://www.opengis.net/ont/geosparql#> .
+@prefix geometry:         <https://linked.data.gov.au/def/csdm/geometry/> .
+@prefix gml:              <http://www.opengis.net/ont/gml#> .
+@prefix ontologyprojects: <http://teamwork.topbraidlive.org/ontologyprojects#> .
+@prefix owl:              <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:              <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:             <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sf:               <http://www.opengis.net/ont/sf#> .
+@prefix sh:               <http://www.w3.org/ns/shacl#> .
+@prefix skos:             <http://www.w3.org/2004/02/skos/core#> .
+@prefix teamwork:         <http://topbraid.org/teamwork#> .
+@prefix tosh:             <http://topbraid.org/tosh#> .
+@prefix xsd:              <http://www.w3.org/2001/XMLSchema#> .
+@prefix sdo:              <https://schema.org/> .
+
+<https://linked.data.gov.au/def/csdm/parcels>
+    a          owl:Ontology ;
+    rdfs:label "Cadastral Parcel" ;
+    # owl:imports <https://linked.data.gov.au/def/csdm/commonpatterns> ;
+    # owl:imports <https://linked.data.gov.au/def/csdm/geometryprim> ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcel.shapes>
+    a owl:Ontology ;
+    # owl:imports <http://datashapes.org/dash> ;
+    # owl:imports <https://linked.data.gov.au/def/csdm/geometry.shapes> ;
+    # owl:imports <https://linked.data.gov.au/def/csdm/parcels> ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/Apellation>
+    a sh:NodeShape ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/Appellation>
+    rdfs:subClassOf com:CompoundName ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/EstateParcel>
+    a           sh:NodeShape ;
+    sh:class    <https://linked.data.gov.au/def/csdm/parcels/LandInterest> ;
+    sh:property <https://linked.data.gov.au/def/csdm/parcels/EstateParcel-interest> ;
+    sh:property <https://linked.data.gov.au/def/csdm/parcels/EstateParcel-parcel> ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/EstateParcel-interest>
+    a           sh:PropertyShape ;
+    sh:path     <https://linked.data.gov.au/def/csdm/parcels/interest> ;
+    sh:Class    <https://linked.data.gov.au/def/csdm/parcels/LandInterest> ;
+    sh:minCount 1 ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/EstateParcel-parcel>
+    a        sh:PropertyShape ;
+    sh:path  <https://linked.data.gov.au/def/csdm/parcels/parcel> ;
+    sh:Class <https://linked.data.gov.au/def/csdm/parcels/CadastralParcel> ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/LandInterest>
+    a sh:NodeShape ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/Parcel>
+    a           sh:NodeShape ;
+    sh:property <https://linked.data.gov.au/def/csdm/parcels/Parcel-appellaton> ;
+    sh:property <https://linked.data.gov.au/def/csdm/parcels/Parcel-interest> ;
+    sh:property <https://linked.data.gov.au/def/csdm/parcels/Parcel-surfaceArea> ;
+    sh:property <https://linked.data.gov.au/def/csdm/parcels/Parcel-terrainIntersectionCurve> ;
+    sh:property <https://linked.data.gov.au/def/csdm/parcels/PrimaryParcel-parcelQuality> ;
+    sh:property <https://linked.data.gov.au/def/csdm/parcels/PrimaryParcel-parcelType> ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/Parcel-appellaton>
+    a           sh:PropertyShape ;
+    sh:path     <https://linked.data.gov.au/def/csdm/parcels/appellation> ;
+    rdfs:label  "appellation" ;
+    sh:class    <https://linked.data.gov.au/def/csdm/parcels/Appellation> ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/Parcel-interest>
+    a           sh:PropertyShape ;
+    sh:path     <https://linked.data.gov.au/def/csdm/parcels/interest> ;
+    sh:class    <https://linked.data.gov.au/def/csdm/parcels/LandInterest> ;
+    sh:nodeKind sh:IRI ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/Parcel-surfaceArea>
+    a           sh:PropertyShape ;
+    sh:path     <https://linked.data.gov.au/def/csdm/parcels/surfaceArea> ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount "1" ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/Parcel-terrainIntersectionCurve>
+    a           sh:PropertyShape ;
+    sh:path     <https://linked.data.gov.au/def/csdm/parcels/terrainIntersectionCurve> ;
+    rdfs:label  "parcel-terrainIntersectionCurve" ;
+    sh:class    gml:LinearRing ;
+    sh:maxCount 1 ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/ParcelAggregate>
+    a sh:NodeShape ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/ParcelQualityClass>
+    a                owl:Class ;
+    a                sh:NodeShape ;
+    rdfs:isDefinedBy <https://linked.data.gov.au/def/csdm/parcels> ;
+    rdfs:label       "Quality Classification for Parcel" ;
+    rdfs:subClassOf  com:RelevantJurisdictionalCodelist ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/ParcelState>
+    a sh:NodeShape ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/ParcelType>
+    a                owl:Class ;
+    a                sh:NodeShape ;
+    rdfs:isDefinedBy <https://linked.data.gov.au/def/csdm/parcels> ;
+    rdfs:label       "Parcel Type" ;
+    rdfs:subClassOf  com:RelevantJurisdictionalCodelist ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/PrimaryParcel>
+    a sh:NodeShape ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/PrimaryParcel-parcelQuality>
+    a           sh:PropertyShape ;
+    sh:path     <https://linked.data.gov.au/def/csdm/parcels/qualityClass> ;
+    sh:class    <https://linked.data.gov.au/def/csdm/parcels/ParcelQualityClass> ;
+    sh:maxCount "1" ;
+    sh:minCount "0" ;
+    sh:nodeKind sh:IRI ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/PrimaryParcel-parcelType>
+    a           sh:PropertyShape ;
+    sh:path     <https://linked.data.gov.au/def/csdm/parcels/type> ;
+    sh:class    <https://linked.data.gov.au/def/csdm/parcels/ParcelType> ;
+    sh:maxCount "1" ;
+    sh:minCount "1" ;
+    sh:nodeKind sh:IRI ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/PropertyUnit>
+    a sh:NodeShape ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/PurposeOfSpatialUnit>
+    a sh:NodeShape ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/SecondaryParcel>
+    a           sh:NodeShape ;
+    sh:property <https://linked.data.gov.au/def/csdm/parcels/SecondaryParcel-overlaps> ;
+.
+
+<https://linked.data.gov.au/def/csdm/parcels/SecondaryParcel-overlaps>
+    a              sh:PropertyShape ;
+    sh:path        geo:ehOverlap ;
+    rdfs:label     "overlaps" ;
+    sh:class       <https://linked.data.gov.au/def/csdm/parcels/Parcel> ;
+    sh:description "Allow a secondary parcel to overlap any other type of parcel." ;
+.
+
+:Parcel-parcelType
+    a           sh:PropertyShape ;
+    sh:path     :parcelType ;
+    sh:group    <http://topbraid.org/tosh#PropertiesPropertyGroup> ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name     "Parcel Type" ;
+    sh:nodeKind sh:IRI ;
+.
+
+:Parcel-area
+    a           sh:PropertyShape ;
+    sh:path     :surfaceArea ;
+    sh:group    <http://topbraid.org/tosh#PropertiesPropertyGroup> ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:Literal ;
+.
+
+:Parcel-floor
+    a           sh:PropertyShape ;
+    sh:path     :floor ;
+    sh:group    <http://topbraid.org/tosh#PropertiesPropertyGroup> ;
+    sh:maxCount 1 ;
+    sh:name     "Optional Floor Designator" ;
+    sh:nodeKind sh:Literal ;
+.
+
+
+:Parcel-zmin
+    a           sh:PropertyShape ;
+    sh:path     :zmin ;
+    sh:group    <http://topbraid.org/tosh#PropertiesPropertyGroup> ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:Literal ;
+.
+
+
+:Parcel-zmax
+    a           sh:PropertyShape ;
+    sh:path     :zmax ;
+    sh:group    <http://topbraid.org/tosh#PropertiesPropertyGroup> ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:Literal ;
+.
+
+
+:Parcel-parcelState
+    a           sh:PropertyShape ;
+    sh:path     :parcelState ;
+    sh:group    <http://topbraid.org/tosh#PropertiesPropertyGroup> ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name     "Parcel State" ;
+    sh:nodeKind sh:IRI ;
+.
+
+
+:Parcel-address
+    a        sh:PropertyShape ;
+    sh:path  sdo:address ;
+    sh:group <http://topbraid.org/tosh#PropertiesPropertyGroup> ;
+    sh:name  "Address" ;
+.

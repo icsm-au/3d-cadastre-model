@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Attributions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <style>
+      #pylode {
+        position: fixed;
+        top: 130px;
+        left: -60px;
+        font-size: small;
+        transform: rotate(-90deg);
+        color: grey;
+      }
+      #pylode a {
+        font-size: 2em;
+        font-weight: bold;
+        text-decoration: none;
+        color: #005a9c;
+      }
+      #pylode a:hover {
+        color: #333;
+      }
+
+      .cardinality {
+        font-style: italic;
+        color: #aa00aa;
+      }
+
+      dt {
+        font-weight: bold;
+        padding: 5px 0 5px 0;
+      }
+
+      ul.hlist {
+        list-style-type: none;
+        border: 1px solid navy;
+        padding: 5px;
+        background-color: #f4ffff;
+      }
+
+      ul.hierarchy {
+        border: 1px solid navy;
+        padding: 5px 25px 5px 25px;
+        background-color: #f4ffff;
+      }
+
+      ul.hlist li {
+        display: inline;
+        margin-right: 10px;
+      }
+
+      .entity {
+        border: 1px solid navy;
+        margin: 5px 0 5px 0;
+        padding: 5px;
+      }
+
+      .entity th {
+        width: 150px;
+        vertical-align: top;
+      }
+
+      .entity th,
+      .entity td {
+        padding-bottom: 20px;
+      }
+
+      .entity table th {
+        text-align: left;
+      }
+
+      section#overview img {
+        max-width: 1000px;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        text-align: left;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #005a9c;
+        background: white;
+      }
+      h1 {
+        font: 170% sans-serif;
+        line-height: 110%;
+      }
+      h2 {
+        font: 140% sans-serif;
+        margin-top: 40px;
+      }
+      h3 {
+        font: 120% sans-serif;
+        margin-top: 3px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid navy;
+      }
+      h4 {
+        font: bold 100% sans-serif;
+      }
+      h5 {
+        font: italic 100% sans-serif;
+      }
+      h6 {
+        font: small-caps 100% sans-serif;
+      }
+
+      body {
+        padding: 2em 70px 2em 70px;
+        margin: 0;
+        font-family: sans-serif;
+        color: black;
+        background: white;
+        background-position: top left;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        text-align: justify;
+      }
+
+      section {
+        max-width: 1500px;
+      }
+
+      .figure {
+        margin-bottom: 20px;
+      }
+
+      :link {
+        color: #00c;
+        background: transparent;
+      }
+      :visited {
+        color: #609;
+        background: transparent;
+      }
+      a:active {
+        color: #c00;
+        background: transparent;
+      }
+
+      .sup-c,
+      .sup-op,
+      .sup-fp,
+      .sup-dp,
+      .sup-ap,
+      .sup-p,
+      .sup-ni,
+      .sup-cp,
+      .sup-cl {
+        cursor: help;
+        margin-left: 3px;
+      }
+
+      .sup-c {
+        color: orange;
+      }
+
+      .sup-op {
+        color: navy;
+      }
+
+      .sup-fp {
+        color: lightskyblue;
+      }
+
+      .sup-dp {
+        color: green;
+      }
+
+      .sup-ap {
+        color: darkred;
+      }
+
+      .sup-p {
+        color: black;
+      }
+
+      .sup-ni {
+        color: brown;
+      }
+
+      .sup-cp {
+        color: orange;
+      }
+
+      .sup-cl {
+        color: darkred;
+      }
+
+      code {
+        font-size: large;
+        color: darkred;
+      }
+
+      /* less prominent links for properties */
+      .proplink {
+        color: #336;
+        text-decoration: none;
+      }
+    </style>
+
+    <script type="application/ld+json">
+      [
+        {
+          "@id": "https://linked.data.gov.au/dataset/csdm/attributions",
+          "@type": ["https://schema.org/DefinedTermSet"],
+          "https://schema.org/description": [
+            {
+              "@value": "<p>Persons, Organisations &amp; Groups for attributions</p>"
+            }
+          ],
+          "https://schema.org/name": [
+            {
+              "@value": "Attributions"
+            }
+          ]
+        }
+      ]
+    </script>
+  </head>
+  <body>
+    <div id="pylode">
+      made by
+      <a href="http://github.com/rdflib/pyLODE">
+        <span style="color: #329545">p</span
+        ><span style="color: #f9cb33">y</span>LODE</a
+      >
+      <span style="font-size: smaller">2.8.3</span>
+    </div>
+    <h1>Attributions</h1>
+    <h3><em>A taxonomy</em></h3>
+    <section id="conceptscheme">
+      <h2 style="display: none">Concept Scheme</h2>
+      <dl>
+        <dt>URI</dt>
+        <dd>
+          <code>https://linked.data.gov.au/dataset/csdm/attributions</code>
+        </dd>
+        <dt>Ontology RDF</dt>
+        <dd><a href="attributions.ttl">RDF (turtle)</a></dd>
+      </dl>
+      <h2>Description</h2>
+      <div id="description">
+        <p>Persons, Organisations &amp; Groups for attributions</p>
+      </div>
+    </section>
+    <section id="toc">
+      <h2>Table of Contents</h2>
+      <ol>
+        <li><a href="#concepts">Concepts</a></li>
+        <li><a href="#namespaces">Namespaces</a></li>
+        <li><a href="#legend">Legend</a></li>
+      </ol>
+    </section>
+    <section id="overview">
+      <h2>Overview</h2>
+    </section>
+    <section id="concepts">
+      <h2>
+        Concepts
+        <span style="float: right; font-size: smaller"
+          ><a href="">&uparrow;</a></span
+        >
+      </h2>
+      <ul class="hierarchy">
+        <li><a href="#AdrianCochrane">Adrian Cochrane</a></li>
+        <li><a href="#AndrewHunter">Andrew Hunter</a></li>
+        <li><a href="#AdrianWhite">Adrian White</a></li>
+        <li><a href="#ByronCochrane">Byron Cochrane</a></li>
+        <li>
+          <a href="#CSDMProjectProductOwners">CSDM Project Product Owners</a>
+        </li>
+        <li>
+          <a href="#DepartmentofEnvironment,Land,WaterandPlanning"
+            >Department of Environment, Land, Water and Planning</a
+          >
+        </li>
+        <li>
+          <a href="#IntergovernmentalCommitteeonSurveyingandMapping"
+            >Intergovernmental Committee on Surveying and Mapping</a
+          >
+        </li>
+        <li>
+          <a href="#ICSMCadastralSurveyWorkingGroup"
+            >ICSM Cadastral Survey Working Group</a
+          >
+        </li>
+        <li><a href="#JeffNeedham">Jeff Needham</a></li>
+        <li><a href="#KurrawongAI">KurrawongAI</a></li>
+        <li>
+          <a href="#ToituTeWhenuaLandInformationNewZealand"
+            >Toitu Te Whenua Land Information New Zealand</a
+          >
+        </li>
+        <li><a href="#Landgate">Landgate</a></li>
+        <li><a href="#MurrayDolling">Murray Dolling</a></li>
+        <li>
+          <a href="#mpurss@pangaeainnovations.com"
+            >mpurss@pangaeainnovations.com</a
+          >
+        </li>
+        <li><a href="#McKenzieCo">McKenzie & Co</a></li>
+        <li><a href="#NicholasCar">Nicholas Car</a></li>
+        <li>
+          <a href="#NSWDepartmentofCustomerService"
+            >NSW Department of Customer Service</a
+          >
+        </li>
+        <li><a href="#OpenWorkLtd">OpenWork Ltd</a></li>
+        <li><a href="#PangeaInnovations">Pangea Innovations</a></li>
+        <li><a href="#RobAtkinson">Rob Atkinson</a></li>
+        <li><a href="#RogerFraser">Roger Fraser</a></li>
+        <li><a href="#SimonOpper">Simon Opper</a></li>
+        <li><a href="#SURROUNDAustralia">SURROUND Australia</a></li>
+        <li>
+          <a href="#SURROUNDNZ3DCadconsortium">SURROUND NZ 3DCad consortium</a>
+        </li>
+        <li><a href="#SURROUNDNZ">SURROUND NZ</a></li>
+      </ul>
+      <div class="entity concept" id="AdrianCochrane">
+        <h3>Adrian Cochrane<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/ACochrane</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="AndrewHunter">
+        <h3>Andrew Hunter<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/AHunter</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="AdrianWhite">
+        <h3>Adrian White<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/AWhite</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="ByronCochrane">
+        <h3>Byron Cochrane<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/BCochrane</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="CSDMProjectProductOwners">
+        <h3>
+          CSDM Project Product Owners<sup title="Concept" class="sup-cp"
+            >cp</sup
+          >
+        </h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/CSDMProductOwners</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div
+        class="entity concept"
+        id="DepartmentofEnvironment,Land,WaterandPlanning"
+      >
+        <h3>
+          Department of Environment, Land, Water and Planning<sup
+            title="Concept"
+            class="sup-cp"
+            >cp</sup
+          >
+        </h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/DEWLP</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div
+        class="entity concept"
+        id="IntergovernmentalCommitteeonSurveyingandMapping"
+      >
+        <h3>
+          Intergovernmental Committee on Surveying and Mapping<sup
+            title="Concept"
+            class="sup-cp"
+            >cp</sup
+          >
+        </h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/ICSM</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="ICSMCadastralSurveyWorkingGroup">
+        <h3>
+          ICSM Cadastral Survey Working Group<sup title="Concept" class="sup-cp"
+            >cp</sup
+          >
+        </h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/ICSMCadastralSurveyWG</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="JeffNeedham">
+        <h3>Jeff Needham<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/JNeedham</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="KurrawongAI">
+        <h3>KurrawongAI<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/KurrawongAI</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="ToituTeWhenuaLandInformationNewZealand">
+        <h3>
+          Toitu Te Whenua Land Information New Zealand<sup
+            title="Concept"
+            class="sup-cp"
+            >cp</sup
+          >
+        </h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/LINZ</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="Landgate">
+        <h3>Landgate<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/Landgate</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="MurrayDolling">
+        <h3>Murray Dolling<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/MDolling</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="mpurss@pangaeainnovations.com">
+        <h3>
+          mpurss@pangaeainnovations.com<sup title="Concept" class="sup-cp"
+            >cp</sup
+          >
+        </h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/MPurss</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="McKenzieCo">
+        <h3>McKenzie & Co<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/McKenzie_and_Co</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="NicholasCar">
+        <h3>Nicholas Car<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/NCar</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="NSWDepartmentofCustomerService">
+        <h3>
+          NSW Department of Customer Service<sup title="Concept" class="sup-cp"
+            >cp</sup
+          >
+        </h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/NSW-DCS</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="OpenWorkLtd">
+        <h3>OpenWork Ltd<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/OWL</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="PangeaInnovations">
+        <h3>Pangea Innovations<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/Pangea</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="RobAtkinson">
+        <h3>Rob Atkinson<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/RAtkinson</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="RogerFraser">
+        <h3>Roger Fraser<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/RFraser</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="SimonOpper">
+        <h3>Simon Opper<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/SOpper</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="SURROUNDAustralia">
+        <h3>SURROUND Australia<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/SURROUND</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="SURROUNDNZ3DCadconsortium">
+        <h3>
+          SURROUND NZ 3DCad consortium<sup title="Concept" class="sup-cp"
+            >cp</sup
+          >
+        </h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/SURROUNDConsortium</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="entity concept" id="SURROUNDNZ">
+        <h3>SURROUND NZ<sup title="Concept" class="sup-cp">cp</sup></h3>
+        <table>
+          <tr>
+            <th>URI</th>
+            <td>
+              <code
+                >https://linked.data.gov.au/dataset/csdm/attributions/SURROUNDNZ</code
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="namespaces">
+      <h2>
+        Namespaces
+        <span style="float: right; font-size: smaller"
+          ><a href="">&uparrow;</a></span
+        >
+      </h2>
+      <dl>
+        <dt>attributions</dt>
+        <dd>
+          <code>https://linked.data.gov.au/dataset/csdm/attributions/</code>
+        </dd>
+        <dt>dc</dt>
+        <dd><code>http://purl.org/dc/terms/</code></dd>
+        <dt>foaf</dt>
+        <dd><code>http://xmlns.com/foaf/0.1/</code></dd>
+        <dt>owl</dt>
+        <dd><code>http://www.w3.org/2002/07/owl#</code></dd>
+        <dt>rdf</dt>
+        <dd><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code></dd>
+        <dt>rdfs</dt>
+        <dd><code>http://www.w3.org/2000/01/rdf-schema#</code></dd>
+        <dt>sdo</dt>
+        <dd><code>https://schema.org/</code></dd>
+        <dt>skos</dt>
+        <dd><code>http://www.w3.org/2004/02/skos/core#</code></dd>
+        <dt>xsd</dt>
+        <dd><code>http://www.w3.org/2001/XMLSchema#</code></dd>
+      </dl>
+    </section>
+
+    <section id="legend">
+      <h2>Legend</h2>
+      <table class="entity">
+        <tr>
+          <td><sup class="sup-cl" title="Collections">cl</sup></td>
+          <td>Collections</td>
+        </tr>
+        <tr>
+          <td><sup class="sup-cp" title="Concepts">cp</sup></td>
+          <td>Concepts</td>
+        </tr>
+      </table>
+    </section>
+  </body>
+</html>

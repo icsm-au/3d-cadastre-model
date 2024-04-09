@@ -1,0 +1,125 @@
+# baseURI: https://linked.data.gov.au/def/csdm/canonical_examples
+# imports: https://linked.data.gov.au/dataset/csdm/surveyfeatures-examples
+# imports: https://linked.data.gov.au/dataset/csdm/surveyobs-examples
+# imports: https://linked.data.gov.au/dataset/csdm/implementation-examples
+# imports: https://linked.data.gov.au/def/csdm/common/examples
+# imports: https://linked.data.gov.au/def/csdm/parcels/examples
+# imports: https://linked.data.gov.au/def/csdm/surveyactivity/examples
+
+@prefix examples: <https://linked.data.gov.au/def/csdm/parcels/examples/> .
+@prefix examples1: <https://linked.data.gov.au/def/csdm/surveyactivity/examples/> .
+@prefix examples2: <https://linked.data.gov.au/def/csdm/common/examples/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix implext: <https://linked.data.gov.au/dataset/csdm/implementation-examples/>
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix reqmetamodel: <https://linked.data.gov.au/def/csdm/reqmetamodel/> .
+@prefix surv: <https://linked.data.gov.au/def/csdm/surveyfeatures/> .
+@prefix surveyfeatures-examples: <https://linked.data.gov.au/dataset/csdm/surveyfeatures-examples/> .
+@prefix surveyobs-examples: <https://linked.data.gov.au/dataset/csdm/surveyobs-examples/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+geo:CompositeSolid
+  reqmetamodel:canonicalExample examples:s1 ;
+  reqmetamodel:canonicalExample examples:s2 ;
+.
+<http://www.w3.org/ns/prov#Organization>
+  reqmetamodel:canonicalExample examples1:LINZ ;
+.
+<http://www.w3.org/ns/prov#SoftwareAgent>
+  reqmetamodel:canonicalExample examples1:LandOnlineNZ ;
+.
+<https://linked.data.gov.au/def/csdm/canonical_examples>
+  a owl:Ontology ;
+  owl:imports <https://linked.data.gov.au/dataset/csdm/surveyfeatures-examples> ;
+  owl:imports <https://linked.data.gov.au/dataset/csdm/surveyobs-examples> ;
+  owl:imports <https://linked.data.gov.au/dataset/csdm/implementation-examples> ;
+  owl:imports <https://linked.data.gov.au/def/csdm/common/examples> ;
+  owl:imports <https://linked.data.gov.au/def/csdm/parcels/examples> ;
+  owl:imports <https://linked.data.gov.au/def/csdm/surveyactivity/examples> ;
+.
+<https://linked.data.gov.au/def/csdm/commonpatterns/CompoundName>
+  foaf:depiction <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/CompoundName.png> ;
+  reqmetamodel:canonicalExample examples:Lot1_Appellation ;
+.
+<https://linked.data.gov.au/def/csdm/commonpatterns/RelevantJurisdictionalCodelist>
+  foaf:depiction <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/CodeLists.png> ;
+.
+<https://linked.data.gov.au/def/csdm/parcels/LandPropertyUnit>
+  reqmetamodel:implExample implext:LandPropertyUnitLandinfraGraphic ;
+.
+<https://linked.data.gov.au/def/csdm/parcels/Parcel>
+  reqmetamodel:implExample implext:GML-SpatialUnit ;
+  reqmetamodel:implExample implext:Parcel12d ;
+  reqmetamodel:implExample implext:ParcelEPlanNSW ;
+.
+<https://linked.data.gov.au/def/csdm/parcels/PrimaryParcel>
+  reqmetamodel:canonicalExample examples:cp1 ;
+  reqmetamodel:canonicalExample examples:cp2 ;
+.
+<https://linked.data.gov.au/def/csdm/parcels/SecondaryParcel>
+  reqmetamodel:implExample implext:EasementEPlanNSW ;
+  reqmetamodel:implExample implext:EasementInfraGML ;
+  reqmetamodel:implExample implext:EasementLADM ;
+.
+<https://linked.data.gov.au/def/csdm/surveyprov/CSD>
+  reqmetamodel:canonicalExample examples1:SurveyExample ;
+.
+<https://linked.data.gov.au/def/csdm/surveyprov/CadastralSurveyor>
+  reqmetamodel:canonicalExample examples1:AH ;
+.
+<https://linked.data.gov.au/def/csdm/surveyprov/SurveyApproval>
+  reqmetamodel:canonicalExample examples1:SurveyApproval_1 ;
+.
+<https://linked.data.gov.au/def/csdm/surveyprov/SurveyLodged>
+  reqmetamodel:canonicalExample examples1:SurveyLodged_1 ;
+.
+surv:AdoptedVector
+  reqmetamodel:implExample implext:AdoptedObservations12D ;
+  reqmetamodel:implExample implext:AdoptedObservationsEPlanNSW ;
+.
+surv:CadastralMark
+  reqmetamodel:implExample implext:CadasralMarkInfraGML ;
+  reqmetamodel:implExample implext:CadastralMark12D ;
+  reqmetamodel:implExample implext:CadastralMarkLADM ;
+  reqmetamodel:implExample implext:CadastralMarksEPlanNSW ;
+  reqmetamodel:implExample implext:CadastralMarksIFC ;
+.
+surv:GeodeticReferenceMark
+  reqmetamodel:implExample implext:GeodeticMark12D ;
+  reqmetamodel:implExample implext:GeodeticMarkEPlanNSW ;
+  reqmetamodel:implExample implext:GeodeticMarkInfraGML ;
+  reqmetamodel:implExample implext:GeodeticMarksIFC ;
+.
+surv:Measure
+  reqmetamodel:implExample implext:MeasurementInfraGML ;
+  reqmetamodel:implExample implext:MeasurementUnits12d ;
+  reqmetamodel:implExample implext:MeasurementUnitsEPlanNSW ;
+.
+surv:Monument
+  reqmetamodel:implExample implext:Monument12d ;
+  reqmetamodel:implExample implext:MonumentEPlanNSW ;
+  reqmetamodel:implExample implext:MonumentLADM ;
+.
+surv:ObservedVector
+  reqmetamodel:implExample implext:SurveyObservation12D ;
+  reqmetamodel:implExample implext:SurveyObservationEPlanNSW ;
+  reqmetamodel:implExample implext:SurveyObservationIFC ;
+.
+surv:OccupationMark
+  reqmetamodel:implExample implext:OccupationEPlanNSW ;
+  reqmetamodel:implExample implext:OccupationObservationsIFC ;
+.
+surv:Setup
+  reqmetamodel:implExample implext:SetupEPlanNSW ;
+  reqmetamodel:implExample implext:landinfrasetup ;
+  reqmetamodel:implExample implext:landinfrasetup_2 ;
+.
+surv:Traverse
+  reqmetamodel:canonicalExample surveyobs-examples:tr1 ;
+.
+<https://linked.data.gov.au/def/csdm/surveyobs/DesignModel>
+  reqmetamodel:canonicalExample surveyobs-examples:ifc_design_1 ;
+.

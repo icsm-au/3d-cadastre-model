@@ -1,0 +1,20 @@
+# https://taskfile.dev
+
+version: "3"
+
+tasks:
+  dev:
+    cmds:
+      - venv/bin/watchfiles ./ci_scripts/run.sh index.html
+
+  dev:mockup:profile:
+    cmds:
+      - venv/bin/watchfiles 'asciidoctor -o docs/profiles-demo.html mockups/profiles/index.adoc' mockups/profiles
+
+  web:
+    cmds:
+      - venv/bin/python -m http.server -d docs/ 8001
+
+  dev:pylode:
+    cmds:
+      - python -m http.server -d csdm_model/

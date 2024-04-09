@@ -1,0 +1,189 @@
+# baseURI: https://linked.data.gov.au/dataset/csdm/surveyobs.shapes
+# imports: http://www.w3.org/ns/ssn/ext.shapes
+# imports: https://linked.data.gov.au/def/csdm/surveyfeatures.shapes
+# imports: https://linked.data.gov.au/def/csdm/surveyobs
+
+@prefix : <https://linked.data.gov.au/dataset/csdm/surveyobs-examples/> .
+@prefix arg: <http://spinrdf.org/arg#> .
+@prefix com: <https://linked.data.gov.au/def/csdm/commonpatterns/> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix edg: <http://edg.topbraid.solutions/model/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix geometry: <https://linked.data.gov.au/def/csdm/geometry/> .
+@prefix graphql: <http://datashapes.org/graphql#> .
+@prefix imported: <http://topbraid.org/imported#> .
+@prefix landinfra: <http://www.opengis.net/def/schema/landinfra/core/> .
+@prefix metadata: <http://topbraid.org/metadata#> .
+@prefix ontologyprojects: <http://teamwork.topbraidlive.org/ontologyprojects#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prof: <http://www.w3.org/ns/dx/prof/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix reqmetamodel: <https://linked.data.gov.au/def/csdm/reqmetamodel/> .
+@prefix sdo: <https://schema.org/> .
+@prefix sf: <http://www.opengis.net/ont/sf#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix shapes: <https://data.surroundaustralia.com/def/speclist/shapes#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix skosshapes: <http://topbraid.org/skos.shapes#> .
+@prefix skosxl: <http://www.w3.org/2008/05/skos-xl#> .
+@prefix smf: <http://topbraid.org/sparqlmotionfunctions#> .
+@prefix sop: <http://surroundaustralia.com/ns/platform/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sp: <http://spinrdf.org/sp#> .
+@prefix specs: <https://linked.data.gov.au/def/csdm/impspecs/> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix spl: <http://spinrdf.org/spl#> .
+@prefix surv: <https://linked.data.gov.au/def/csdm/surveyfeatures/> .
+@prefix surveyobs: <https://linked.data.gov.au/def/csdm/surveyobs/> .
+@prefix survprov: <https://linked.data.gov.au/def/csdm/surveyprov/> .
+@prefix swa: <http://topbraid.org/swa#> .
+@prefix tagger: <http://evn.topbraidlive.org/tagger#> .
+@prefix taggerprojects: <http://evn.topbraidlive.org/taggerprojects#> .
+@prefix taxonomies: <http://evn.topbraidlive.org/evnprojects#> .
+@prefix teamwork: <http://topbraid.org/teamwork#> .
+@prefix teamworkconstraints: <http://topbraid.org/teamworkconstraints#> .
+@prefix tosh: <http://topbraid.org/tosh#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://linked.data.gov.au/dataset/csdm/surveyobs.shapes>
+  a owl:Ontology ;
+  owl:imports <http://www.w3.org/ns/ssn/ext.shapes> ;
+  owl:imports <https://linked.data.gov.au/def/csdm/surveyfeatures.shapes> ;
+  owl:imports <https://linked.data.gov.au/def/csdm/surveyobs> ;
+.
+<https://linked.data.gov.au/dataset/csdm/surveyobs-examples.shapes>
+  a owl:Ontology ;
+  owl:imports <http://datashapes.org/dash> ;
+  owl:imports <https://linked.data.gov.au/def/csdm/surveyobs> ;
+.
+:FeatureIsASurveyVector
+  a sh:PropertyShape ;
+  sh:path sosa:featureOfInterest ;
+  sh:class surv:SurveyedLine ;
+  sh:maxCount 1 ;
+  sh:minCount 1 ;
+  sh:name "Feature is a Survey Vector" ;
+.
+:hasFeatureOfInterest
+  a sh:PropertyShape ;
+  sh:path sosa:hasFeatureOfInterest ;
+  rdfs:label "is a BoundaryFeature" ;
+  sh:class geometry:BoundaryFeature ;
+.
+surv:Occupation
+  sh:property surv:Occupation-age ;
+  sh:property surv:Occupation-hasResult ;
+  sh:property surv:Occupation-note ;
+.
+surv:Occupation-age
+  a sh:PropertyShape ;
+  sh:path surv:age ;
+  sh:datatype xsd:decimal ;
+  sh:maxCount 1 ;
+  sh:name "Estimated Age" ;
+.
+surv:Occupation-hasResult
+  a sh:PropertyShape ;
+  sh:path sosa:hasResult ;
+  sh:class surv:Occupation ;
+  sh:maxCount 1 ;
+  sh:minCount 1 ;
+.
+surv:Occupation-note
+  a sh:PropertyShape ;
+  sh:path skos:note ;
+  sh:datatype xsd:string ;
+  sh:name "note" ;
+.
+surv:OccupationMark
+  sh:property surv:Occupation-age ;
+  sh:property surv:Occupation-note ;
+.
+surveyobs:DesignModel
+  a sh:NodeShape ;
+  sh:property [
+      a sh:PropertyShape ;
+      sh:path sosa:hasResult ;
+      sh:class surveyobs:IFCRef ;
+      sh:description "constrain result to an IFC reference" ;
+      sh:maxCount 1 ;
+      sh:minCount 1 ;
+      sh:name "has result" ;
+    ] ;
+.
+surveyobs:IFCRef
+  a sh:NodeShape ;
+  rdfs:comment "Defines a reference to a feature or set of featires in a BIM design model as the result of an inspection process." ;
+  rdfs:label "BIM/IFC design model reference" ;
+  sh:property [
+      a sh:PropertyShape ;
+      sh:path dcterms:identifier ;
+      sh:datatype xsd:string ;
+      sh:description "Element identifer for object in model" ;
+      sh:minCount 1 ;
+      sh:name "identifier" ;
+    ] ;
+  sh:property [
+      a sh:PropertyShape ;
+      sh:path dcterms:type ;
+      sh:description "Object type in design model" ;
+      sh:maxCount 1 ;
+      sh:name "type" ;
+      sh:nodeKind sh:IRI ;
+    ] ;
+  sh:property [
+      a sh:PropertyShape ;
+      sh:path rdfs:isDefinedBy ;
+      sh:datatype xsd:anyURI ;
+      sh:description "Reference to the IFC resource containing the model element" ;
+      sh:maxCount 1 ;
+      sh:name "is defined in" ;
+    ] ;
+  sh:property [
+      a sh:PropertyShape ;
+      sh:path rdfs:label ;
+      sh:datatype xsd:string ;
+      sh:description "Design element label" ;
+      sh:maxCount 1 ;
+    ] ;
+.
+surveyobs:OccupationObservation
+  a sh:NodeShape ;
+.
+surveyobs:ParcelBoundaryOccupation
+  sh:property :hasFeatureOfInterest ;
+.
+surveyobs:QualifiedVector
+  a sh:NodeShape ;
+  rdfs:label "QualifiedVector" ;
+  sh:property [
+      a sh:PropertyShape ;
+      sh:path surv:distance ;
+      sh:class surv:Distance ;
+      sh:maxCount 1 ;
+      sh:minCount 1 ;
+      sh:name "distance" ;
+    ] ;
+  sh:property [
+      a sh:PropertyShape ;
+      sh:path surv:horizontalAngle ;
+      sh:class surv:Angle ;
+      sh:maxCount 1 ;
+      sh:minCount 1 ;
+      sh:name "horizontal angle" ;
+    ] ;
+  sh:property [
+      a sh:PropertyShape ;
+      sh:path surv:verticalAngle ;
+      sh:class surv:Angle ;
+      sh:maxCount 1 ;
+      sh:minCount 1 ;
+      sh:name "vertical angle" ;
+    ] ;
+.

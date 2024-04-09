@@ -1,0 +1,242 @@
+# baseURI: https://linked.data.gov.au/def/csdm/geometry.shapes
+# imports: http://datashapes.org/dash
+# imports: https://linked.data.gov.au/def/csdm/geometry
+
+@prefix : <https://linked.data.gov.au/def/csdm/geometry/> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcam: <http://purl.org/dc/dcam/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix gml: <http://www.opengis.net/ont/gml#> .
+@prefix ontologyprojects: <http://teamwork.topbraidlive.org/ontologyprojects#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sf: <http://www.opengis.net/ont/sf#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix teamwork: <http://topbraid.org/teamwork#> .
+@prefix tosh: <http://topbraid.org/tosh#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+geo:Feature
+  a sh:NodeShape ;
+  sh:not [
+      rdfs:label "Instance of Geometry" ;
+      sh:class geo:Geometry ;
+    ] ;
+  sh:not [
+      rdfs:label "Instance of Geometry" ;
+      sh:class geo:Geometry ;
+    ] ;
+  sh:property geo:Feature-hasGeometry ;
+.
+geo:Feature-hasGeometry
+  a sh:PropertyShape ;
+  sh:path geo:hasGeometry ;
+  sh:class geo:Geometry ;
+  sh:description "hasGeometry property inherited from geo:Feature" ;
+  sh:group tosh:ImplementationPropertyGroup ;
+  sh:name "hasGeometry" ;
+.
+geo:Geometry
+  a sh:NodeShape ;
+  sh:not [
+      rdfs:label "Instance of Feature" ;
+      sh:class geo:Feature ;
+    ] ;
+  sh:not [
+      rdfs:label "Instance of Feature" ;
+      sh:class geo:Feature ;
+    ] ;
+  sh:property :Geometry-asGML ;
+.
+<https://linked.data.gov.au/def/csdm/geometry.shapes>
+  a owl:Ontology ;
+  # owl:imports <http://datashapes.org/dash> ;
+  # owl:imports <https://linked.data.gov.au/def/csdm/geometry> ;
+.
+<https://linked.data.gov.au/def/csdm/geometry/3DSpatialUnit>
+  a sh:NodeShape ;
+  sh:property <https://linked.data.gov.au/def/csdm/geometry/3DSpatialUnit-boundedBy> ;
+  sh:property <https://linked.data.gov.au/def/csdm/geometry/3DSpatialUnit-hasGeometry> ;
+  sh:property <https://linked.data.gov.au/def/csdm/geometry/3DSpatialUnit-hasGeometryPart> ;
+  sh:property :overlaps ;
+.
+<https://linked.data.gov.au/def/csdm/geometry/3DSpatialUnit-boundary>
+  a sh:PropertyShape ;
+  sh:path :boundary ;
+  rdfs:label "boundedBy" ;
+.
+<https://linked.data.gov.au/def/csdm/geometry/3DSpatialUnit-boundedBy>
+  a sh:PropertyShape ;
+  sh:path :boundedBy ;
+  rdfs:label "boundedBy" ;
+.
+<https://linked.data.gov.au/def/csdm/geometry/3DSpatialUnit-hasGeometry>
+  a sh:PropertyShape ;
+  sh:path geo:hasGeometry ;
+  sh:class :AbstractSolidGeometry ;
+  sh:description "Constrain geometry to a form that supports calculation of interior and surface domains. " ;
+  sh:name "hasGeometry" ;
+.
+<https://linked.data.gov.au/def/csdm/geometry/3DSpatialUnit-hasGeometryPart>
+  a sh:PropertyShape ;
+  sh:path :hasGeometryPart ;
+  sh:class geo:Geometry ;
+  sh:description "A component geometry part potentially containing references to reusable used in the main geometry representation" ;
+  sh:name "hasGeometryPart" ;
+.
+:AbstractSolidGeometry
+  a sh:NodeShape ;
+.
+:BoundaryEdge
+  a sh:NodeShape ;
+  sh:property :Edge-nodeFrom ;
+  sh:property :Edge-nodeTo ;
+.
+:Edge-nodeFrom
+  a sh:PropertyShape ;
+  sh:path :nodeFrom ;
+  rdfs:label "nodeFrom" ;
+  sh:class :BoundaryNode ;
+  sh:maxCount 1 ;
+  sh:minCount 1 ;
+.
+:Edge-nodeTo
+  a sh:PropertyShape ;
+  sh:path :nodeTo ;
+  sh:class :BoundaryNode ;
+  sh:maxCount 1 ;
+  sh:minCount 1 ;
+.
+:ExtensionRule
+  a sh:NodeShape ;
+  sh:property [
+      a sh:PropertyShape ;
+      sh:path dc:description ;
+      sh:datatype xsd:string ;
+      sh:maxCount 1 ;
+      sh:name "description" ;
+    ] ;
+  sh:property [
+      a sh:PropertyShape ;
+      sh:path geo:extension ;
+      sh:datatype xsd:decimal ;
+      sh:maxCount 1 ;
+    ] ;
+  sh:property [
+      a sh:PropertyShape ;
+      sh:path geo:isOutward ;
+      sh:datatype xsd:boolean ;
+      sh:maxCount 1 ;
+      sh:name "is outward" ;
+    ] ;
+.
+:ExtrudedCurve
+  a sh:NodeShape ;
+.
+:ExtrudedCurve-curve
+  a sh:PropertyShape ;
+  sh:path :surface ;
+  sh:class gml:OrientableCurve ;
+  sh:description "The oriented curve that defines an extruded planar geometry." ;
+  sh:group tosh:ImplementationPropertyGroup ;
+  sh:maxCount 1 ;
+  sh:minCount 1 ;
+  sh:name "surface" ;
+.
+:ExtrudedGeometry
+  a sh:NodeShape ;
+  sh:property :ExtrudedGeometry-extrusion ;
+.
+:ExtrudedGeometry-extrusion
+  a sh:PropertyShape ;
+  sh:path :limit ;
+  sh:class :ExtensionRule ;
+  sh:description "The limit descriptor that defines the higher dimensional extruded geometry relative to the defining low-dimensional geometry element." ;
+  sh:group tosh:ImplementationPropertyGroup ;
+  sh:minCount 1 ;
+  sh:name "extension rule" ;
+  sh:order "1"^^xsd:decimal ;
+.
+:ExtrudedSurface
+  a sh:NodeShape ;
+  rdfs:subClassOf gml:OrientableSurface ;
+.
+:ExtrudedSurface-surface
+  a sh:PropertyShape ;
+  sh:path :surface ;
+  sh:class gml:OrientableSurface ;
+  sh:description "The oriented surface that defines an extruded solid geometry." ;
+  sh:group tosh:ImplementationPropertyGroup ;
+  sh:maxCount 1 ;
+  sh:minCount 1 ;
+  sh:name "surface" ;
+.
+:Face
+  a sh:NodeShape ;
+  sh:property :Face-isTruncated ;
+  sh:property :Face-touchesInward ;
+  sh:property :Face-touchesOutward ;
+.
+:Face-isTruncated
+  a sh:PropertyShape ;
+  sh:path :isTruncated ;
+  sh:datatype xsd:boolean ;
+  sh:description "Optional flag to indicate that a boundary is a truncated representation of a feature with an effectively unbounded extent." ;
+  sh:maxCount 1 ;
+  sh:minCount 0 ;
+.
+:Face-touchesInward
+  a sh:PropertyShape ;
+  sh:path geo:touchesInward ;
+  sh:class geo:Feature ;
+  sh:description "Required topological relationship to the feature occupying space immediately in the inward direction of an oriented geometry." ;
+  sh:maxCount 1 ;
+  sh:minCount 1 ;
+  sh:name "touchesInward" ;
+.
+:Face-touchesOutward
+  a sh:PropertyShape ;
+  sh:path geo:touchesOutward ;
+  sh:class geo:Feature ;
+  sh:description "Optional topological relationship to the feature occupying space immediately in the outward direction of an oriented geometry." ;
+  sh:maxCount 1 ;
+  sh:minCount 0 ;
+.
+:Geometry-asGML
+  a sh:PropertyShape ;
+  sh:path geo:asGML ;
+  rdfs:label "asGML" ;
+  sh:datatype geo:gmlLiteral ;
+  sh:group tosh:ImplementationPropertyGroup ;
+  sh:nodeKind sh:Literal ;
+.
+:SolidTopology
+  a sh:NodeShape ;
+  sh:property [
+      a sh:PropertyShape ;
+      sh:path :inside ;
+      sh:class <https://linked.data.gov.au/def/csdm/geometry/3DSpatialUnit> ;
+      sh:description "The feature in the inside of a directed geometry element" ;
+      sh:maxCount 1 ;
+      sh:minCount 1 ;
+      sh:name "feature inside" ;
+      sh:nodeKind sh:IRI ;
+    ] ;
+.
+:boundedBy
+  a owl:ObjectProperty ;
+  rdfs:comment "Boundary Features define inward and outward topology so that the orientation of its geometry can be interpreted relative to each feature boundedBy a set of BoundaryFeatures." ;
+  rdfs:label "boundedBy" ;
+  rdfs:range :BoundaryFeature ;
+  skos:definition "A Feature whose geometry forms part of the boundary of two other features bounded by a higher dimensional geometry." ;
+.
+:overlaps
+  a sh:PropertyShape ;
+  sh:path geo:ehOverlap ;
+  rdfs:label "overlaps" ;
+  sh:class <https://linked.data.gov.au/def/csdm/geometry/3DSpatialUnit> ;
+.

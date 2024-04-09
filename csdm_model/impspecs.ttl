@@ -1,0 +1,294 @@
+# baseURI: https://linked.data.gov.au/def/csdm/impspecs
+# imports: http://topbraid.org/skos.shapes
+# imports: https://data.surroundaustralia.com/def/speclist/shapes
+
+@prefix : <https://linked.data.gov.au/def/csdm/impspecs/> .
+@prefix cs: <https://linked.data.gov.au/def/csdm/impspecs> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix metadata: <http://topbraid.org/metadata#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix taxonomies: <http://evn.topbraidlive.org/evnprojects#> .
+@prefix teamwork: <http://topbraid.org/teamwork#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+cs:
+  a taxonomies:ProjectType ;
+  a owl:Ontology ;
+  a prov:Entity ;
+  a skos:ConceptScheme ;
+  owl:imports <http://topbraid.org/skos.shapes> ;
+  owl:imports <https://data.surroundaustralia.com/def/speclist/shapes> ;
+  skos:definition "Specifications to describe type of implementation example" ;
+  skos:hasTopConcept :Community ;
+  skos:hasTopConcept :ExemplarDiagrams ;
+  skos:hasTopConcept :ISO ;
+  skos:hasTopConcept :Modelling ;
+  skos:hasTopConcept :OGC ;
+  skos:hasTopConcept :Proprietary ;
+  skos:hasTopConcept :W3C ;
+  skos:hasTopConcept :bSIIFC ;
+  skos:prefLabel "Implementation Specifications"@en ;
+.
+:ClassContextDiagram
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :ExemplarDiagrams ;
+  skos:definition "Class Context Diagram showing most important related classes and attributes for a focus class"^^rdf:HTML ;
+  skos:prefLabel "Class Context Diagram"@en ;
+.
+:ClassDiagram
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :ExemplarDiagrams ;
+  skos:definition "Profile for class diagram view of a package. "^^rdf:HTML ;
+  skos:prefLabel "Class Diagram for Package"@en ;
+.
+:Community
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "Community"@en ;
+  skos:topConceptOf cs: ;
+.
+:ExemplarDiagrams
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:definition "Types of diagram or image for different documentation purposes." ;
+  skos:prefLabel "Exemplar Diagrams"@en ;
+  skos:topConceptOf cs: ;
+.
+:GML
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "GML"@en ;
+  skos:narrower :GMLSF2 ;
+.
+:GMLSF0
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "GML Simple Features Level 0"@en ;
+.
+:GMLSF1
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "GML Simple Features Level 1"@en ;
+  skos:narrower :GMLSF0 ;
+.
+:GMLSF2
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "GML Simple Features Level 2"@en ;
+  skos:narrower :GMLSF1 ;
+.
+:GeoSPARQL1.1
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "GeoSPARQL 1.1"@en ;
+  skos:broader :ISO19109ApplicationSchema ;
+  skos:broader :OWL ;
+  skos:definition "The OGC GeoSPARQL standard supports representing and querying geospatial data on the Semantic Web. GeoSPARQL defines a vocabulary for representing geospatial data in RDF, and it defines an extension to the SPARQL query language for processing geospatial data. In addition, GeoSPARQL is designed to accommodate systems based on qualitative spatial reasoning and systems based on quantitative spatial computations."^^rdf:HTML ;
+  skos:scopeNote "GeoSPARQL 1.1 implements the ISO 19109 Feature Model allowing geometries to be specified using GML or WKT, and supporting spatial operations between geometries of features."^^rdf:HTML ;
+.
+:GeoSPARQL1.2
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "GeoSPARQL 1.2"@en ;
+  skos:broader :SolidTopology ;
+  skos:definition "GeoSPARQL 1.2 is a backward compatible extension of GeoSPARQL 1.1 implementation of ISO 19107 geometry and topology concepts."^^rdf:HTML ;
+  skos:scopeNote "GeoSPARQL 1.2 is a proposed extension of GeoSPARQL 1.1 to include specific predicates to describe 3D topological relationships between features with solid geometries."^^rdf:HTML ;
+.
+:IFCVersion4.3
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :bSIIFC ;
+  skos:definition "Under development" ;
+  skos:prefLabel "IFC Version 4.3"@en ;
+.
+:ISO
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "ISO"@en ;
+  skos:topConceptOf cs: ;
+.
+:ISO19109ApplicationSchema
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :ISO ;
+  skos:broader :UML ;
+  skos:definition "ISO profile of UML for Application Schema models" ;
+  skos:prefLabel "ISO19109 Application Schema"@en ;
+.
+:ISO191522
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :ISO ;
+  skos:definition "Draft version of LADM part 2 Surveying" ;
+  skos:prefLabel "ISO19152 LADM"@en ;
+.
+:ISO191522Surveying
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :ISO191522 ;
+  skos:prefLabel "ISO19152-2 Surveying"@en ;
+.
+:InfraGML
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :OGC ;
+  skos:prefLabel "InfraGML"@en ;
+.
+:InfraGMLPart0Core
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :InfraGML ;
+  skos:prefLabel "InfraGML Part 0 Core"@en ;
+.
+:InfraGMLPart6Surveying
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :InfraGML ;
+  skos:prefLabel "InfraGML Part 6 Surveying"@en ;
+.
+:InfraGMLPart7Facilities
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :InfraGML ;
+  skos:prefLabel "InfraGML Part 7 Land Division"@en ;
+.
+:LandInfra
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :OGC ;
+  skos:definition "Land and Infrastructure Conceptual Model Standard (LandInfra)" ;
+  skos:prefLabel "LandInfra"@en ;
+.
+:LandXMEPlan
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :LandXML ;
+  skos:prefLabel "LandXML-ePlan"@en ;
+.
+:LandXML
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :Community ;
+  skos:prefLabel "LandXML"@en ;
+.
+:LandXML12D
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :LandXML ;
+  skos:definition "Example proprietary (in this case 12D's NZ profile) implementation profile of LandXML" ;
+  skos:prefLabel "LandXML (proprietary)"@en ;
+.
+:Modelling
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "Modelling"@en ;
+  skos:topConceptOf cs: ;
+.
+:OGC
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:definition "OGC specifications" ;
+  skos:narrower :GML ;
+  skos:narrower :SimpleFeatures ;
+  skos:narrower :SolidTopology ;
+  skos:prefLabel "OGC"@en ;
+  skos:topConceptOf cs: ;
+.
+:OWL
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "Web Ontology Language"@en ;
+  skos:broader :W3C ;
+.
+:PackageContextDiagram
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :ExemplarDiagrams ;
+  skos:definition "Package showing relationships to key packages, (in addition to dependencies)" ;
+  skos:prefLabel "Package Context Diagram"@en ;
+.
+:PackageDependencies
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :ExemplarDiagrams ;
+  skos:definition "Diagram showing package dependencies for a package" ;
+  skos:prefLabel "Package Dependencies"@en ;
+.
+:Proprietary
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "Proprietary"@en ;
+  skos:topConceptOf cs: ;
+.
+:SimpleFeatures
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "Simple Features Abstract"@en ;
+  skos:definition "The simple features abstraction of ISO 19107."^^rdf:HTML ;
+.
+:SolidTopology
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "Simple Features Abstract"@en ;
+  skos:broader :SimpleFeatures ;
+  skos:definition "Profile of ISO19107 describing topological relationships between 3D solid geometries and component faces."^^rdf:HTML ;
+  skos:narrower :GeoSPARQL1.1 ;
+  skos:narrower :GeoSPARQL1.2 ;
+.
+:UML
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :Modelling ;
+  skos:prefLabel "UML"@en ;
+.
+:W3C
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "World Wide Web consortium (W3C)"@en ;
+  skos:topConceptOf :Specifications ;
+.
+:bSIIFC
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:prefLabel "bSI IFC"@en ;
+  skos:topConceptOf cs: ;
+.
+:ePlanNSW
+  a dct:Standard ;
+  a skos:Concept ;
+  skos:inScheme cs: ;
+  skos:broader :LandXMEPlan ;
+  skos:prefLabel "ePlan NSW"@en ;
+.

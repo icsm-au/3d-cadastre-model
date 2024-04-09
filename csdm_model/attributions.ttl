@@ -1,0 +1,286 @@
+PREFIX attributions: <https://linked.data.gov.au/dataset/csdm/attributions/>
+PREFIX dc: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX time: <http://www.w3.org/2006/time#>
+
+<https://linked.data.gov.au/dataset/csdm/attributions>
+    a
+        owl:Ontology ,
+        skos:ConceptScheme ;
+    owl:imports foaf: ;
+    skos:definition "Persons, Organisations & Groups for attributions" ;
+    skos:hasTopConcept
+        attributions:ACochrane ,
+        attributions:AHunter ,
+        attributions:AWhite ,
+        attributions:BCochrane ,
+        attributions:CSDMProductOwners ,
+        attributions:DEWLP ,
+        attributions:ICSM ,
+        attributions:ICSMCadastralSurveyWG ,
+        attributions:JNeedham ,
+        attributions:KurrawongAI ,
+        attributions:LINZ ,
+        attributions:Landgate ,
+        attributions:MDolling ,
+        attributions:MPurss ,
+        attributions:Edge_Geomatics ,
+        attributions:McKenzie_and_Co ,
+        attributions:NCar ,
+        attributions:NSW-DCS ,
+        attributions:OWL ,
+        attributions:Pangea ,
+        attributions:RAtkinson ,
+        attributions:RFraser ,
+        attributions:SOpper ,
+        attributions:SURROUND ,
+        attributions:SURROUNDConsortium ,
+        attributions:SURROUNDNZ ;
+    skos:prefLabel "Attributions"@en ;
+.
+
+attributions:CSDMProductOwners
+    a
+        skos:Concept ,
+        foaf:Group ;
+    skos:prefLabel "CSDM Project Product Owners"@en ;
+    foaf:member
+        attributions:AWhite ,
+        attributions:JNeedham ,
+        attributions:MDolling ,
+        attributions:RFraser ;
+.
+
+attributions:DEWLP
+    a
+        skos:Concept ,
+        foaf:Organization ;
+    skos:prefLabel "Department of Environment, Land, Water and Planning"@en ;
+    skos:altLabel "DEWLP" ;
+    foaf:member attributions:RFraser ;
+.
+
+attributions:ICSM
+    a
+        skos:Concept ,
+        foaf:Organization ;
+    skos:prefLabel "Intergovernmental Committee on Surveying and Mapping"@en ;
+    rdfs:seeAlso <https://www.icsm.gov.au/> ;
+    skos:altLabel "ICSM"@en ;
+.
+
+attributions:ICSMCadastralSurveyWG
+    a
+        skos:Concept ,
+        foaf:Group ;
+    skos:prefLabel "ICSM Cadastral Survey Working Group"@en ;
+.
+
+attributions:LINZ
+    a
+        skos:Concept ,
+        foaf:Organization ;
+    skos:prefLabel "Toitu Te Whenua Land Information New Zealand"@en ;
+    rdfs:seeAlso <https://www.linz.govt.nz> ;
+    skos:altLabel "LINZ" ;
+    foaf:member attributions:JNeedham ;
+.
+
+attributions:Landgate
+    a
+        skos:Concept ,
+        foaf:Organization ;
+    skos:prefLabel "Landgate"@en ;
+    foaf:member attributions:MDolling ;
+.
+
+attributions:NSW-DCS
+    a
+        skos:Concept ,
+        foaf:Organization ;
+    skos:altLabel "Department of Customer Service" ;
+    skos:prefLabel "NSW Department of Customer Service"@en ;
+    foaf:member attributions:AWhite ;
+.
+
+attributions:SURROUND
+    a
+        skos:Concept ,
+        foaf:Organization ;
+    skos:altLabel "SURROUND Australia  Pty Ltd" ;
+    rdfs:seeAlso <https://surroundaustralia.com> ;
+    skos:prefLabel "SURROUND Australia"@en ;
+    foaf:member
+        attributions:NCar ,
+        attributions:RAtkinson ,
+        attributions:SOpper ;
+.
+
+attributions:SURROUNDConsortium
+    a
+        skos:Concept ,
+        foaf:Group ;
+    skos:prefLabel "SURROUND NZ 3DCad consortium"@en ;
+    foaf:member
+        attributions:KurrawongAI ,
+        attributions:Edge_Geomatics ,
+        attributions:McKenzie_and_Co ,
+        attributions:OWL ,
+        attributions:Pangea ,
+        attributions:SURROUNDNZ ;
+.
+
+attributions:ACochrane
+    a
+        skos:Concept ,
+        foaf:Person ;
+    skos:prefLabel "Adrian Cochrane"@en ;
+    foaf:mbox "adrian@openwork.nz"^^xsd:anyURI ;
+.
+
+attributions:AHunter
+    a
+        skos:Concept ,
+        foaf:Person ;
+    rdfs:seeAlso <https://orcid.org/0009-0005-9895-9889> ;
+    skos:prefLabel "Andrew Hunter"@en ;
+    foaf:mbox "andrew@edgegeomatics.co.nz"^^xsd:anyURI ;
+.
+
+attributions:BCochrane
+    a
+        skos:Concept ,
+        foaf:Person ;
+    rdfs:seeAlso <https://orcid.org/0000-0001-6388-5481> ;
+    skos:prefLabel "Byron Cochrane"@en ;
+    foaf:mbox "byron@openwork.nz"^^xsd:anyURI ;
+.
+
+attributions:KurrawongAI
+    a
+        skos:Concept ,
+        foaf:Organization ;
+    rdfs:seeAlso <https://kurrawong.ai> ;
+    skos:prefLabel "KurrawongAI"@en ;
+    foaf:member attributions:NCar ;
+.
+
+attributions:MPurss
+    a
+        skos:Concept ,
+        foaf:Person ;
+    skos:prefLabel "mpurss@pangaeainnovations.com"@en ;
+    foaf:mbox "mpurss@pangaeainnovations.com"^^xsd:anyURI ;
+.
+
+attributions:Edge_Geomatics
+    a
+        skos:Concept ,
+        foaf:Organization ;
+    rdfs:seeAlso <https://www.edgegeomatics.co.nz> ;
+    skos:prefLabel "Edge Geomatics Ltd."@en ;
+    foaf:member attributions:AHunter ;
+    time:intervalStarts [ time:inXSDDateTimeStamp "2022-10-17T00:00:00Z"^^xsd:dateTime ];
+.
+
+attributions:McKenzie_and_Co
+    a
+        skos:Concept ,
+        foaf:Organization ;
+    rdfs:seeAlso <https://www.mckenzieandco.co.nz> ;
+    skos:prefLabel "McKenzie & Co"@en ;
+    foaf:member attributions:AHunter ;
+    time:intervalFinishes [ time:inXSDDateTimeStamp "2022-02-18T00:00:00Z"^^xsd:dateTime ];
+.
+
+attributions:OWL
+    a
+        skos:Concept ,
+        foaf:Organization ;
+    skos:prefLabel "OpenWork Ltd"@en ;
+    rdfs:seeAlso <https://openwork.nz> ;
+    skos:altLabel "OWL" ;
+    foaf:member
+        attributions:ACochrane ,
+        attributions:BCochrane ;
+.
+
+attributions:Pangea
+    a
+        skos:Concept ,
+        foaf:Organization ;
+    skos:altLabel "Pangaea Innovations Pty. Ltd." ;
+    rdfs:seeAlso <http://www.pangaeainnovations.com/> ;
+    skos:prefLabel "Pangea Innovations"@en ;
+    foaf:member attributions:MPurss ;
+.
+
+attributions:RAtkinson
+    a
+        skos:Concept ,
+        foaf:Person ;
+    rdfs:seeAlso <https://orcid.org/0000-0002-7878-2693> ;
+    skos:prefLabel "Rob Atkinson"@en ;
+    foaf:mbox "rob.atkinson@surroundaustralia.com"^^xsd:anyURI ;
+.
+
+attributions:SOpper
+    a
+        skos:Concept ,
+        foaf:Person ;
+    skos:prefLabel "Simon Opper"@en ;
+    foaf:mbox "simon.opper@surroundaustralia.com"^^xsd:anyURI ;
+.
+
+attributions:SURROUNDNZ
+    a
+        skos:Concept ,
+        foaf:Organization ;
+    skos:altLabel "SURROUND NZ Pty Ltd" ;
+    skos:prefLabel "SURROUND NZ"@en ;
+.
+
+attributions:AWhite
+    a
+        skos:Concept ,
+        foaf:Person ;
+    skos:prefLabel "Adrian White"@en ;
+    foaf:mbox "adrian.white@customerservice.nsw.gov.au"^^xsd:anyURI ;
+.
+
+attributions:JNeedham
+    a
+        skos:Concept ,
+        foaf:Person ;
+    skos:prefLabel "Jeff Needham"@en ;
+    foaf:mbox "JNeedham@linz.govt.nz"^^xsd:anyURI ;
+.
+
+attributions:MDolling
+    a
+        skos:Concept ,
+        foaf:Person ;
+    skos:prefLabel "Murray Dolling"@en ;
+    foaf:mbox "Murray.Dolling@landgate.wa.gov.au"^^xsd:anyURI ;
+.
+
+attributions:NCar
+    a
+        skos:Concept ,
+        foaf:Person ;
+    skos:prefLabel "Nicholas Car"@en ;
+    foaf:mbox "nick@kurrawong.ai"^^xsd:anyURI ;
+.
+
+attributions:RFraser
+    a
+        skos:Concept ,
+        foaf:Person ;
+    skos:prefLabel "Roger Fraser"@en ;
+    foaf:mbox "roger.fraser@delwp.vic.gov.au"^^xsd:anyURI ;
+.
+

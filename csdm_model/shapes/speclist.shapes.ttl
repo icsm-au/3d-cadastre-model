@@ -1,0 +1,42 @@
+# baseURI: https://data.surroundaustralia.com/def/speclist/shapes
+# imports: http://datashapes.org/dash
+# imports: http://www.w3.org/2004/02/skos/core
+# prefix: shapes
+
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix shapes: <https://data.surroundaustralia.com/def/speclist/shapes#> .
+@prefix specs: <https://linked.data.gov.au/def/csdm/impspecs/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.surroundaustralia.com/def/speclist/shapes>
+  a owl:Ontology ;
+  owl:imports <http://datashapes.org/dash> ;
+  owl:imports <http://www.w3.org/2004/02/skos/core> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+<https://data.surroundaustralia.com/def/speclist/shapes/SpecificationsAsDctStandards>
+  a sh:NodeShape ;
+  rdfs:comment "Entails Concepts under the Specifications Taxonomy as dct:Standards" ;
+  rdfs:label "Specifications as dctStandards" ;
+  sh:rule <https://data.surroundaustralia.com/def/speclist/shapes/SpecificationsAsDctStandards-type> ;
+  sh:targetNode specs:Specifications ;
+.
+<https://data.surroundaustralia.com/def/speclist/shapes/SpecificationsAsDctStandards-type>
+  a sh:SPARQLRule ;
+  rdfs:label "Specifications as dct standards-type" ;
+  sh:construct """
+PREFIX dct: <http://purl.org/dc/terms/>
+prefix skos: <http://www.w3.org/2004/02/skos/core#>
+CONSTRUCT { ?c a dct:Standard }
+WHERE {
+	$this skos:hasTopConcept ?tc .
+	{ 
+      ?c skos:broader+ ?tc
+     } UNION { ?tc skos:narrower+ ?c } 
+}""" ;
+  sh:name "asStandard" ;
+.

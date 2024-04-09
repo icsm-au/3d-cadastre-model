@@ -1,0 +1,759 @@
+# baseURI: https://linked.data.gov.au/dataset/csdm/implementation-examples
+# imports: https://linked.data.gov.au/def/csdm/container
+# imports: https://data.surroundaustralia.com/def/ontexamples/shapes
+
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix graphql: <http://datashapes.org/graphql#> .
+@prefix metadata: <http://topbraid.org/metadata#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prof: <http://www.w3.org/ns/dx/prof/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix teamwork: <http://topbraid.org/teamwork#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://linked.data.gov.au/dataset/csdm/implementation-examples>
+  a owl:Ontology ;
+  owl:imports <https://linked.data.gov.au/def/csdm/container> ;
+  owl:imports <https://data.surroundaustralia.com/def/ontexamples/shapes> ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/AdoptedObservations12D>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/LandXML12D> ;
+  rdfs:label "AdoptedObservations-12D" ;
+  skos:editorialNote "test note" ;
+  prof:hasArtifact """xpath = /LandXML/Survey/
+
+  <ObservationGroup id=\"aa1\">
+    <ReducedObservation 
+        setupID=\"a1107\" azimuth=\"277.07\"
+        horizDistance=\"6.3\" equipmentUsed=\"unknown\" 
+        azimuthType=\"adopted\" distanceType=\"adopted\" 
+        azimuthAccClass=\"A\" distanceAccClass=\"A\" 
+        adoptedAzimuthSurvey=\"DP 333333\" 
+        adoptedDistanceSurvey=\"DP 333333\" 
+        azimuthAdoptionFactor=\"0\">
+      <TargetPoint pntRef=\"108\" pointGeometry=\"point\"/>
+    </ReducedObservation>
+  </ObservationGroup>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/AdoptedObservationsEPlanNSW>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/ePlanNSW> ;
+  rdfs:label "AdoptedObservations-ePlanNSW" ;
+  prof:hasArtifact """xpath = /LandXML/Survey/
+  
+  <ObservationGroup id=\"OG-1\">
+    
+    <ReducedObservation 
+        adoptedSurvey=DP 333333
+        name=\"15\" desc=\"Connection\"
+        setupID=\"IS14\" targetSetupID=\"IS15\"
+        azimuth=\"59.3032\" horizDistance=\"324.525\"         
+        distanceType=\"Adopted\"
+        azimuthType=\"Adopted\"
+        coordGeomRefs=\"LOT-103\">
+      <FieldNote>  </FieldNote>
+    <ReducedObservation />
+    
+  </ObservationGroup>""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/BoundaryMark>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/LandXML12D> ;
+  rdfs:label "Boundary Mark" ;
+  prof:hasArtifact """xpath = /LandXML/Survey/
+  
+  <SurveyMonument 
+      mntRef=\"OP VII DP 333333\" 
+      purpose=\"boundary defined by survey\" 
+      state=\"original\"/>
+
+xpath = /LandXML/Monuments/
+  
+  <Monument 
+      name=\"OP VII DP 333333\" pntRef=\"109\" 
+      desc=\"OP VII DP 333333\" type=\"peg\" 
+      condition=\"reliable\" oID=\"8353475\"/>
+
+xpath = /LandXML/CgPoint/
+  
+  <CgPoint 
+      name=\"109\" pntSurv=\"monument\" 
+      oID=\"3748446\">
+    786033.6613 427102.5793
+  </CgPoint>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/BoundaryMarkEPlanNSW>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/ePlanNSW> ;
+  rdfs:label "Boundary Mark ePlanNSW" ;
+  prof:hasArtifact """xpath=/LandXML/Monuments/
+  
+  <Monument
+      name=\"1\" pntRef=\"109\" 
+      type=\"Peg\" state=\"Found\"
+      desc=\"Original lot peg\" condition=\"Remains\"
+      originSurvey=OP VII DP 333333\"/>
+
+xpath=/LandXML/CgPoints/
+  
+  <CgPoint 
+      name=\"109\" desc=\"A\" 
+      state=existing\" pntSurv=\"boundary\" 
+      oID=\"8353475\">
+     786033.66 427102.58 72.20
+  </CgPoint>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/BoundaryMarkIFC>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/IFCVersion4.3> ;
+  rdfs:label "BoundaryMark-IFC" ;
+  prof:hasArtifact """IfcCartesianPoint
+    type=TRAVERSE MARK
+        Properties - Coordinates, Monument Type, 
+            Monument State, Monument Condition""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/BoundaryMarkInfraGML>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/InfraGMLPart7Facilities> ;
+  rdfs:label "BoundaryMark-InfraGML" ;
+  prof:hasArtifact """ xpath=/LandInfraDataset/feature/
+  
+  <SurveyMonument gml:id=\"sm\">
+    <type 
+        xlink:href http://example.com/SurveyMonumentType#boundaryMark\" 
+        xlink:title \"boundaryMark\"/>
+    <documentation xlink:href \"st1\"/>
+    <spatialRepresentation>
+      <SpatialRepresentation>
+        <geometry>
+          <gml:Point gml:id=\"p1\">
+            <gml:pos>786033.66 427102.58 72.20 </gml:pos>
+          </gml:Point>
+        </geometry>
+      </SpatialRepresentation>
+    </spatialRepresentation>
+  </SurveyMonument>""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/BoundaryMarkLADM>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/ISO191522Surveying> ;
+  rdfs:label "BoundaryMark-LADM" ;
+  prof:hasArtifact """<LA_Point 
+    
+    LA_PointType=Source (Boundary?
+    )>
+  
+</LA_Point>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/CRS12D>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/LandXML12D> ;
+  rdfs:label "CRS-12D" ;
+  prof:hasArtifact """xpath = /LandXML/
+ <CoordinateSystem
+   name=EDENTM2000
+   desc=Mount Eden 2000\"  
+   fileLocation=http://www.linz.govt.nz/>
+  <Start>800000 400000</Start>
+ </CoordinateSystem>""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/CRSEPlanNSW>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/ePlanNSW> ;
+  rdfs:label "CRS-ePlanNSW" ;
+  prof:hasArtifact """xpath = /LandXML/
+  <CoordinateSystem 
+      datum=\"MM\" desc=\"Oriented to DP54565\" 
+      horizontalDatum=\"Local\" verticalDatum=\"AHD\"> 
+  </CoordinateSystem> 
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/CRSInfraGML>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/InfraGMLPart0Core> ;
+  rdfs:label "CRS-InfraGML" ;
+  prof:hasArtifact """xpath=/LandInfraDataset/
+  <defaultCRS xlink:href \"urn:ogc:def:crs:EPSG::4094\"/>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/CadasralMarkInfraGML>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/InfraGMLPart7Facilities> ;
+  rdfs:label "CadasralMark-InfraGML" ;
+  prof:hasArtifact """xpath=/LandInfraDataset/feature/
+  
+  <SurveyMonument gml:id=\"sm\">
+    <type
+        xlink:href http://example.com/SurveyMonumentType#siteMark\" 
+        xlink:title \"siteMark\"/>
+    <documentation xlink:href \"st2\"/>
+    <spatialRepresentation>
+      <SpatialRepresentation>
+        <geometry>
+          <gml:Point gml:id=p2\">
+            <gml:pos> 786030.41 427103.14 71.95 </gml:pos>
+          </gml:Point>
+        </geometry>
+      </SpatialRepresentation>
+    </spatialRepresentation>
+  </SurveyMonument>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/CadastralMark12D>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/LandXML12D> ;
+  rdfs:label "CadastralMark-12D" ;
+  prof:hasArtifact """xpath = /LandXML/Survey/
+  
+  <SurveyMonument 
+      mntRef=\"OIT XI DP 333333\" 
+      purpose=\"non boundary\" 
+      state=\"original\"/>
+
+xpath = /LandXML/Monuments/
+  
+  <Monument 
+      name=\"OIT XI DP 333333\" pntRef=\"102\" 
+      desc=\"OIT XI DP 333333\" type=\"tube\" 
+      condition=\"reliable\" oID=\"2189349\"/>
+
+xpath = /LandXML/CgPoint/
+  
+  <CgPoint 
+      name=\"102\" pntSurv=\"monument\" 
+      oID=\"2730030\">
+    786030.4096 427103.14
+  </CgPoint>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/CadastralMarkLADM>
+  a prof:ResourceDescriptor ;
+  rdfs:label "CadastralMark-LADM" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/CadastralMarksEPlanNSW>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/ePlanNSW> ;
+  rdfs:label "CadastralMarks-ePlanNSW" ;
+  prof:hasArtifact """xpath=/LandXML/CgPoints/
+  
+  <CgPoint 
+      name=\"101\" desc=\"A\" 
+      state=existing\" pntSurv=control\" 
+      oID=\"5828822\">
+    785961.64 427088.01 72.46
+  </CgPoint>
+
+xpath=/LandXML/Monuments/
+  
+  <Monument
+      name=\"OIT X DP 333333\" pntRef=\"101\" 
+      type=\"Peg\" state=\"Found\"
+      desc=\"Original lot peg\" condition=\"Remains\"
+      originSurvey=\"OIT X DP 33333\"
+  </Monument>""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/CadastralMarksIFC>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/IFCVersion4.3> ;
+  rdfs:label "CadastralMarks-IFC" ;
+  prof:hasArtifact """IfcCartesianPoint
+    type=REFERENCE MARK 
+        Properties - Coordinates, Monument Type, 
+            Monument State, Monument Condition""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/EasementEPlanNSW>
+  a prof:ResourceDescriptor ;
+  rdfs:label "Easement-ePlanNSW" ;
+  skos:editorialNote "Easement is captured in ePlan as a class attribute of Parcel" ;
+  prof:hasArtifact """<Parcel 
+    name=\"E1\" class=\"Easement\" 
+    state=\"proposed\" parcelFormat=\"Standard\" 
+    parcelType=\"Single\" desc=\"Right of Carriageway over track in use\">
+  <Center pntRef=\"LC-137\"/>
+  <CoordGeom name=\"E1\">
+    <IrregularLine desc=\"Approximate position of centreline of track in use\" 
+        source=\"as determined by Aerial photograph â€“ see film 4354 frame 77, 24 March 1997\">
+      <Start pntRef=\"11\"/>
+      <End pntRef=\"12\"/>
+      <PntList2D>1322.137070 897.047360 
+          1315.916630 896.467670 
+          1310.226980 897.991240 
+          1303.757680 903.401480 
+          1294.458130 911.729520 
+          1206.212380 967.435920 
+          1195.584230 974.819390 
+          1188.710850 975.722460 
+          1183.368710 976.036190 
+          1177.116210 974.874520 
+          1170.836800 971.127850 
+          1162.738330 965.201400
+          1157.406840 961.6
+          1289.443320 915.970390
+      </PntList2D>
+    </IrregularLine>
+  </CoordGeom>
+</Parcel>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/EasementInfraGML>
+  a prof:ResourceDescriptor ;
+  rdfs:label "Easement-InfraGML" ;
+  skos:editorialNote "cannot paste example" ;
+  prof:hasArtifact "" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/EasementLADM>
+  a prof:ResourceDescriptor ;
+  rdfs:label "Easement-LADM" ;
+  skos:editorialNote "Easements are not directly related to the spatial unit. Easements are captured as a LA_Right:LA_RightType. This is attached to the LA_BAUnit which in turn is attached to the LA_SpatialUnit. They may then also be assigned a \"Level\" called easements." ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/Equipment12D>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/LandXML12D> ;
+  rdfs:label "Equipment-12D" ;
+  prof:hasArtifact """xpath = /LandXML/Survey/
+
+  <Equipment>
+    <InstrumentDetails id=\"568924632\">
+      <Corrections />
+    </InstrumentDetails>
+  </Equipment>""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/EquipmentInfraGML>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/InfraGMLPart6Surveying> ;
+  rdfs:label "Equipment-InfraGML" ;
+  prof:hasArtifact """xpath=/LandInfraDataset/abstractData/Survey/	 		
+ 
+      <Equipment gml:id=\"E1\">
+        <gml:description>
+           sample survey equipment definition (all possible sensors)
+        </gml:description>
+        <surveySensor>
+          <Camera gml:id=\"SC1\">
+            <surveySensorID>
+              <ID>
+                <identifier>Camera1</identifier>
+              </ID>
+            </surveySensorID>
+          </Camera>
+        </surveySensor>
+        <surveySensor />
+      </Equipment>
+    </lequipment>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/GML-BoundaryFace_1>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <https://linked.data.gov.au/def/csdm/impspecs/GeoSPARQL1.2> ;
+  rdfs:comment "Shows a boundary as a feature with a geometry and topology" ;
+  rdfs:label "Boundary Face  - as GML with Topology" ;
+  prof:hasArtifact """<geo3:BoundaryFace>
+                <geo3:FaceGeometry>
+                    <gml:Polygon gml:id=\"blue_yellow_bottom\">
+                        <gml:exterior>
+                            <gml:LinearRing gml:id=\"lr5\">
+                                <gml:pointProperty xlink:href=\"#p11\"/>
+                                <gml:pointProperty xlink:href=\"#p20\"/>
+                                <gml:pointProperty xlink:href=\"#p17\"/>
+                                <gml:pointProperty xlink:href=\"#p12\"/>
+                                <gml:pointProperty xlink:href=\"#p11\"/>
+                            </gml:LinearRing>
+                        </gml:exterior>
+                    </gml:Polygon>
+                </geo3:FaceGeometry>
+                <geo3:topoFace>
+                    <gml:Face gml:id=\"f5\">
+                        <gml:directedEdge orientation=\"+\" xlink:href=\"#e19\"/>
+                        <gml:directedEdge orientation=\"-\" xlink:href=\"#e21\"/>
+                        <gml:directedEdge orientation=\"-\" xlink:href=\"#e25\"/>
+                        <gml:directedEdge orientation=\"-\" xlink:href=\"#e17\"/>
+                        <gml:directedTopoSolid orientation=\"+\" xlink:href=\"#s1\"/>
+                        <gml:directedTopoSolid orientation=\"-\" xlink:href=\"#s2\"/>
+                    </gml:Face>
+                </geo3:topoFace>
+   </geo3:BoundaryFace>""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/GML-SpatialUnit>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <https://linked.data.gov.au/def/csdm/impspecs/GML> ;
+  rdfs:label "Survey Point - GML" ;
+  skos:editorialNote "This example is only for the GML geometry - the containing feature f_p1 will be based on the model element directly. " ;
+  prof:hasArtifact """<Parcel gml:id=\"parcel_1\">
+  <gml:CompositeSolid>
+    <gml:name>Blue spatial unit</gml:name>
+    <gml:solidMember>
+        <gml:Solid gml:id=\"s1\">
+            <gml:name>dim( I(Blue Box) ∩ E(Yellow Box) = 2), ST_Disjoint</gml:name>
+            <gml:exterior>
+                <gml:Shell>
+                    <gml:surfaceMember>
+                        <gml:Polygon gml:id=\"blue_top\">
+                            <gml:exterior>
+                                <gml:LinearRing gml:id=\"lr1\">
+                                    <gml:pointProperty xlink:href=\"#p1\"/>
+                                    <gml:pointProperty xlink:href=\"#p4\"/>
+                                    <gml:pointProperty xlink:href=\"#p3\"/>
+                                    <gml:pointProperty xlink:href=\"#p2\"/>
+                                    <gml:pointProperty xlink:href=\"#p1\"/>
+                                </gml:LinearRing>
+                            </gml:exterior>
+                        </gml:Polygon>
+                    </gml:surfaceMember>""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/GML-SurveyPoint>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <https://linked.data.gov.au/def/csdm/impspecs/GMLSF0> ;
+  rdfs:comment "Shows the separate identification of the Survey Point Feature (sp1) and its point Geometry (p1) which is reused in other geometry objects." ;
+  rdfs:label "Survey Point - GML" ;
+  skos:editorialNote "This example is only for the GML geometry - the containing feature f_p1 will be based on the model element directly. " ;
+  prof:hasArtifact """<icsm:surveyPoints>
+        <gml:featureMember>
+            <icsm:3dSurveyPoint gml:id=\"sp1\">
+                <gml:pointProperty>
+                    <gml:Point gml:id=\"p1\" srsName=\"*XY-MT*\" srsDimension=\"3\">
+                        <gml:pos>38.089 -31.596 5.000</gml:pos>
+                    </gml:Point>
+                </gml:pointProperty>
+ ...
+            </icsm:3dSurveyPoint>
+        </gml:featureMember> """ ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/GML3DTopology>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <http://www.w3.org/ns/dx/prof/role/guidance> ;
+  rdfs:label "GML 3D Topology" ;
+  skos:editorialNote "Develop this from extended GML example to demonstrate how topology rules use object IDs." ;
+  prof:hasArtifact "gml:pointProperty xlink:href=>" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/GeodeticMark12D>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/LandXML12D> ;
+  rdfs:label "GeodeticMark-12D" ;
+  prof:hasArtifact """xpath = /LandXML/Survey/
+  
+  <SurveyMonument 
+      mntRef=\"OIT XI DP 333333\" 
+      purpose=\"non boundary\" 
+      state=\"original\"/>
+
+xpath = /LandXML/Monuments/
+  
+  <Monument 
+      name=\"OIT XI DP 333333\" pntRef=\"102\" 
+      desc=\"OIT XI DP 333333\" type=\"tube\" 
+      condition=\"reliable\" oID=\"2189349\"/>
+
+xpath = /LandXML/CgPoint/
+  
+  <CgPoint 
+      name=\"102\" pntSurv=\"monument\" 
+      oID=\"2730030\">
+    786030.4096 427103.14
+  </CgPoint>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/GeodeticMarkEPlanNSW>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/ePlanNSW> ;
+  rdfs:label "GeodeticMark-ePlanNSW" ;
+  prof:hasArtifact """xpath=/LandXML/CgPoints/
+  
+  <CgPoint 
+      name=\"101\" desc=\"A\" 
+      state=existing\" pntSurv=control\" 
+      oID=\"5828822\">
+    785961.64 427088.01 72.46
+  </CgPoint>
+
+xpath=/LandXML/Monuments/
+  
+  <Monument
+      name=\"OIT X DP 333333\" pntRef=\"101\" 
+      type=\"Peg\" state=\"Found\"
+      desc=\"Original lot peg\" condition=\"Remains\"
+      originSurvey=\"OIT X DP 33333\"
+  </Monument>""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/GeodeticMarkInfraGML>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/InfraGMLPart7Facilities> ;
+  rdfs:label "GeodeticMark-InfraGML" ;
+  prof:hasArtifact """xpath=/LandInfraDataset/feature/
+  
+  <SurveyMonument gml:id=\"sm\">
+    <type 
+        xlink:href http://example.com/SurveyMonumentType#trigonometricMark\" 
+        xlink:title \"trigonometricMark\"/>
+    <documentation xlink:href \"st3\"/>
+    <spatialRepresentation>
+      <SpatialRepresentation>
+        <geometry>
+          <gml:Point gml:id=\"p3\">
+            <gml:pos> 785961.64 427088.01 72.46 </gml:pos>
+          </gml:Point>
+        </geometry>
+      </SpatialRepresentation>
+    </spatialRepresentation>
+  </SurveyMonument>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/GeodeticMarksIFC>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/IFCVersion4.3> ;
+  rdfs:label "GeodeticMarks-IFC" ;
+  prof:hasArtifact """IfcCartesianPoint
+    type=SURVEY MARK (?)
+        Properties - OID, Coordinates, Monument Type, 
+            Monument State, Monument Condition""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/LandPropertyUnitLandinfraGraphic>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/ClassContextDiagram> ;
+  dct:conformsTo <urn:x-evn-master:impspec/UML> ;
+  rdfs:label "LandPropertyUnit- Landinfra graphic" ;
+  prof:hasArtifact """https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/landinfra-propunit.png
+ """ ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/MeasurementInfraGML>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/InfraGMLPart6Surveying> ;
+  rdfs:label "Measurement-InfraGML" ;
+  prof:hasArtifact """xpath=/LandInfraDataset/abstractData/equipment/Equipment/
+...
+<surveySensor>
+	<EDM gml:id=\"SE2\">
+		<surveySensorID>
+			<ID>
+				<identifier>EDM2</identifier>
+			</ID>
+		</surveySensorID>
+		<accuracy uom=\"m\">0.001</accuracy>
+		<carrierWavelength uom=\"nm\">1.12345</carrierWavelength>
+	</EDM>
+</surveySensor>
+<surveySensor>
+	<GenericAngle gml:id=\"SGA2\">
+		<surveySensorID>
+			<ID>
+				<identifier>GenAng2</identifier>
+			</ID>
+		</surveySensorID>
+		<accuracy uom=\"deg\">0.000123</accuracy>
+	</GenericAngle>
+</surveySensor>""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/MeasurementUnits12d>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/LandXML12D> ;
+  rdfs:label "MeasurementUnits-12d" ;
+  prof:hasArtifact """xpath = /LandXML/
+  
+  <Units>
+    <Metric 
+        linearUnit=\"meter\" areaUnit=\"squareMeter\" 
+        volumeUnit=\"liter\" temperatureUnit=\"celsius\" 
+        pressureUnit=\"milliBars\" 
+        angularUnit=\"decimal dd.mm.ss\" 
+        directionUnit=\"decimal dd.mm.ss\"/>
+  </Units>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/MeasurementUnitsEPlanNSW>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/ePlanNSW> ;
+  rdfs:label "MeasurementUnits-ePlanNSW" ;
+  prof:hasArtifact """xpath=/LandXML/
+
+  <Units>
+    <Metric
+        linearUnit=\"meter\" areaUnit=\"squareMeter\" 
+        volumeUnit=\"liter\" temperatureUnit=\"celsius\" 
+        pressureUnit=\"milliBars\" 
+        angularUnit=\"decimal dd.mm.ss\" 
+        directionUnit=\"decimal dd.mm.ss\"/>
+    </Metric>
+  </Units>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/Monument12d>
+  a prof:ResourceDescriptor ;
+  rdfs:label "Monument-12d" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/MonumentEPlanNSW>
+  a prof:ResourceDescriptor ;
+  rdfs:label "Monument-ePlanNSW" ;
+  prof:hasArtifact """
+xpath=/LandXML/Monuments/
+  
+  <Monument name=\"30\" pntRef=\"5\" type=\"Occupation\" state=\"Found\" desc=\"1.00 Clear Smith Rd, 0.05 Clear Fred St\"/>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/MonumentLADM>
+  a prof:ResourceDescriptor ;
+  rdfs:label "Monument-LADM" ;
+  skos:editorialNote "Captured in LADM as attribute -  LA_Point:monumentation of type LA_MonumentationType a codelist of valud monument types" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/OccupationEPlanNSW>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/ePlanNSW> ;
+  rdfs:label "Occupation-ePlanNSW" ;
+  prof:hasArtifact """xpath=/LandXML/CgPoints/
+  
+  <CgPoint name=\"5\" state=\"existing\" pntSurv=\"sideshot\">
+    1153.054100 958.694270
+  </CgPoint>
+
+
+xpath=/LandXML/Monuments/
+  
+  <Monument name=\"30\" pntRef=\"5\" type=\"Occupation\" state=\"Found\" desc=\"1.00 Clear Smith Rd, 0.05 Clear Fred St\"/>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/OccupationObservationsIFC>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/IFCVersion4.3> ;
+  rdfs:label "OccupationObservations-IFC" ;
+  prof:hasArtifact """IfcPolyline
+    Type=OCCUPATION
+        Properties - Type, Description""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/Parcel12d>
+  a prof:ResourceDescriptor ;
+  rdfs:label "Parcel-12d" ;
+  prof:hasArtifact """<parcelSurface id=\"65987456\">
+            <parcelAnnotation>Retracement of Lot 1 DP 333333</parcelAnnotation>
+            <parcelIntent>Fee simple parcel</parcelIntent>
+            <parcelAppelation>Lot 1 DP 333333 North Auckland</parcelAppelation>
+            <surfaceArea>6867</surfaceArea>
+            <parcelArea>6864</parcelArea>
+            <titleReference>NA 56872</titleReference>
+            <compositeSurface>
+                ...
+            </compositeSurface>
+</parcelSurface >""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/ParcelEPlanNSW>
+  a prof:ResourceDescriptor ;
+  rdfs:label "Parcel-ePlanNSW" ;
+  prof:hasArtifact """
+<Parcels>
+    ...
+  <Parcel 
+      name=\"1\" area=\"3225.6\" parcelType=\"Single\"
+      state=\"proposed\" class=\"Lot\"
+      useOfParcel=\"Public Reserve\" parcelFormat=\"Standard\">
+    <Center  />
+    <CoordGeom  >  </CoordGeom>
+    <LocationAddress  >  </LocationAddress>
+  </Parcel>
+  <Parcel 
+      name=\"2\" parcelType=\"Multipart\"  >
+    <Parcels>
+      <Parcel name=\"A\" pclRef=\"2A\"/>
+      <Parcel name=\"B\" pclRef=\"2B\"/>
+    </Parcels>
+  </Parcel>
+  <Parcel name=\"2A\" parcelType=\"Part\"  >  </Parcel>
+  <Parcel name=\"2B\" parcelType=\"Part\"  >  </Parcel>
+  <Parcel
+      name=\"E1\" class=\"Easement\"
+      desc=\"Right of Carriageway Variable Width\"  >
+    <CoordGeom  >  </CoordGeom>
+  </Parcel>
+  <Parcel
+      name=\"R1\" class=\"Road\"
+      desc=\"NICHOLSONS LANE (20.115 WIDE)\"  >
+    <Center  />
+    <CoordGeom  >  </CoordGeom>
+  </Parcel>
+    
+</ Parcels>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/SetupEPlanNSW>
+  a prof:ResourceDescriptor ;
+  rdfs:label "Setup-ePlanNSW" ;
+  prof:hasArtifact """
+  <InstrumentSetup id=\"S-33\" stationName=\"33\" instrumentHeight=\"0\">
+    <InstrumentPoint pntRef=\"33\" />
+  </InstrumentSetup>
+  <InstrumentSetup id=\"S-34\" stationName=\"34\" instrumentHeight=\"0\">
+    <InstrumentPoint pntRef=\"34\" />
+</InstrumentSetup>
+
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/SurveyObservation12D>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/LandXML12D> ;
+  rdfs:label "SurveyObservation-12D" ;
+  prof:hasArtifact """xpath = /LandXML/Survey/
+  
+  <ObservationGroup id=\"aa1\">
+    
+    <ReducedObservation 
+        setupID=\"a1102\" azimuth=\"103.0220\" 
+        horizDistance=\"122.54\" equipmentUsed=\"theodolite EDM\" 
+        azimuthType=\"measured\" distanceType=\"measured\" 
+        azimuthAccClass=\"A\" distanceAccClass=\"A\">
+      <TargetPoint pntRef=\"103\" pointGeometry=\"point\"/>
+    </ReducedObservation>
+    
+  </ObservationGroup>""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/SurveyObservationEPlanNSW>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/ePlanNSW> ;
+  rdfs:label "SurveyObservation-ePlanNSW" ;
+  prof:hasArtifact """xpath = /LandXML/Survey/
+  
+  <ObservationGroup id=\"OG-1\">
+    
+    <ReducedObservation 
+        name=\"15\" desc=\"Connection\"
+        setupID=\"IS14\" targetSetupID=\"IS15\"
+        azimuth=\"59.3032\" horizDistance=\"324.525\"         
+        distanceType=\"Measured\"
+        azimuthType=\"Measured\"
+        distanceAdoptionFactor=\"1.00024000\"
+        coordGeomRefs=\"LOT-103\">
+      <FieldNote>  </FieldNote>
+    <ReducedObservation />
+    
+  </ObservationGroup>
+""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/SurveyObservationIFC>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/IFCVersion4.3> ;
+  rdfs:label "SurveyObservation-IFC" ;
+  prof:hasArtifact """IfcPolyline
+ Type=TRAVERSE LINE or RADIATION LINE
+    Properties=Equipment, Bearing, Distance""" ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/landinfrasetup>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/ISO19109ApplicationSchema> ;
+  dct:conformsTo <urn:x-evn-master:impspec/LandInfra> ;
+  rdfs:label "LandInfra Setup" ;
+  skos:editorialNote "LandInfra setup does not obviously link the role of setup to the observation itself " ;
+  prof:hasArtifact "https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/landinfra_setup.png" ;
+  foaf:depiction <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/landinfra_setup.png> ;
+.
+<https://linked.data.gov.au/dataset/csdm/implementation-examples/landinfrasetup_2>
+  a prof:ResourceDescriptor ;
+  dct:conformsTo <urn:x-evn-master:impspec/ISO19109ApplicationSchema> ;
+  dct:conformsTo <urn:x-evn-master:impspec/LandInfra> ;
+  rdfs:label "LandInfra Setup Observations Link" ;
+  skos:editorialNote "LandInfra setup does not obviously link the role of setup to the observation itself " ;
+  prof:hasArtifact "https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/landinfra_setupobs.png" ;
+  foaf:depiction <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/landinfra_setupobs.png> ;
+.

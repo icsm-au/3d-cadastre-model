@@ -1,0 +1,162 @@
+# baseURI: https://data.surroundaustralia.com/manifest/cdsm/model
+# imports: https://data.surroundaustralia.com/def/standards-baseline
+
+@prefix : <https://data.surroundaustralia.com/manifest/cdsm/model/> .
+@prefix com: <https://linked.data.gov.au/def/csdm/commonpatterns/> .
+@prefix container: <https://linked.data.gov.au/def/csdm/container/> .
+@prefix metadata: <http://topbraid.org/metadata#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sop: <http://surroundaustralia.com/ns/platform/> .
+@prefix sopbl: <https://data.surroundaustralia.com/def/standards-baseline#> .
+@prefix swa: <http://topbraid.org/swa#> .
+@prefix tagger: <http://evn.topbraidlive.org/tagger#> .
+@prefix teamwork: <http://topbraid.org/teamwork#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.surroundaustralia.com/manifest/cdsm/model>
+  a sop:SourceGraph ;
+  a owl:Ontology ;
+  a prov:Entity ;
+  rdfs:label "https://data.surroundaustralia.com/manifest/cdsm/model" ;
+  owl:imports <https://data.surroundaustralia.com/def/standards-baseline> ;
+.
+:CadastreMasterModel
+  a sopbl:ManagedGraph ;
+  swa:defaultNamespace "https://linked.data.gov.au/def/csdm/container/" ;
+  teamwork:rootClass container:ModelledElement ;
+  rdfs:comment "Master model for cadastre, transitively imports sub components. This is the model that will be used as an import into other views, such as views to connect the model elements to canonical and implementation examples and underpinning requirements. " ;
+  rdfs:label "Cadastral Model Master Container" ;
+  sopbl:assetname "cadastral_model_container" ;
+  sopbl:calculated_tag <urn:x-evn-master:cadastral_model_container> ;
+  sopbl:edgType <http://teamwork.topbraidlive.org/ontologyprojects#ProjectType> ;
+  sopbl:entailWith <https://data.surroundaustralia.com/platform/shapes/classbasics> ;
+  sopbl:include "urn:x-evn-master:parcels" ;
+  sopbl:include "urn:x-evn-master:survey_features" ;
+  sopbl:include "urn:x-evn-master:surveyobs" ;
+  sopbl:include "urn:x-evn-master:surveyprov" ;
+  sopbl:loading "required" ;
+  sopbl:proxy "https://linked.data.gov.au/def/csdm/container.shapes" ;
+.
+:CanonicalExamples
+  a sopbl:ManagedGraph ;
+  swa:defaultNamespace "https://linked.data.gov.au/dataset/csdm/surveyobs-examples/" ;
+  teamwork:rootClass container:ModelledElement ;
+  rdfs:label "Canonical Examples" ;
+  sopbl:assetname "cadastral_model_canonical_examples" ;
+  sopbl:calculated_tag <urn:x-evn-master:cadastral_model_canonical_examples> ;
+  sopbl:edgType <http://teamwork.topbraidlive.org/ontologyprojects#ProjectType> ;
+  sopbl:entailWith <https://data.surroundaustralia.com/platform/shapes/classbasics> ;
+  sopbl:include "https://linked.data.gov.au/def/csdm/canonical_examples" ;
+  sopbl:include "urn:x-evn-master:cadastral_model_container" ;
+  sopbl:include "urn:x-evn-master:implementation_examples" ;
+  sopbl:loading "required" ;
+  sopbl:proxy "https://linked.data.gov.au/dataset/csdm/surveyobs-examples" ;
+.
+:CommonPatterns
+  a sopbl:ManagedGraph ;
+  swa:defaultNamespace "https://linked.data.gov.au/def/csdm/commonpatterns/" ;
+  teamwork:rootClass com:Common ;
+  rdfs:label "Common Patterns" ;
+  sopbl:assetname "common_patterns" ;
+  sopbl:edgType <http://teamwork.topbraidlive.org/ontologyprojects#ProjectType> ;
+  sopbl:entailWith <https://data.surroundaustralia.com/platform/shapes/classbasics> ;
+  sopbl:entailWith <https://data.surroundaustralia.com/platform/shapes/graphqlconfig> ;
+  sopbl:include "https://linked.data.gov.au/def/csdm/commonpatterns.shapes" ;
+  sopbl:loading "required" ;
+  sopbl:proxy "https://linked.data.gov.au/def/csdm/commonpatterns" ;
+.
+:GeometryPrimitives
+  a sopbl:ManagedGraph ;
+  rdfs:comment "This is a profile and necessary extensions for 3D geometry and topology based on the Geosparql as an implementation of ISO 19107" ;
+  rdfs:label "Geometry Primitives" ;
+  sopbl:assetname "geometryprimitives" ;
+  sopbl:edgType <http://teamwork.topbraidlive.org/ontologyprojects#ProjectType> ;
+  sopbl:include "http://www.opengis.net/ont/geosparql" ;
+  sopbl:include "https://data.surroundaustralia.com/def/ontexamples/shapes" ;
+  sopbl:include "https://linked.data.gov.au/def/csdm/geometry.shapes" ;
+  sopbl:proxy "https://linked.data.gov.au/def/csdm/geometryprim" ;
+.
+:ImplementationExamples
+  a sopbl:ManagedGraph ;
+  swa:defaultNamespace "https://linked.data.gov.au/dataset/csdm/implementation-examples/" ;
+  teamwork:rootClass <http://www.w3.org/ns/dx/prof/ResourceDescriptor> ;
+  rdfs:comment "Contains objects based on the PROF resource Descriptor that can be attached to the model via the canonical examples graph (it wont allow instance editing ;-( )" ;
+  rdfs:label "Implementation Examples" ;
+  sopbl:assetname "implementation_examples" ;
+  sopbl:calculated_tag <urn:x-evn-master:implementation_examples> ;
+  sopbl:edgType <http://teamwork.topbraidlive.org/datagraph/datagraphprojects#ProjectType> ;
+  sopbl:include "http://www.w3.org/ns/dx/prof" ;
+  sopbl:include "https://data.surroundaustralia.com/def/ontexamples/shapes" ;
+  sopbl:loading "required" ;
+  sopbl:proxy "https://linked.data.gov.au/dataset/csdm/implementation-examples" ;
+.
+:ImplementationSpecifications
+  a sopbl:ManagedGraph ;
+  swa:defaultNamespace "https://linked.data.gov.au/def/csdm/impspecs/" ;
+  teamwork:rootClass skos:Concept ;
+  rdfs:comment "Contains the taxonomy of conformance types for implementation examples" ;
+  rdfs:label "Implementation Specifications" ;
+  sopbl:assetname "impspec" ;
+  sopbl:calculated_tag <urn:x-evn-master:impspec> ;
+  sopbl:edgType <http://evn.topbraidlive.org/evnprojects#ProjectType> ;
+  sopbl:include "https://data.surroundaustralia.com/def/speclist/shapes" ;
+  sopbl:proxy "https://linked.data.gov.au/def/csdm/impspec" ;
+.
+:ParcelModule
+  a sopbl:ManagedGraph ;
+  teamwork:rootClass <https://linked.data.gov.au/def/csdm/parcels/ParcelModel> ;
+  rdfs:label "Parcel Module" ;
+  sopbl:assetname "parcels" ;
+  sopbl:calculated_tag <urn:x-evn-master:parcels> ;
+  sopbl:edgType <http://teamwork.topbraidlive.org/ontologyprojects#ProjectType> ;
+  sopbl:entailWith <https://data.surroundaustralia.com/platform/shapes/classbasics> ;
+  sopbl:entailWith <https://data.surroundaustralia.com/platform/shapes/graphqlconfig> ;
+  sopbl:include "https://data.surroundaustralia.com/def/ontexamples/shapes" ;
+  sopbl:include "https://linked.data.gov.au/def/csdm/commonpatterns" ;
+  sopbl:include "https://linked.data.gov.au/def/csdm/parcel.shapes" ;
+  sopbl:proxy "https://linked.data.gov.au/def/csdm/parcel" ;
+.
+:ProvenanceProfile
+  a sopbl:ManagedGraph ;
+  teamwork:rootClass <https://linked.data.gov.au/def/csdm/surveyprov/SurveyProvenanceObject> ;
+  rdfs:label "Provenance Profile" ;
+  sopbl:assetname "survey_prov" ;
+  sopbl:edgType <http://teamwork.topbraidlive.org/ontologyprojects#ProjectType> ;
+  sopbl:include "https://data.surroundaustralia.com/def/ontexamples/shapes" ;
+  sopbl:loading "required" ;
+  sopbl:proxy "https://linked.data.gov.au/def/csdm/surveyprov" ;
+.
+:SurveyFeatures
+  a sopbl:ManagedGraph ;
+  swa:defaultNamespace "https://linked.data.gov.au/def/csdm/surveyfeatures/" ;
+  teamwork:rootClass <https://linked.data.gov.au/def/csdm/surveyfeatures/CadastralFeature> ;
+  rdfs:comment "Features engaged in survey observations" ;
+  rdfs:label "Survey Features" ;
+  sopbl:assetname "survey_features" ;
+  sopbl:calculated_tag <urn:x-evn-master:survey_features> ;
+  sopbl:edgType <http://teamwork.topbraidlive.org/ontologyprojects#ProjectType> ;
+  sopbl:entailWith <https://data.surroundaustralia.com/platform/shapes/classbasics> ;
+  sopbl:include "https://linked.data.gov.au/def/csdm/surveyfeatures.shapes" ;
+  sopbl:loading "required" ;
+  sopbl:proxy "https://linked.data.gov.au/def/csdm/surveyfeatures" ;
+.
+:surveyobs
+  a sopbl:ManagedGraph ;
+  swa:defaultNamespace "https://linked.data.gov.au/def/csdm/surveyobs" ;
+  teamwork:rootClass <http://www.w3.org/ns/sosa/Observation> ;
+  rdfs:label "Survey Line Observations" ;
+  sopbl:assetname "surveyobs" ;
+  sopbl:calculated_tag <urn:x-evn-master:surveyobs> ;
+  sopbl:edgType <http://teamwork.topbraidlive.org/ontologyprojects#ProjectType> ;
+  sopbl:entailWith <https://data.surroundaustralia.com/platform/shapes/classbasics> ;
+  sopbl:executeRules true ;
+  sopbl:include "http://www.w3.org/ns/sosa/" ;
+  sopbl:include "https://data.surroundaustralia.com/def/ontexamples/shapes" ;
+  sopbl:include "https://linked.data.gov.au/dataset/csdm/surveyobs.shapes" ;
+  sopbl:include "urn:x-evn-master:survey_features" ;
+  sopbl:proxy "https://linked.data.gov.au/def/csdm/surveyobs" ;
+.

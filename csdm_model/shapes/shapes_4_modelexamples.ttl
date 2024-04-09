@@ -1,0 +1,126 @@
+# baseURI: https://data.surroundaustralia.com/def/ontexamples/shapes
+# imports: http://surroundaustralia.com/ns/platform/shapes
+# imports: http://www.w3.org/ns/dx/prof
+# imports: https://linked.data.gov.au/def/csdm/impspecs
+# imports: https://data.surroundaustralia.com/def/reqmetamodel
+
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix edg: <http://edg.topbraid.solutions/model/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix graphql: <http://datashapes.org/graphql#> .
+@prefix metadata: <http://topbraid.org/metadata#> .
+@prefix ontologyprojects: <http://teamwork.topbraidlive.org/ontologyprojects#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix teamwork: <http://topbraid.org/teamwork#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://evn.topbraidlive.org/evnprojects#ProjectType>
+  a rdfs:Class ;
+.
+<http://evn.topbraidlive.org/evnprojects#Taxonomy>
+  a rdfs:Class ;
+.
+dc:format
+  a rdf:Property ;
+.
+dc:relation
+  a rdf:Property ;
+.
+dct:Standard
+  a owl:Class ;
+  rdfs:subClassOf owl:Thing ;
+.
+dct:conformsTo
+  a owl:ObjectProperty ;
+.
+dct:relation
+  a rdf:Property ;
+.
+owl:Class
+  sh:property owl:Class-definition ;
+.
+owl:Class-definition
+  a sh:PropertyShape ;
+  sh:path skos:definition ;
+  sh:datatype xsd:string ;
+  sh:group skos:DefinitionPropertyGroup ;
+  sh:maxCount 1 ;
+  sh:name "definition" ;
+.
+<http://www.w3.org/ns/dx/prof/ResourceDescriptor>
+  rdfs:subClassOf owl:Thing ;
+.
+sh:SPARQLrule
+  a rdfs:Class ;
+  rdfs:label "SPARQL rule" ;
+  rdfs:subClassOf owl:Thing ;
+.
+foaf:depiction
+  a rdfs:Resource ;
+  a owl:ObjectProperty ;
+  rdfs:label "Depiction" ;
+.
+<https://data.surroundaustralia.com/def/class-example-shapes/editorialforresource>
+  a sh:NodeShape ;
+  rdfs:comment "allow skos:editorial notes for any resource"^^rdf:HTML ;
+  rdfs:label "editorial notes" ;
+  sh:property <https://data.surroundaustralia.com/def/class-example-shapes/editorialforresource-comment> ;
+  sh:property <https://data.surroundaustralia.com/def/class-example-shapes/editorialforresource-editorialNote> ;
+  sh:targetClass rdfs:Resource ;
+  sh:targetClass owl:Class ;
+.
+<https://data.surroundaustralia.com/def/class-example-shapes/editorialforresource-comment>
+  a sh:PropertyShape ;
+  sh:path rdfs:comment ;
+  dash:viewer dash:LiteralViewer ;
+  sh:datatype xsd:string ;
+  sh:description "Comment" ;
+  sh:group skos:NotesPropertyGroup ;
+  sh:name "comment" ;
+.
+<https://data.surroundaustralia.com/def/class-example-shapes/editorialforresource-editorialNote>
+  a sh:PropertyShape ;
+  sh:path skos:editorialNote ;
+  dash:viewer dash:LiteralViewer ;
+  sh:datatype xsd:string ;
+  sh:description "Editorial notes will be highlighted as open issues in documents" ;
+  sh:group skos:NotesPropertyGroup ;
+  sh:name "editorial note" ;
+.
+<https://data.surroundaustralia.com/def/class-example-shapes/imgForResource>
+  a sh:NodeShape ;
+  rdfs:comment "allow simple image attached to any resource" ;
+  rdfs:label "img for resource" ;
+  sh:property <https://data.surroundaustralia.com/def/class-example-shapes/imgForResource-Graphic> ;
+  sh:targetClass rdfs:Resource ;
+  sh:targetClass owl:Class ;
+.
+<https://data.surroundaustralia.com/def/class-example-shapes/imgForResource-Graphic>
+  a sh:PropertyShape ;
+  sh:path foaf:depiction ;
+  dash:viewer dash:ImageViewer ;
+  sh:group <http://topbraid.org/skos.shapes#DisplayPropertyGroup> ;
+  sh:name "Graphic" ;
+  sh:nodeKind sh:IRI ;
+  sh:order "1"^^xsd:decimal ;
+.
+<https://data.surroundaustralia.com/def/ontexamples/shapes>
+  a ontologyprojects:ProjectType ;
+  a owl:Ontology ;
+  a prov:Entity ;
+  <http://datashapes.org/owl2shacl#createPropertyShapeURIsWithPrefixes> true ;
+  teamwork:externalGraphURI <https://data.surroundaustralia.com/def/ontexamples/shapes> ;
+  rdfs:comment "Edited version of PROF shapes for creating example resources conveniently" ;
+  rdfs:label "Example Viewer" ;
+  owl:imports <http://surroundaustralia.com/ns/platform/shapes> ;
+  owl:imports <http://www.w3.org/ns/dx/prof> ;
+  owl:imports <https://linked.data.gov.au/def/csdm/impspecs> ;
+  owl:imports <https://data.surroundaustralia.com/def/reqmetamodel> ;
+.

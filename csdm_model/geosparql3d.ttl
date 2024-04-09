@@ -1,0 +1,21 @@
+# baseURI: https://www.opengis.net/def/profiles/geosparql3d
+# imports: http://www.w3.org/ns/dx/prof
+# imports: https://linked.data.gov.au/def/csdm/geometry
+# prefix: geosparql3d
+
+@prefix geometry: <https://linked.data.gov.au/def/csdm/geometry/> .
+@prefix geosparql3d: <https://www.opengis.net/def/profiles/geosparql3d#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prof: <http://www.w3.org/ns/dx/prof/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://www.opengis.net/def/profiles/geosparql3d>
+  a owl:Ontology ;
+  rdfs:label "GeoSPARQL 3D Profile" ;
+  rdfs:comment "Add in profile declarations and related stuff explaining the relationships to possible GeoSPARQL evolutions.." ;
+  owl:imports <http://www.w3.org/ns/dx/prof> ;
+  # TODO: Need to change the redirect from /geometryprim to /geometry
+  owl:imports <https://linked.data.gov.au/def/csdm/geometryprim> ;
+.

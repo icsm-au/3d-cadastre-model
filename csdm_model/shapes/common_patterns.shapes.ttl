@@ -1,0 +1,86 @@
+# baseURI: https://linked.data.gov.au/def/csdm/commonpatterns.shapes
+# imports: http://datashapes.org/dash
+# imports: https://linked.data.gov.au/def/csdm/commonpatterns
+
+@prefix : <https://linked.data.gov.au/def/csdm/commonpatterns/> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ontologyprojects: <http://teamwork.topbraidlive.org/ontologyprojects#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix teamwork: <http://topbraid.org/teamwork#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# <https://linked.data.gov.au/def/csdm/commonpatterns.shapes>
+#   owl:imports <http://datashapes.org/dash> ;
+#   owl:imports <https://linked.data.gov.au/def/csdm/commonpatterns> ;
+# .
+:
+  a owl:Ontology ;
+.
+:Common
+  a sh:NodeShape ;
+.
+:CompoundName
+  sh:property :CompoundName-label ;
+  sh:property :namePart ;
+.
+:CompoundName-label
+  a sh:PropertyShape ;
+  sh:path rdfs:label ;
+  rdfs:label "label" ;
+  sh:datatype xsd:string ;
+  sh:description "Default simple string value" ;
+  sh:maxCount 1 ;
+.
+:Measure
+  a sh:NodeShape ;
+  sh:property :Measure-qualityMeasure ;
+  sh:property :Measure-value ;
+.
+:Measure-qualityMeasure
+  a sh:PropertyShape ;
+  sh:path :qualityMeasure ;
+  sh:datatype xsd:decimal ;
+  sh:maxCount 1 ;
+.
+:Measure-value
+  a sh:PropertyShape ;
+  sh:path :value ;
+  sh:datatype xsd:decimal ;
+  sh:maxCount 1 ;
+  sh:minCount 1 ;
+.
+:NamePart
+  sh:property :NamePart-prefLabel ;
+  sh:property :NamePart-subject ;
+.
+:NamePart-prefLabel
+  a sh:PropertyShape ;
+  sh:path skos:prefLabel ;
+  rdfs:label "Part Value" ;
+  sh:datatype xsd:string ;
+  sh:minCount 1 ;
+.
+:NamePart-subject
+  a sh:PropertyShape ;
+  sh:path dcterms:subject ;
+  rdfs:label "Part Subject" ;
+  sh:datatype xsd:string ;
+  sh:minCount 1 ;
+.
+:RelevantJurisdictionalCodelist
+  a sh:NodeShape ;
+.
+:namePart
+  a sh:PropertyShape ;
+  sh:path dcterms:hasPart ;
+  dash:viewer dash:DetailsViewer ;
+  rdfs:label "namePart" ;
+  sh:class :NamePart ;
+  sh:description "A typed part of a name, to be formatted into a final form according to localised business rules." ;
+  sh:minCount 1 ;
+.

@@ -1,0 +1,185 @@
+PREFIX : <https://linked.data.gov.au/def/csdm/>
+PREFIX lode: <https://w3id.org/lode/ns/pylode/>
+PREFIX prof: <http://www.w3.org/ns/dx/prof/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX role: <http://www.w3.org/ns/dx/prof/role/>
+
+:sosa
+    a prof:Profile ;
+    prof:hasResource
+            [
+                dcterms:format "text/turtle" ;
+                prof:hasArtifact "https://www.w3.org/ns/sosa/" ;
+                prof:hasRole role:schema
+            ]
+.
+
+:commonpatterns
+    a prof:Profile ;
+    a lode:Module ;
+    prof:hasResource 
+            [
+                dcterms:format "text/turtle" ;
+                prof:hasArtifact "https://icsm-au.github.io/3d-csdm/shapes/common_patterns.shapes.ttl" ;
+                prof:hasRole role:constraints
+            ] ,
+            [
+                dcterms:format "text/turtle" ;
+                prof:hasArtifact "https://icsm-au.github.io/3d-csdm/commonpatterns.ttl" ;
+                prof:hasRole role:schema
+            ] ;
+.
+
+:geometryprim
+    a prof:Profile ;
+    a lode:Module ;
+    prof:hasResource
+                [
+                    dcterms:format "text/turtle" ;
+                    prof:hasArtifact "https://icsm-au.github.io/3d-csdm/shapes/geometryprimitives.shapes.ttl" ;
+                    prof:hasRole role:constraints
+                ] ,
+                [
+                    dcterms:format "text/turtle" ;
+                    prof:hasArtifact "https://icsm-au.github.io/3d-csdm/geometryprim.ttl" ;
+                    prof:hasRole role:schema
+                ] ;
+    lode:ignoreClass
+        <https://linked.data.gov.au/def/csdm/geometry/ExtensionRule> ,
+        <https://linked.data.gov.au/def/csdm/geometry/ExtrudedCurve> ,
+        <https://linked.data.gov.au/def/csdm/geometry/ExtrudedGeometry> ,
+        <https://linked.data.gov.au/def/csdm/geometry/ExtrudedSurface> ,
+        <https://linked.data.gov.au/def/csdm/geometry/FeatureCollection> ;
+.
+
+:container
+    a prof:Profile,
+        lode:Module ;
+    prof:hasResource
+        [
+            dcterms:format "text/turtle" ;
+            prof:hasArtifact "https://icsm-au.github.io/3d-csdm/container.ttl" ;
+            prof:hasRole role:schema
+        ] ,
+        [
+            dcterms:format "text/turtle" ;
+            prof:hasArtifact "https://icsm-au.github.io/3d-csdm/shapes/container.shapes.ttl" ;
+            prof:hasRole role:constraints
+        ] ;
+    sh:order 0 ;
+    prof:hasRole lode:componentModel ;
+    lode:ignoreClass
+        <https://linked.data.gov.au/def/csdm/container/ClassIn3DCadastre> ,
+        <https://linked.data.gov.au/def/csdm/container/GeoSPARQL-3D> ,
+        <https://linked.data.gov.au/def/csdm/container/ModelledElement> ,
+        <https://linked.data.gov.au/def/csdm/container/StandardClass> ,
+        <https://linked.data.gov.au/def/csdm/prov_profile_survey_dates/SurveyType> ,
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/SurveyPurpose> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/Measure> ;
+.
+
+:surveyfeatures
+    a prof:Profile ,
+        lode:Module ;
+        prof:hasResource
+            [
+                dcterms:format "text/turtle" ;
+                prof:hasArtifact "https://icsm-au.github.io/3d-csdm/shapes/survey_features.shapes.ttl" ;
+                prof:hasRole role:constraints
+            ] ,
+            [
+                dcterms:format "text/turtle" ;
+                prof:hasArtifact "https://icsm-au.github.io/3d-csdm/surveyfeats.ttl" ;
+                prof:hasRole role:schema
+            ] ;
+    sh:order 2 ;
+    lode:ignoreClass
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/AllowableCoordinateReferenceSystem> ,
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/Angle> ,
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/ConditionCode> ,
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/Distance> ,
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/MonumentCondition> ,
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/MonumentForm> ,
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/NoOccupation> ,
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/Occupation> ,
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/SurveyPointProvenance> ,
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/SurveyPointPurpose> ,
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/SurveyPointQuality> ,
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/SurveyPointState> ,
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/Terrain> ,
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/VectorDeterminationMethod> ;
+.
+
+:parcels
+    a prof:Profile ,
+        lode:Module ;
+    prof:hasResource
+        [
+            dcterms:format "text/turtle" ;
+            prof:hasArtifact "https://icsm-au.github.io/3d-csdm/parcels.ttl" ;
+            prof:hasRole role:schema
+        ] ,
+        [
+            dcterms:format "text/turtle" ;
+            prof:hasArtifact "https://icsm-au.github.io/3d-csdm/shapes/parcel_module.shapes.ttl" ;
+            prof:hasRole role:constraints
+        ] ;
+    sh:order 1 ;
+    lode:ignoreClass
+        <https://linked.data.gov.au/def/csdm/parcels/CodeTypes> ,
+        <https://linked.data.gov.au/def/csdm/parcels/ParcelModel> ,
+        <https://linked.data.gov.au/def/csdm/parcels/ParcelQualityClass> ,
+        <https://linked.data.gov.au/def/csdm/parcels/ParcelState> ,
+        <https://linked.data.gov.au/def/csdm/parcels/ParcelType> ,
+        <https://linked.data.gov.au/def/csdm/parcels/PurposeOfSpatialUnit> ,
+        <https://linked.data.gov.au/def/csdm/parcels/TerrainIntersection> ;
+.
+
+:surveyobs
+    a prof:Profile ,
+        lode:Module ;
+        prof:hasResource [
+                dcterms:format "text/turtle" ;
+                prof:hasArtifact "https://icsm-au.github.io/3d-csdm/surveyobs.ttl" ;
+                prof:hasRole role:schema
+            ] ;
+    sh:order 3 ;
+    lode:ignoreClass
+        <https://linked.data.gov.au/def/csdm/surveyfeatures/Traverse> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/Computation> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/DesignModel> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/FeatureOccupationObservation> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/IFCRef> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/OccupationAsFeature> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/OccupationModelVertex> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/OccupationObservations> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/OffsetMeasurement> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/ParcelBoundaryOccupation> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/Position> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/QualifiedPosition> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/QualifiedVector> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/Setup> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/SideShot> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/SurveyNetwork> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/SurveyPointOccupation> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/Traversal> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/VectorDetermination> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/VectorDeterminationMethod> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/VectorObservations> ;
+.
+
+:surveyprov
+    a prof:Profile ,
+        lode:Module ;
+    prof:hasResource [
+            dcterms:format "text/turtle" ;
+            prof:hasArtifact "https://icsm-au.github.io/3d-csdm/surveyprov.ttl" ;
+            prof:hasRole role:schema
+        ] ;
+    sh:order 4 ;
+    lode:ignoreClass
+        <https://linked.data.gov.au/def/csdm/survey-provenance/SurveyActivityType> ,
+        <https://linked.data.gov.au/def/csdm/surveylineobs/Survey> ;
+.

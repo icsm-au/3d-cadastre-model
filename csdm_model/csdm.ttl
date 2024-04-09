@@ -1,0 +1,59 @@
+PREFIX : <https://linked.data.gov.au/def/csdm/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX lode: <https://w3id.org/lode/ns/pylode/>
+PREFIX ont: <https://linked.data.gov.au/def/csdm>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX prof: <http://www.w3.org/ns/dx/prof/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX role: <http://www.w3.org/ns/dx/prof/role/>
+PREFIX schema: <https://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+ont:
+    a prof:Profile ;
+    rdfs:label "ICSM Conceptual Model for 3D Cadastral Survey Dataset Submissions" ;
+    dcterms:created "2022-03-18"^^xsd:date ;
+    dcterms:dateAccepted "2022-03-18"^^xsd:date ;
+    dcterms:issued "2022-03-18"^^xsd:date ;
+    owl:versionInfo "1.0" ;
+    schema:category
+        "2023" ,
+        "Draft" ,
+        "ICSM Implementation Specification" ;
+    schema:contributor
+        "Adrian White" ,
+        "Andrew Hunter" ,
+        "Byron Cochrane" ,
+        "Jeff Needham" ,
+        "Matthew Purss" ,
+        "Murray Dolling" ,
+        "Nicholas J. Car" ,
+        "Roger Fraser" ,
+        "Simon Opper" ;
+    schema:creator "Rob Atkinson" ;
+    schema:identifier "21-CAD" ;
+    schema:publisher "Intergovernmental Committee on Surveying and Mapping" ;
+    schema:workExample [
+            a schema:ImageObject ;
+            sh:order 0 ;
+            schema:caption "CSDM Supermodel modules dependency diagram." ;
+            schema:contentUrl "http://www.plantuml.com/plantuml/png/V59DRXDD4DtFAPwojbVVxbiW1Xk25CYOT9IDvKLvkh17wUvgLTSu35o6it0oPWPYB2IoVJ-lNbNtwsAariTGLTLsNRltM9CHt94o5pn8I_i-a0wxQkjk6WVNnHmODqcU0li3ez43fUuhMIS9RYZ6STJU7ncRk-O1JJ89SfZzZQknXEDKH1TezeNrDFiMS3J5Bb0dZxgrdanqihZRsH4fMTV-jkAMxKdqSUJVVh4HwYGLcC2E_2_jkSTpDvNFNVXxm-PwXMiMjwdlFdtOLLMczf767QzMRlqHhi-iKJo7AtohWErAOfI4-IAHa_swGIOprh5H4eFlb5iB0qgViwYnntw0s94LnIXvKbzsKzX_wsbqPDC18uvxoNDXlA7IjS-5P-cv8aRJ9R4YJyMK0ZQaBOSPTBsUUC0x9kkLns4_lf_1YpSe5-8fzCI9Kij_yb-ciUppyXLU_4Bu7vup9ryWwMTlPOm28103mTvN-I0jBVsxLa8Oa4nOhhCmitTcTstXXESyd2RraA09gCqTVQesIvB-5pk7yWarV5hUJ2CR6COBQxPEnMu_W8SF5B-2a9pTWON75BFE1ML-jCPSaQb_6D22EvdsP_uiSb7tjh-Frtay"^^xsd:anyURI ;
+            schema:name "Modules Dependency Diagram"
+        ] ;
+    prof:hasResource [
+        a prof:ResourceDescriptor ;
+        rdfs:label "pylode config" ;
+        dcterms:format "text/turtle" ;
+        prof:hasRole lode:config ;
+        prof:hasArtifact <https://icsm-au.github.io/3d-csdm/pylode.ttl> ;
+    ] ;
+    prof:isProfileOf
+        :geometryprim ,
+        :container ,
+        :parcels ,
+        :surveyfeatures ,
+        :surveyobs ,
+        :surveyprov ;
+.

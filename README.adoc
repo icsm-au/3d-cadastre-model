@@ -1,0 +1,42 @@
+= 3d-csdm
+
+A repository to manage the development and release of the 3D Cadastral Survey Data Model (3D CSDM).
+
+The 2022 publication of this model and initial requirements are documented at https://icsm-au.github.io/3d-csdm-design/2022/spec.html
+
+The 2023 next-generation model documentation is in development but available online at:
+
+* https://icsm-au.github.io/3d-csdm/
+
+
+== Model Repositories
+
+* This repository
+** master data for the model, includes the encoding specification as a submodule
+* https://github.com/icsm-au/3d-csdm-schema
+** the CSDM encoding specification in the form of an OGC API "building block"
+
+
+== Related resources
+
+* Documentation co-design at https://github.com/icsm-au/3d-csdm-schema
+* https://github.com/icsm-au/3d-csdm-req Requirements model for extended documentation and design process support
+* https://github.com/icsm-au/3d-csdm-doc Document knowledge base
+
+
+== License & Rights
+
+This model and all repository contents are &copy; Australian Government (Intergovernmental Committee on Surveying and Mapping), 2023.
+
+The contents of this repository are licensed for reuse with the https://www.apache.org/licenses/LICENSE-2.0.html[Apache 2.0 License] and a copy of the deed is stored in the LICENSE file in this repository.
+
+
+== Contact
+
+For all usage and legal issues, please contact the https://www.icsm.gov.au[Intergovernmental Committee on Surveying and Mapping (ICSM)].
+
+For technical matters during the development phase of this model, please contact:
+
+*Robert Atkinson* +
+_3D CSDM Consortium Modelling Lead_ +
+rob.atkinson@surroundaustralia.com

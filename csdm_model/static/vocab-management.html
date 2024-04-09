@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vocabulary Management</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+
+    <style>
+      p {
+      }
+    </style>
+  </head>
+
+  <body>
+    
+    <h1>Vocabulary Management</h1>
+
+    <p>
+      <em>You may have reached this page from a reference to a vocabulary or term using a placehoder URI. Until vocabularies are published by ICSM and jurisdictions the source material location and processing is explained in the material below.</em>
+    </p>
+    
+    <p>
+      The 3D CSDM specification is designed to allow <em>Profiles</em> to be
+      specified, primarily through use of <em>Controlled Vocabularies</em> and
+      <em>profile constraints</em>.
+    </p>
+
+    <p>
+      <em
+        >This is the most complex part of the specification process since it
+        spans multiple technologies that do not provide good native support for
+        profiling or vocabularies. The process is expected to be further
+        developed and simpler options emerge over time.</em
+      >
+    </p>
+
+    <p>
+      Vocabularies are implemented through **unambiguous codes** in the form:
+    </p>
+
+    <ul>
+      <li><code>"surveyType": "nz-survey-type:subdivision"</code></li>
+    </ul>
+
+    <p>where the "magic" qualifier is defined by the profile:</p>
+
+    <ul>
+      <li>
+        <code
+          >"nz-survey-type":
+          "https://linked.data.gov.au/def/csdm/nz-survey-type/"</code
+        >
+      </li>
+    </ul>
+
+    <p>
+      <em
+        ><strong
+          >It is assumed that at some point these vocabularies will be published
+          online under the reserved URI address.</strong
+        ></em
+      >
+      However, the testing system has been configured to locate the local files
+      for each vocabulary in the interim.
+    </p>
+
+    <p>
+      For ease of use these vocabularies are supplied using a common spreadsheet
+      format, in CSV text files.
+    </p>
+
+    <p>
+      These are located under the
+      <a
+        href="https://github.com/icsm-au/3d-csdm-profiles/blob/main/vocabularies"
+        >vocabularies/</a
+      >
+      subdirectory.
+    </p>
+
+    <h2>Vocabulary Source Format</h2>
+
+    <p>This is a simple CSV format:</p>
+
+    <pre>
+preflabel,definition,notation,altlabel,related
+Deposited Plan,"A cadastral survey plan or dataset that has been prepared under the Land Transfer Act and has had new titles created.",dp,,</pre
+    >
+
+    <p>
+      The key field is <code>notation</code> - this is used to define an
+      identifier that is used in the data.
+    </p>
+
+    <p>
+      Another configuration
+      <a
+        href="https://github.com/icsm-au/3d-csdm-profiles/blob/main/vocabs-uplift.yml"
+        >vocabs-uplift.yml</a
+      >
+      is used to bind files to namespaces and data types for terms:
+    </p>
+
+    <pre>
+"wa-locality.csv": { "uri": "https://linked.data.gov.au/def/csdm/wa-locality", "label": "WA Localities", "type": "termtype:AdminUnit" },</pre
+    >
+
+    <p>
+      These CSVs and extra configuration metadata are processed into a
+      standardised format (SKOS) that can allow further elucidation,
+      description, cross references etc as required in future.
+    </p>
+
+    <pre>
+&lt;https://linked.data.gov.au/def/csdm/wa-locality/abba-river&gt; 
+    a skos:Concept,
+        termtype:AdminUnit ;
+    skos:inScheme &lt;https://linked.data.gov.au/def/csdm/wa-locality&gt; ;
+    skos:notation "abba-river" ;
+    skos:prefLabel "Abba River" .
+</pre
+    >
+
+    <p>
+      The SKOS format is a semantic model, expressed using the Turtle language
+      (.ttl files), and directly processed by the
+      <strong>profile constraints</strong> that are expressed in SHACL (Shapes
+      Constraint Language).
+    </p>
+
+    <h2>Binding Vocabularies to model and schema elements</h2>
+
+    <p>
+      Summaries of these are provided in the generated documentation - e.g.
+      <a href="https://icsm-au.github.io/3d-csdm/docs/nz-profile/#oJcg30JS"
+        >NZ Profile#Vocabularies</a
+      >
+    </p>
+
+    <p>
+      The "machine-readable binding" between the vocabularies and the relevant
+      parts of the schema is done in a number of places:
+    </p>
+
+    <ul>
+      <li>
+        JSON-LD contexts for profiles -
+        <a href="/icsm-au/3d-csdm-profiles/blob/main/_sources/nz/context.jsonld"
+          >e.g.</a
+        >
+      </li>
+      <li>
+        SHACL rules for making sure terms are of the right
+        <strong>term type</strong> (defined in the ICSM common profile - other
+        international CSD implementations may not use controlled vocabularies at
+        all!)
+      </li>
+      <li>
+        Profile rules using the RDF-QB (Datacube) model to link properties to
+        specific <strong>ConceptSchemes</strong>
+      </li>
+      <li>
+        'SHACL closures' to join the vocabularies to the model for the purpose
+        of SHACL rule validation
+      </li>
+      <li>
+        "uplift" configurations to process the CSV into SKOS using the correct
+        <strong>ConceptScheme</strong> and <strong>term type</strong> metadata
+      </li>
+      <li>
+        "profile descriptions" linking the profile to the set of RDF-QB and
+        SHACL resources.
+      </li>
+      <li>
+        generated documents joining profile constraints to model elements.
+      </li>
+    </ul>
+
+    <h2>Vocabulary labelling</h2>
+
+    <p>Vocabularies are labelled to support better documentation.</p>
+
+    <p>
+      Again, for convenience this is done in simple CSV files
+      (profiles/*-vocab-labels.csv) of the form:
+    </p>
+
+    <pre>
+Scheme,Label
+vocabs:icsm-procedure-used,"Survey Procedure"</pre
+    >
+
+    <p>
+      Extra CSV files are processed using the same automation processes to
+      generate the RDF-QB forms of constraints so that profiles do not need to
+      create any RDF directly for profiling the standard schema.
+    </p>
+
+    <p>
+      In future a "profile specification wizard application" could be used to
+      generate all these elements from a single source
+    </p>
+  </body>
+</html>

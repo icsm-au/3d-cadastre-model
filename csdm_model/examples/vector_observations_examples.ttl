@@ -1,0 +1,595 @@
+    # baseURI: https://linked.data.gov.au/dataset/csdm/surveyobs-examples
+# imports: https://linked.data.gov.au/dataset/csdm/surveyfeatures-examples
+# imports: https://linked.data.gov.au/dataset/csdm/surveyobs.shapes
+# imports: https://linked.data.gov.au/def/csdm/commonpatterns.shapes
+# imports: https://linked.data.gov.au/def/csdm/container.shapes
+# imports: https://linked.data.gov.au/def/csdm/surveyfeatures.shapes
+# imports: https://data.surroundaustralia.com/def/ontexamples/shapes
+# imports: https://linked.data.gov.au/def/csdm/parcels/examples
+# imports: https://www.opengis.net/def/csdm/examples/codelists/surveymark_condition_NZ
+
+@prefix :                        <https://linked.data.gov.au/dataset/csdm/surveyobs-examples/> .
+@prefix com:                     <https://linked.data.gov.au/def/csdm/commonpatterns/> .
+@prefix container:               <https://linked.data.gov.au/def/csdm/container/> .
+@prefix dct:                     <http://purl.org/dc/terms/> .
+@prefix examples:                <https://linked.data.gov.au/def/csdm/parcels/examples/> .
+@prefix foaf:                    <http://xmlns.com/foaf/0.1/> .
+@prefix geo:                     <http://www.opengis.net/ont/geosparql#> .
+@prefix geometry:                <https://linked.data.gov.au/def/csdm/geometry/> .
+@prefix gml:                     <http://www.opengis.net/ont/gml#> .
+@prefix metadata:                <http://topbraid.org/metadata#> .
+@prefix owl:                     <http://www.w3.org/2002/07/owl#> .
+@prefix prof:                    <http://www.w3.org/ns/dx/prof/> .
+@prefix prov:                    <http://www.w3.org/ns/prov#> .
+@prefix rdf:                     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:                    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix reqmetamodel:            <https://linked.data.gov.au/def/csdm/reqmetamodel/> .
+@prefix sf:                      <http://www.opengis.net/ont/sf#> .
+@prefix sh:                      <http://www.w3.org/ns/shacl#> .
+@prefix skos:                    <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa:                    <http://www.w3.org/ns/sosa/> .
+@prefix surv:                    <https://linked.data.gov.au/def/csdm/surveyfeatures/> .
+@prefix surveyfeatures-examples: <https://linked.data.gov.au/dataset/csdm/surveyfeatures-examples/> .
+@prefix surveyobs:               <https://linked.data.gov.au/def/csdm/surveyobs/> .
+@prefix surveymark_condition_NZ: <https://www.opengis.net/def/csdm/examples/codelists/surveymark_condition_NZ/> .
+@prefix surveyobs-examples:      <https://linked.data.gov.au/dataset/csdm/surveyobs-examples/> .
+@prefix survprov:                <https://linked.data.gov.au/def/csdm/surveyprov/> .
+@prefix teamwork:                <http://topbraid.org/teamwork#> .
+@prefix xsd:                     <http://www.w3.org/2001/XMLSchema#> .
+
+sosa:ObservationCollection
+    reqmetamodel:canonicalExample surveyobs-examples:adopted_observations ;
+    reqmetamodel:canonicalExample surveyobs-examples:calculated_observations ;
+.
+
+surveyfeatures-examples:m25
+    surv:form     surveymark_condition_NZ:ironspike ;
+    surv:replaces surveyobs-examples:m25_old ;
+.
+
+<https://linked.data.gov.au/dataset/csdm/surveyobs-examples>
+    a           owl:Ontology ;
+    owl:imports <https://linked.data.gov.au/dataset/csdm/surveyfeatures-examples> ;
+    owl:imports <https://linked.data.gov.au/dataset/csdm/surveyobs.shapes> ;
+    owl:imports <https://linked.data.gov.au/def/csdm/commonpatterns.shapes> ;
+    owl:imports <https://linked.data.gov.au/def/csdm/container.shapes> ;
+    owl:imports <https://linked.data.gov.au/def/csdm/surveyfeatures.shapes> ;
+    owl:imports <https://data.surroundaustralia.com/def/ontexamples/shapes> ;
+    owl:imports <https://linked.data.gov.au/def/csdm/parcels/examples> ;
+    owl:imports <https://www.opengis.net/def/csdm/examples/codelists/surveymark_condition_NZ> ;
+.
+
+surveyobs-examples:IFCRef_1
+    a                surveyobs:IFCRef ;
+    dct:type         <https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD2_TC1/OWL#IfcWall> ;
+    rdfs:isDefinedBy <https://linked.data.gov.au/dataset/csdm/myifcmodel.ifc> ;
+    rdfs:label       "Wall 637" ;
+.
+
+surveyobs-examples:Setup_a110
+    a            surv:Setup ;
+    rdfs:comment "A setup will have various observations - TBD what needs to be modelled at this stage" ;
+    rdfs:label   "a1101" ;
+.
+
+surveyobs-examples:adopted_observations
+    a                     sosa:ObservationCollection ;
+    rdfs:comment          "vectors only - can be extended to vectors and GNSS and other forms." ;
+    rdfs:label            "Adopted Observations" ;
+    sosa:hasMember        surveyobs-examples:tv2 ;
+    sosa:madeBySensor     surveyobs-examples:mysoftware ;
+    sosa:observedProperty surveyobs:VectorDetermination ;
+    sosa:phenomenomTime   "14-01-2001"^^xsd:date ;
+.
+
+surveyobs-examples:asbuiltBIM
+    a            sosa:Sensor ;
+    rdfs:comment "The capture of the BIM model is a de-facto sampling of the real world" ;
+    rdfs:label   "BIM model inspection" ;
+.
+
+surveyobs-examples:blue_top
+    a          sf:Polygon ;
+    geo:asGML  """<gml:Polygon gml:id=\"blue_top\">
+                        <gml:exterior>
+                            <gml:LinearRing gml:id=\"lr1\">
+                                <gml:pointProperty xlink:href=\"#p1\"/>
+                                <gml:pointProperty xlink:href=\"#p4\"/>
+                                <gml:pointProperty xlink:href=\"#p3\"/>
+                                <gml:pointProperty xlink:href=\"#p2\"/>
+                                <gml:pointProperty xlink:href=\"#p1\"/>
+                            </gml:LinearRing>
+                        </gml:exterior>
+                    </gml:Polygon>"""^^geo:gmlLiteral ;
+    rdfs:label "blue_top (truncated)" ;
+    skos:editorialNote
+               "GML does not illustrate the arbitrary truncated nature - but it would be possible for the containing feature to have this information." ;
+.
+
+surveyobs-examples:blue_top_boundary
+    a                    geometry:BoundaryFace ;
+    geo:hasGeometry      surveyobs-examples:blue_top ;
+    geo:touchesInward    examples:cp1 ;
+    rdfs:label           "blue_top boundary" ;
+    skos:editorialNote   "Example of a vertically unbounded boundary with a nominal solid geometry." ;
+    geometry:isTruncated true ;
+.
+
+surveyobs-examples:calculated_observations
+    a                     sosa:ObservationCollection ;
+    rdfs:comment          "collection applies common metadata to computed vectors - however other observation collectons or subcollections could apply to other calculations." ;
+    rdfs:label            "calculated observations" ;
+    sosa:hasMember        surveyobs-examples:obs2_computed ;
+    sosa:madeBySensor     surveyobs-examples:mysoftware ;
+    sosa:observedProperty surveyobs:VectorDetermination ;
+    sosa:phenomenomTime   "14-01-2001"^^xsd:date ;
+.
+
+surveyobs-examples:comp1
+    a          surveyobs:Computation ;
+    rdfs:comment
+               "Computation of point location and relative vector from point in a connected network using vertical offset from a known survey point and nominal ground level." ;
+    rdfs:label "Vertical Offset from ground" ;
+.
+
+surveyobs-examples:csd2
+    a                             container:CSD ;
+    rdfs:label                    "Referenced Cadastral Survey Dataset" ;
+    prov:wasGeneratedBy           surveyobs-examples:extractCSD_1 ;
+    container:adoptedObservations surveyobs-examples:adopted_observations ;
+.
+
+surveyobs-examples:cv1
+    a               surv:ObservedVector ;
+    geo:hasGeometry [ a          gml:LineString ;
+                      geo:asGML  """ <gml:LineString gml:id=\"cv1\">
+                <gml:pointProperty xlink:href=\"#t1\"/>
+                <gml:pointProperty xlink:href=\"#p3\"/>
+            </gml:LineString>"""^^geo:gmlLiteral ;
+                      rdfs:label "LineString geometry T1-P3" ; ] ;
+    rdfs:comment    "The angle and distance properties of this feature are derived from individual observations, the geometry is derived from the calculated locations of instrument and target points." ;
+    rdfs:label      "ComputedVector T1-P3" ;
+    surv:from       surveyobs-examples:t1 ;
+    surv:target     surveyobs-examples:p3 ;
+.
+
+surveyobs-examples:design_observations
+    a                     sosa:ObservationCollection ;
+    rdfs:comment          "Observations referencing an element in a BIM as-build model." ;
+    rdfs:label            "Occupations described by BIM models" ;
+    skos:editorialNote    "Need more description of how this would look - what needs to be recorded." ;
+    sosa:hasMember        surveyobs-examples:ifc_design_1 ;
+    sosa:madeBySensor     surveyobs-examples:asbuiltBIM ;
+    sosa:observedProperty surveyobs:occupation ;
+    sosa:phenomenomTime   "14-01-2001"^^xsd:date ;
+.
+
+surveyobs-examples:extractCSD_1
+    a                      survprov:SurveyActivity ;
+    rdfs:label             "Extract survey observations for parcel cp1 (Blue Spatial Unit )" ;
+    prov:endedAtTime       "20010120" ;
+    prov:wasAssociatedWith <https://linked.data.gov.au/def/csdm/surveyactivity/examples/LandOnlineNZ> ;
+    prov:wasAttributedTo   <https://linked.data.gov.au/def/csdm/surveyactivity/examples/AH> ;
+.
+
+surveyobs-examples:fence1
+    a               surveyobs:OccupationAsFeature ;
+    geo:hasGeometry [ a         gml:LineString ;
+                      geo:asGML """<gml:LineString gml:id=\"occf3\">
+            <gml:pointProperty xlink:href=\"#occ1\"/>
+            <gml:pointProperty xlink:href=\"#occ5\"/>
+            <gml:pointProperty xlink:href=\"#occ6\"/>
+        </gml:LineString>"""^^geo:gmlLiteral ; ] ;
+    rdfs:comment    "An example GIS feature object describing an occupation feature" ;
+    rdfs:label      "East Fence" ;
+.
+
+surveyobs-examples:g_p10
+    a                       gml:Point ;
+    geo:asGML               """<gml:Point gml:id=\"g_p10\" srsName=\"*XY-MT*\" srsDimension=\"3\">
+        <gml:pos>43.089 -33.717 4.550</gml:pos>
+ </gml:Point>"""^^geo:gmlLiteral ;
+    geo:coordinateDimension 3 ;
+    rdfs:label              "g_p10" ;
+.
+
+surveyobs-examples:g_t1
+    a                       gml:Point ;
+    geo:asGML               """<gml:Point gml:id=\"t1\" srsName=\"*XY-MT*\" srsDimension=\"3\">
+                        <gml:pos>50.36 -37.37 -0.22</gml:pos>
+                    </gml:Point>"""^^geo:gmlLiteral ;
+    geo:coordinateDimension 3 ;
+    rdfs:label              "g_t1" ;
+.
+
+surveyobs-examples:g_t2
+    a                       gml:Point ;
+    geo:asGML               """<gml:Point gml:id=\"t2\" srsName=\"*XY-MT*\" srsDimension=\"3\">
+                  <gml:pos>43.19 -21.98 -1.84</gml:pos>
+                </gml:Point>"""^^geo:gmlLiteral ;
+    geo:coordinateDimension 3 ;
+    rdfs:label              "g_t2" ;
+.
+
+surveyobs-examples:g_t3
+    a          gml:Point ;
+    geo:asGML  """<gml:Point gml:id=\"g_t3\" srsName=\"*XY-MT*\" srsDimension=\"3\">
+							<gml:pos>-44.150 20.820 0.700</gml:pos>
+						</gml:Point>"""^^geo:gmlLiteral ;
+    rdfs:label "g_t3" ;
+.
+
+surveyobs-examples:ifc_design_1
+    a                         surveyobs:DesignModel ;
+    rdfs:label                "IFC wall example" ;
+    skos:editorialNote        "This is an example of the identification of an IFC element in a BIM design model as a description of an occupation for a wall." ;
+    sosa:hasFeatureOfInterest surveyobs-examples:yellow_front_boundary ;
+    sosa:hasResult            surveyobs-examples:IFCRef_1 ;
+.
+
+surveyobs-examples:m25_old
+    a              surv:Monument ;
+    rdfs:comment   "Corroded" ;
+    rdfs:label     "IS II damaged" ;
+    surv:condition surveymark_condition_NZ:Damaged ;
+.
+
+surveyobs-examples:m_t2
+    a              surv:Monument ;
+    rdfs:label     "IS I" ;
+    surv:condition surveymark_condition_NZ:Reliable ;
+.
+
+surveyobs-examples:m_t3
+    a              surv:Monument ;
+    rdfs:label     "OIT X" ;
+    surv:condition surveymark_condition_NZ:Reliable ;
+.
+
+surveyobs-examples:mysoftware
+    a            sosa:Sensor ;
+    rdfs:comment "traceability of calculation code and method" ;
+    rdfs:label   "My software version 2.3.1" ;
+.
+
+surveyobs-examples:obs1
+    a                      surveyobs:SurveyVectorObservation ;
+    rdfs:comment           "Inherits quality measures from containing CSD defaults;" ;
+    rdfs:label             "Vector Determination Observation on traverse element T1 - T2" ;
+    sosa:Procedure         surveyobs-examples:trav ;
+    sosa:featureOfInterest surveyobs-examples:tv1 ;
+    sosa:hasResult         [ a                           surveyobs:QualifiedVector ;
+                             surv:distance               17.055 ;
+                             surv:distanceQualityMeasure 0.05 ;
+                             surv:horizontalAngle        335.01666667 ;
+                             surv:angleQualityMeasure    0.003 ;
+                             surv:verticalAngle          95.45 ] ;
+    foaf:depiction         <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/traverseobs.png> ;
+.
+
+surveyobs-examples:obs2_computed
+    a                         surveyobs:SurveyVectorObservation ;
+    rdfs:comment              "Example computed vector - observed using a computational process that is described via procedure where sensor is the implementing software (typically default)" ;
+    rdfs:label                "Computed Vector Determination" ;
+    sosa:hasFeatureOfInterest surveyobs-examples:cv1 ;
+    sosa:hasResult            [ a                           surveyobs:QualifiedVector ;
+                                surv:distance               8.98 ;
+                                surv:distanceQualityMeasure 0.05 ;
+                                surv:horizontalAngle        276.15 ;
+                                surv:angleQualityMeasure    0.003 ;
+                                surv:verticalAngle          54.48 ] ;
+    sosa:observedProperty     surveyobs:VectorDetermination ;
+    sosa:usedProcedure        surveyobs-examples:trav ;
+.
+
+surveyobs-examples:occ1
+    a               surv:OccupationMark ;
+    geo:hasGeometry [ a          geo:Point ;
+                      geo:asGML  """<gml:Point gml:id=\"g_occ1\" srsName=\"*XY-MT*\" srsDimension=\"3\">
+						<gml:pos>-36.630 45.090 -0.100</gml:pos>
+					</gml:Point>"""^^geo:gmlLiteral ;
+                      rdfs:label "occ1 location" ; ] ;
+    rdfs:comment    "Center of privet hedge" ;
+    rdfs:label      "occ1" ;
+.
+
+surveyobs-examples:occ10
+    a               surv:OccupationMark ;
+    geo:hasGeometry [ a         geo:Point ;
+                      geo:asGML """<gml:Point gml:id=\"g_occ10\" srsName=\"*XY-MT*\" srsDimension=\"3\">
+						<gml:pos>-26.600 45.190 -0.600</gml:pos>
+					</gml:Point>""" ; ] ;
+    rdfs:comment    "age 5 yrs" ;
+    rdfs:label      "Wooden Post" ;
+.
+
+surveyobs-examples:occupation_observations
+    a                     sosa:ObservationCollection ;
+    rdfs:comment          "vector observations are to survey points, occupation observations describe occupation at such points or occupations features at vectors or surfaces." ;
+    rdfs:label            "Occupation observations" ;
+    sosa:hasMember        surveyobs-examples:design_observations ;
+    sosa:hasMember        surveyobs-examples:feature_observations ;
+    sosa:madeBySensor     surveyobs-examples:eq1 ;
+    sosa:observedProperty surveyobs:occupation ;
+    sosa:phenomenomTime   "14-01-2001"^^xsd:date ;
+.
+
+surveyobs-examples:oo1
+    a                         surveyobs:OccupationObservation ;
+    rdfs:label                "T1 -Occ1 occupation observation" ;
+    sosa:hasFeatureOfInterest surveyobs-examples:oo1vector ;
+.
+
+surveyobs-examples:oo11
+    a                         surveyobs:OccupationObservation ;
+    rdfs:label                "T2 -Occ10 occupation observation" ;
+    sosa:hasFeatureOfInterest surveyobs-examples:oo11vector ;
+    sosa:hasResult            [ a                           surveyobs:QualifiedVector ;
+                                surv:distance               2.14 ;
+                                surv:distanceQualityMeasure 0.020 ;
+                                surv:horizontalAngle        54.68333333 ;
+                                surv:angleQualityMeasure    0.077689086 ;
+                                surv:verticalAngle          90.0 ] ;
+    foaf:depiction            <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/occobs.png> ;
+.
+
+surveyobs-examples:oo11vector
+    a               surv:ObservedVector ;
+    geo:hasGeometry [ a         sf:Line ;
+                      geo:asGML """<gml:LineString gml:id=\"ools1\">
+					<gml:pointProperty xlink:href=\"#t2\"/>
+					<gml:pointProperty xlink:href=\"#occ10\"/>
+				</gml:LineString>"""^^geo:gmlLiteral ; ] ;
+    rdfs:label      "T2 -Occ10" ;
+    surv:from       surveyobs-examples:t2 ;
+    surv:target     surveyobs-examples:occ10 ;
+.
+
+surveyobs-examples:oo1vector
+    a               surv:ObservedVector ;
+    geo:hasGeometry [ a         sf:Line ;
+                      geo:asGML """<gml:LineString gml:id=\"ools1\">
+					<gml:pointProperty xlink:href=\"#t1\"/>
+					<gml:pointProperty xlink:href=\"#occ1\"/>
+				</gml:LineString>"""^^geo:gmlLiteral ; ] ;
+    rdfs:label      "T1 -Occ1" ;
+    surv:from       surveyobs-examples:t1 ;
+    surv:target     surveyobs-examples:occ1 ;
+.
+
+surveyobs-examples:p1
+    a               surv:BoundaryMark ;
+    geo:hasGeometry surveyobs-examples:g_p1 ;
+    rdfs:label      "P1" ;
+.
+
+surveyobs-examples:p10
+    a                  surv:SurveyPoint ;
+    geo:hasGeometry    surveyobs-examples:g_p10 ;
+    rdfs:label         "P10" ;
+    skos:editorialNote "This survey point is an unmarked point at the intersection of two 3D units." ;
+.
+
+surveyobs-examples:p21
+    a                  surv:BoundaryMark ;
+    geo:hasGeometry    surveyobs-examples:g_p21 ;
+    rdfs:label         "P21" ;
+    skos:editorialNote "matches sample survey scene" ;
+    surv:setup         surveyobs-examples:Setup_a110 ;
+.
+
+surveyobs-examples:surveyActivity1
+    a                survprov:SurveyActivity ;
+    rdfs:label       "Example typed activity using provenance model" ;
+    prov:endedAtTime "2001-01-15T12:00:00"^^xsd:dateTime ;
+.
+
+surveyobs-examples:t1
+    a               surv:CadastralMark ;
+    geo:hasGeometry surveyobs-examples:g_t1 ;
+    rdfs:label      "T1" ;
+    surv:setup      surveyobs-examples:Setup_a1101 ;
+.
+
+surveyobs-examples:t2
+    a                 surv:CadastralMark ;
+    a                 surv:SurveyMark ;
+    geo:hasGeometry   surveyobs-examples:g_t2 ;
+    rdfs:label        "T2" ;
+    com:name          [ a          com:CompoundName ;
+                        rdfs:label "IS I" ; ] ;
+    surv:monumentedBy surveyobs-examples:m_t2 ;
+.
+
+surveyobs-examples:t3
+    a                 surv:GeodeticReferenceMark ;
+    geo:hasGeometry   surveyobs-examples:g_t3 ;
+    rdfs:label        "T3" ;
+    com:name          [ <http://purl.org/dc/elements/1.1/hasPart> [ a              com:NamePart ;
+                                                                    dct:type       "Identifier" ;
+                                                                    skos:prefLabel "X" ; ] ;
+                        <http://purl.org/dc/elements/1.1/hasPart> [ a              com:NamePart ;
+                                                                    dct:type       "Source" ;
+                                                                    skos:prefLabel "DP 333333" ; ] ;
+                        <http://purl.org/dc/elements/1.1/hasPart> [ a              com:NamePart ;
+                                                                    dct:type       "Type" ;
+                                                                    skos:prefLabel "OIT" ; ] ; ] ;
+    surv:monumentedBy surveyobs-examples:m_t3 ;
+.
+
+surveyobs-examples:tr1
+    a              surv:Traverse ;
+    rdfs:label     "Traverse 1" ;
+    skos:editorialNote
+                   "Introduced as a feature to support further information about the network adjustments and convenience geometry objects." ;
+    sosa:hasMember surveyobs-examples:obs1 ;
+.
+
+surveyobs-examples:trav
+    a          surveyobs:Traversal ;
+    rdfs:comment
+               "Specific methdological requirements may be defined by jurisdiction and further specialised by local practices. Additional metadata for procedure may be modelled according to specific needs." ;
+    rdfs:label "Survey Traverse Procedure X as required by Jurisdiction Y" ;
+.
+
+surveyobs-examples:tv1
+    a                    surv:ObservedVector ;
+    geo:hasGeometry      [ a         gml:LineString ;
+                           geo:asGML """<gml:LineString gml:id=\"tl1\">
+                            <gml:pointProperty xlink:href=\"#t1\"/>
+                            <gml:pointProperty xlink:href=\"#t2\"/>
+                        </gml:LineString>"""^^geo:gmlLiteral ; ] ;
+    rdfs:label           "T1->T2" ;
+    surv:distance        17.06 ;
+    surv:from            surveyobs-examples:t1 ;
+    surv:horizontalAngle 335.066 ;
+    surv:target          surveyobs-examples:t2 ;
+    surv:verticalAngle   95.27 ;
+.
+
+surveyobs-examples:tv2
+    a                    surv:AdoptedVector ;
+    geo:hasGeometry      [ a         gml:LineString ;
+                           geo:asGML """<gml:LineString gml:id=\"tl1\">
+                            <gml:pointProperty xlink:href=\"#t1\"/>
+                            <gml:pointProperty xlink:href=\"#t3\"/>
+                        </gml:LineString>"""^^geo:gmlLiteral ; ] ;
+    rdfs:label           "T1->T3" ;
+    skos:editorialNote   "referencedCSD refers to collection of these - logical model could provide back reference if required" ;
+    foaf:depiction       <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/adoptedobs.png> ;
+    surv:distance        30.32 ;
+    surv:from            surveyobs-examples:t1 ;
+    surv:horizontalAngle 257.6 ;
+    surv:target          surveyobs-examples:t3 ;
+    surv:verticalAngle   88.26 ;
+.
+
+surveyobs-examples:vector_observations
+    a                     sosa:ObservationCollection ;
+    rdfs:label            "Vector observations collection sharing common details" ;
+    sosa:hasMember        surveyobs-examples:obs1 ;
+    sosa:madeBySensor     surveyobs-examples:eq1 ;
+    sosa:observedProperty surveyobs:VectorDetermination ;
+    sosa:phenomenomTime   "14-01-2001"^^xsd:date ;
+    sosa:usedProcedure    surveyobs:Traversal ;
+.
+
+surveyobs-examples:yellow_front
+    a          gml:Polygon ;
+    geo:asGML  """<gml:Polygon gml:id=\"yellow_front\">
+                        <gml:exterior>
+                            <gml:LinearRing gml:id=\"lr18\">
+                                <gml:pointProperty xlink:href=\"#p21\"/>
+                                <gml:pointProperty xlink:href=\"#p9\"/>
+                                <gml:pointProperty xlink:href=\"#p12\"/>
+                                <gml:pointProperty xlink:href=\"#p24\"/>
+                                <gml:pointProperty xlink:href=\"#p21\"/>
+                            </gml:LinearRing>
+                        </gml:exterior>
+                    </gml:Polygon>"""^^geo:gmlLiteral ;
+    rdfs:label "yellow_front" ;
+.
+
+surveyobs-examples:yellow_front_boundary
+    a               geometry:BoundaryFace ;
+    geo:hasGeometry surveyobs-examples:yellow_front ;
+    rdfs:label      "yellow_front boundary" ;
+.
+
+container:CSD
+    reqmetamodel:canonicalExample <https://linked.data.gov.au/def/csdm/surveyactivity/examples/SurveyExample> ;
+.
+
+geometry:BoundaryFace
+    reqmetamodel:canonicalExample surveyobs-examples:blue_top_boundary ;
+.
+
+survprov:SurveyActivity
+    reqmetamodel:canonicalExample surveyobs-examples:extractCSD_1 ;
+    reqmetamodel:canonicalExample surveyobs-examples:surveyActivity1 ;
+.
+
+survprov:SurveyAgent
+    reqmetamodel:canonicalExample <https://linked.data.gov.au/def/csdm/surveyactivity/examples/AH> ;
+.
+
+surv:AdoptedVector
+    foaf:depiction                <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/adoptedobs.png> ;
+    reqmetamodel:canonicalExample surveyobs-examples:tv2 ;
+.
+
+surv:CadastralMark
+    reqmetamodel:canonicalExample surveyobs-examples:t2 ;
+.
+
+surv:GeodeticReferenceMark
+    reqmetamodel:canonicalExample surveyobs-examples:t3 ;
+.
+
+surv:ObservedVector
+    foaf:depiction                <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/ObservedVector.png> ;
+    reqmetamodel:canonicalExample surveyobs-examples:cv1 ;
+    reqmetamodel:canonicalExample surveyobs-examples:oo1vector ;
+    reqmetamodel:canonicalExample surveyobs-examples:tv1 ;
+.
+
+surv:Occupation
+    foaf:depiction                <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/occfeature.png> ;
+    reqmetamodel:canonicalExample surveyobs-examples:fence1 ;
+.
+
+surv:OccupationMark
+    reqmetamodel:canonicalExample surveyobs-examples:occ10 ;
+.
+
+surv:SurveyMark
+    reqmetamodel:canonicalExample surveyobs-examples:t2 ;
+.
+
+surv:SurveyedLine
+    foaf:depiction <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/SurveyedVector.png> ;
+.
+
+surv:Traverse
+    foaf:depiction <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/traverseobs.png> ;
+.
+
+surveyobs:Computation
+    reqmetamodel:canonicalExample surveyobs-examples:comp1 ;
+.
+
+surveyobs:DesignModel
+    reqmetamodel:canonicalExample surveyobs-examples:ifc_design_1 ;
+.
+
+surveyobs:OccupationAsFeature
+    reqmetamodel:canonicalExample surveyobs-examples:fence1 ;
+.
+
+surveyobs:OccupationObservation
+    foaf:depiction                <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/occobs.png> ;
+    reqmetamodel:canonicalExample surveyobs-examples:oo1 ;
+    reqmetamodel:canonicalExample surveyobs-examples:oo11 ;
+.
+
+surveyobs:SurveyVectorObservation
+    foaf:depiction                <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/traverseobs.png> ;
+    reqmetamodel:canonicalExample surveyobs-examples:obs1 ;
+    reqmetamodel:canonicalExample surveyobs-examples:obs2_computed ;
+.
+
+surveyobs:Traversal
+    reqmetamodel:canonicalExample surveyobs-examples:trav ;
+.
+
+<https://linked.data.gov.au/def/csdm/surveyactivity/examples/SurveyExample>
+    a                                container:CSD ;
+    rdfs:label                       "Example Cadastral Survey Dataset" ;
+    prov:wasGeneratedBy              surveyobs-examples:surveyActivity1 ;
+    container:calculatedObservations surveyobs-examples:calculated_observations ;
+    container:occupationFeatures     surveyobs-examples:fence1 ;
+    container:referencedCSD          surveyobs-examples:csd2 ;
+    container:vectorObservations     surveyobs-examples:vector_observations ;
+.
+
+

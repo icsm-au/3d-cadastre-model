@@ -1,0 +1,402 @@
+# baseURI: https://linked.data.gov.au/def/csdm/parcels/examples
+# imports: https://linked.data.gov.au/dataset/csdm/surveyfeatures-examples
+# imports: https://linked.data.gov.au/def/csdm/parcels
+# imports: https://linked.data.gov.au/def/csdm/parcel.shapes
+# imports: https://data.surroundaustralia.com/def/ontexamples/shapes
+
+@prefix : <https://linked.data.gov.au/def/csdm/parcels/examples/> .
+@prefix com: <https://linked.data.gov.au/def/csdm/commonpatterns/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix geometry: <https://linked.data.gov.au/def/csdm/geometry/> .
+@prefix gml: <http://www.opengis.net/ont/gml#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix parcel: <https://linked.data.gov.au/def/csdm/parcels/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix reqmetamodel: <https://linked.data.gov.au/def/csdm/reqmetamodel/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix surveyfeatures-examples: <https://linked.data.gov.au/dataset/csdm/surveyfeatures-examples/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://linked.data.gov.au/def/csdm/geometry/3DSpatialUnit>
+  rdfs:subClassOf geo:Feature ;
+.
+geometry:BoundaryFace
+  foaf:depiction <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/face.png> ;
+  foaf:depiction <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/face2.png> ;
+  reqmetamodel:canonicalExample :blue_yellow_boundary ;
+.
+parcel:Appellation
+  reqmetamodel:canonicalExample :Lot1_Appellation ;
+.
+parcel:Estate
+  reqmetamodel:canonicalExample :Estate-Lot1 ;
+.
+parcel:EstateParcel
+  reqmetamodel:canonicalExample :DP_333333 ;
+.
+parcel:Parcel
+  foaf:depiction <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/CadastralParcel.png> ;
+  foaf:depiction <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/cadastralparcelexample.png> ;
+  reqmetamodel:canonicalExample :cp1 ;
+  reqmetamodel:canonicalExample :lot1 ;
+.
+parcel:PrimaryParcel
+  reqmetamodel:canonicalExample :lot1 ;
+  reqmetamodel:canonicalExample :lot1_extruded ;
+.
+<https://linked.data.gov.au/def/csdm/parcels/examples>
+  a owl:Ontology ;
+  rdfs:label "parcel model examples" ;
+  owl:imports <https://linked.data.gov.au/dataset/csdm/surveyfeatures-examples> ;
+  owl:imports <https://linked.data.gov.au/def/csdm/parcels> ;
+  owl:imports <https://linked.data.gov.au/def/csdm/parcel.shapes> ;
+  owl:imports <https://data.surroundaustralia.com/def/ontexamples/shapes> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+:Appellation_Blue_unit
+  a parcel:Appellation ;
+  rdfs:label "Unit1, Lot1 DP 333333" ;
+.
+:Appellation_Yellow_Unit
+  a parcel:Appellation ;
+  rdfs:label "Unit 2, Lot 1 DP 333333" ;
+.
+:DP_333333
+  a parcel:EstateParcel ;
+  rdfs:label "Yellow And Blue Units" ;
+  parcel:interest :Estate-Lot1 ;
+  parcel:parcel :cp1 ;
+  parcel:parcel :cp2 ;
+.
+:Estate-Lot1
+  a parcel:Estate ;
+  rdfs:comment "An estate is not modelled explicitly - it is simply a reference to an external system - for example a persistent IRI or local system identifier. Implementing profiles may define addtional metadata for such references if needed." ;
+  rdfs:label "Estate - Ownership of Lot1" ;
+.
+:Lot1_Appellation
+  a parcel:Appellation ;
+  dct:hasPart :NamePart_Lot ;
+  rdfs:label "Lot 1 DP 333333" ;
+.
+:NamePart_Lot
+  a com:NamePart ;
+  dct:subject "Lot Number" ;
+  skos:prefLabel "1" ;
+.
+:Strata
+  a parcel:ParcelType ;
+  rdfs:label "Strata Unit" ;
+.
+:Strata_Title_1
+  a parcel:Estate ;
+  rdfs:comment "A example reference to strata rights" ;
+  rdfs:label "Strata unit 1" ;
+.
+:Subdivision
+  a parcel:ParcelType ;
+  rdfs:comment "This is an example of a parcel type defined by a particular jurisdiction. " ;
+  rdfs:label "Subdivision" ;
+.
+:blue_box_terrain
+  a gml:LinearRing ;
+  geo:asGML """<gml:LinearRing gml:id=\"lr4\">
+								<gml:pointProperty xlink:href=\"#p2\"/>
+								<gml:pointProperty xlink:href=\"#p3\"/>
+								<gml:pointProperty xlink:href=\"#p5\"/>
+								<gml:pointProperty xlink:href=\"#p8\"/>
+								<gml:pointProperty xlink:href=\"#p2\"/>
+							</gml:LinearRing>"""^^geo:gmlLiteral ;
+  rdfs:label "blue box terrain intersection" ;
+.
+:blue_yellow_boundary
+  a geometry:BoundaryFace ;
+  geo:hasGeometry :blue_yellow_face ;
+  geo:touchesInward :cp1 ;
+  geo:touchesOutward :cp2 ;
+  rdfs:label "blue_yellow_boundary" ;
+  foaf:depiction <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/face.png> ;
+.
+:blue_yellow_face
+  a gml:CompositeSurface ;
+  geo:asGML """<gml:CompositeSurface gml:id=\"blue_yellow_face\">
+            <!-- assumption that the orientation of all faces are the same (same feature inwards and outwards  - the geometry does not need to know this ? -->
+            <gml:surfaceMember>
+                <gml:Polygon gml:id=\"blue_yellow_bottom\">
+                    <gml:exterior>
+                        <gml:LinearRing gml:id=\"lr5\">
+                            <gml:pointProperty xlink:href=\"#p11\"/>
+                            <gml:pointProperty xlink:href=\"#p20\"/>
+                            <gml:pointProperty xlink:href=\"#p17\"/>
+                            <gml:pointProperty xlink:href=\"#p12\"/>
+                            <gml:pointProperty xlink:href=\"#p11\"/>
+                        </gml:LinearRing>
+                    </gml:exterior>
+                </gml:Polygon>
+            </gml:surfaceMember>
+            <gml:surfaceMember>
+                <gml:Polygon gml:id=\"blue_yellow_left\">
+                    <gml:exterior>
+                        <gml:LinearRing gml:id=\"lr6\">
+                            <gml:pointProperty xlink:href=\"#p19\"/>
+                            <gml:pointProperty xlink:href=\"#p18\"/>
+                            <gml:pointProperty xlink:href=\"#p17\"/>
+                            <gml:pointProperty xlink:href=\"#p20\"/>
+                            <gml:pointProperty xlink:href=\"#p19\"/>
+                        </gml:LinearRing>
+                    </gml:exterior>
+                </gml:Polygon>
+            </gml:surfaceMember>
+            <gml:surfaceMember>
+                <gml:Polygon gml:id=\"blue_yellow_rear\">
+                    <gml:exterior>
+                        <gml:LinearRing gml:id=\"lr7\">
+                            <gml:pointProperty xlink:href=\"#p11\"/>
+                            <gml:pointProperty xlink:href=\"#p10\"/>
+                            <gml:pointProperty xlink:href=\"#p19\"/>
+                            <gml:pointProperty xlink:href=\"#p20\"/>
+                            <gml:pointProperty xlink:href=\"#p11\"/>
+                        </gml:LinearRing>
+                    </gml:exterior>
+                </gml:Polygon>
+            </gml:surfaceMember>
+            <gml:surfaceMember>
+                <gml:Polygon gml:id=\"blue_yellow_top\">
+                    <gml:exterior>
+                        <gml:LinearRing gml:id=\"lr10\">
+                            <gml:pointProperty xlink:href=\"#p10\"/>
+                            <gml:pointProperty xlink:href=\"#p9\"/>
+                            <gml:pointProperty xlink:href=\"#p18\"/>
+                            <gml:pointProperty xlink:href=\"#p19\"/>
+                            <gml:pointProperty xlink:href=\"#p10\"/>
+                        </gml:LinearRing>
+                    </gml:exterior>
+                </gml:Polygon>
+            </gml:surfaceMember>
+            <gml:surfaceMember>
+                <gml:Polygon gml:id=\"blue_yellow_front\">
+                    <gml:exterior>
+                        <gml:LinearRing gml:id=\"lr11\">
+                            <gml:pointProperty xlink:href=\"#p9\"/>
+                            <gml:pointProperty xlink:href=\"#p12\"/>
+                            <gml:pointProperty xlink:href=\"#p17\"/>
+                            <gml:pointProperty xlink:href=\"#p18\"/>
+                            <gml:pointProperty xlink:href=\"#p9\"/>
+                        </gml:LinearRing>
+                    </gml:exterior>
+                </gml:Polygon>
+            </gml:surfaceMember>
+        </gml:CompositeSurface>
+ """^^geo:gmlLiteral ;
+  geo:coordinateDimension 3 ;
+  geo:dimension 2 ;
+  rdfs:label "blue_yellow_face (composite)" ;
+.
+:butop
+  a geometry:BoundaryFeature ;
+  geo:asGMLTopo """<gml:Face gml:id=\"f6\">
+                        <gml:directedEdge orientation=\"-\" xlink:href=\"#e23\"/>
+                        <gml:directedEdge orientation=\"-\" xlink:href=\"#e24\"/>
+                        <gml:directedEdge orientation=\"+\" xlink:href=\"#e21\"/>
+                        <gml:directedEdge orientation=\"+\" xlink:href=\"#e20\"/>
+                        <gml:directedTopoSolid orientation=\"+\" xlink:href=\"#s1\"/>
+                        <gml:directedTopoSolid orientation=\"-\" xlink:href=\"#s2\"/>
+                    </gml:Face>"""^^geo:gmlLiteral ;
+  rdfs:label "Blue Unit Topology" ;
+.
+:cp1
+  a parcel:Parcel ;
+  geo:hasGeometry :s1 ;
+  geo:sfWithin :lot1 ;
+  rdfs:label "Blue spatial unit" ;
+  foaf:depiction <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/blue_box.png> ;
+  geometry:boundedBy :blue_yellow_boundary ;
+  geometry:hasGeometryPart surveyfeatures-examples:g_p1 ;
+  geometry:hasGeometryPart surveyfeatures-examples:g_p10 ;
+  parcel:appellation :Appellation_Blue_unit ;
+  parcel:interest :Strata_Title_1 ;
+  parcel:surfaceArea 56643.4 ;
+  parcel:terrainIntersectionCurve :blue_box_terrain ;
+  parcel:type :Strata ;
+.
+:cp2
+  a parcel:Parcel ;
+  geo:hasGeometry :s2 ;
+  rdfs:label "Yellow spatial unit" ;
+  geometry:boundedBy :blue_yellow_boundary ;
+  parcel:appellation :Appellation_Yellow_Unit ;
+  parcel:type :Strata ;
+.
+:lot1
+  a parcel:PrimaryParcel ;
+  rdfs:comment "A Cadastral Parcel defined by a boundary line in 2D. The default geometry of this as a 3D unit is not specified, but may be derived from the boundary as an Extruded Surface using implicit or explicit limits. The boundary property is a sub-property of hasGeometry - so an application could infer the boundary as an available geometry." ;
+  rdfs:label "Lot 1 (2D)" ;
+  geometry:boundary :lot1boundary ;
+  parcel:appellation :Lot1_Appellation ;
+  parcel:interest :Estate-Lot1 ;
+  parcel:type :Subdivision ;
+.
+:lot1_extruded
+  a parcel:PrimaryParcel ;
+  rdfs:comment "A Cadastral Parcel defined by an extruded surface.  The bounding geometry of this in 2D is also specified." ;
+  rdfs:label "Lot 1 (3D, extruded)" ;
+  geometry:boundary :lot1boundary ;
+  parcel:appellation :Lot1_Appellation ;
+  parcel:interest :Estate-Lot1 ;
+  parcel:surface :lot1_surface ;
+  parcel:type :Subdivision ;
+.
+:lot1_surface
+  a gml:Tin ;
+  geo:asGML """<gml:TriangulatedSurface gml:id=\"tin1\">
+                    <gml:patches>
+                        <gml:surfaceProperty xlink:href=\"#gt51\"/>
+                        <gml:surfaceProperty xlink:href=\"#gt52\"/>
+                        <gml:surfaceProperty xlink:href=\"#gt53\"/>
+                        <gml:surfaceProperty xlink:href=\"#gt54\"/>
+                        <gml:surfaceProperty xlink:href=\"#gt55\"/>
+                        <gml:surfaceProperty xlink:href=\"#gt56\"/>
+                        <gml:surfaceProperty xlink:href=\"#gt57\"/>
+                        <gml:surfaceProperty xlink:href=\"#gt58\"/>
+                        <gml:surfaceProperty xlink:href=\"#gt59\"/>
+                        <gml:surfaceProperty xlink:href=\"#gt60\"/>
+                        <gml:surfaceProperty xlink:href=\"#gt61\"/>
+                        <gml:surfaceProperty xlink:href=\"#gt62\"/>
+                        <gml:surfaceProperty xlink:href=\"#gt63\"/>
+                        <gml:surfaceProperty xlink:href=\"#gt64\"/>
+                    </gml:patches>
+                </gml:TriangulatedSurface>"""^^geo:gmlLiteral ;
+  rdfs:label "lot 1 surface" ;
+.
+:lot1boundary
+  a gml:CompositeCurve ;
+  geo:asGML """<gml:CompositeCurve gml:id=\"lot_1_bdy\">
+				<gml:curveProperty xlink:href=\"#bdy1\"/>
+				<gml:curveProperty xlink:href=\"#bdy2\"/>
+				<gml:curveProperty xlink:href=\"#bdy3\"/>
+				<gml:curveProperty xlink:href=\"#bdy4\"/>
+			</gml:CompositeCurve>"""^^geo:gmlLiteral ;
+  rdfs:label "lot 1 bounding curve" ;
+.
+:s1
+  a gml:CompositeSolid ;
+  geo:asGML """<gml:Solid gml:id=\"s1\">
+                                <gml:name>Blue box above ground, dim( I(Blue Box) ∩ E(Yellow Box) = 2), ST_Disjoint</gml:name>
+                                <gml:exterior>
+                                    <gml:Shell>
+                                        <gml:surfaceMember xlink:href=\"#blue_top\"/>
+                                        <gml:surfaceMember xlink:href=\"#blue_front_above_ground\"/>
+                                        <gml:surfaceMember xlink:href=\"#blue_right_above_ground\"/>
+                                        <gml:surfaceMember xlink:href=\"#blue_rear_above_ground\"/>
+                                        <gml:surfaceMember xlink:href=\"#blue_left_above_ground\"/>
+                                        <gml:surfaceMember xlink:href=\"#blue_bottom_ground\"/>
+                                        <gml:surfaceMember xlink:href=\"#blue_yellow_bottom\"/>
+                                        <gml:surfaceMember xlink:href=\"#blue_yellow_left\"/>
+                                        <gml:surfaceMember xlink:href=\"#blue_yellow_rear\"/>
+                                        <gml:surfaceMember xlink:href=\"#blue_yellow_top\"/>
+                                        <gml:surfaceMember xlink:href=\"#blue_yellow_front\"/>
+                                    </gml:Shell>
+                                </gml:exterior>
+                            </gml:Solid>"""^^geo:gmlLiteral ;
+  rdfs:label "Blue Box" ;
+  foaf:depiction <https://surroundbitbucket.bitbucket.io/3d-cadastre/spec/showcase10-topology2.png> ;
+.
+:s2
+  a gml:CompositeSolid ;
+  geo:asGML """<gml:CompositeSolid gml:id=\"cs2\">
+                        <gml:solidMember>
+                            <gml:Solid gml:id=\"s2\">
+                                <gml:name>Yellow Box part 1</gml:name>
+                                <gml:description>
+                                    The portion of the Yellow Box embedded in the Blue Box, 
+                                    dim( I(Blue Box) ∩ I(Yellow Box) = 2), ST_Intersect
+                                </gml:description>
+                                <gml:exterior>
+                                    <gml:Shell>
+                                        <gml:surfaceMember>
+                                            <gml:OrientableSurface orientation=\"-\">
+                                                <gml:baseSurface xlink:href=\"#blue_yellow_bottom\"/>
+                                            </gml:OrientableSurface>
+                                        </gml:surfaceMember>
+                                        <gml:surfaceMember>
+                                            <gml:OrientableSurface orientation=\"-\">
+                                                <gml:baseSurface xlink:href=\"#blue_yellow_left\"/>
+                                            </gml:OrientableSurface>
+                                        </gml:surfaceMember>
+                                        <gml:surfaceMember>
+                                            <gml:OrientableSurface orientation=\"-\">
+                                                <gml:baseSurface xlink:href=\"#blue_yellow_rear\"/>
+                                            </gml:OrientableSurface>
+                                        </gml:surfaceMember>
+                                        <gml:surfaceMember>
+                                            <gml:OrientableSurface orientation=\"-\">
+                                                <gml:baseSurface xlink:href=\"#blue_yellow_top\"/>
+                                            </gml:OrientableSurface>
+                                        </gml:surfaceMember>
+                                        <gml:surfaceMember>
+                                            <gml:OrientableSurface orientation=\"-\">
+                                                <gml:baseSurface xlink:href=\"#blue_yellow_front\"/>
+                                            </gml:OrientableSurface>
+                                        </gml:surfaceMember>
+                                        <gml:surfaceMember xlink:href=\"#intersection_blue_yellow\"/>
+                                    </gml:Shell>
+                                </gml:exterior>
+                            </gml:Solid>
+                            <gml:topoSolid gml:id=\"ts2\">
+                                <gml:directedFace orientation=\"-\" xlink:ref=\"#f5\"/>
+                                <gml:directedFace orientation=\"-\" xlink:ref=\"#f6\"/>
+                                <gml:directedFace orientation=\"-\" xlink:ref=\"#f7\"/>
+                                <gml:directedFace orientation=\"-\" xlink:ref=\"#f10\"/>
+                                <gml:directedFace orientation=\"-\" xlink:ref=\"#f11\"/>
+                                <gml:directedFace orientation=\"+\" xlink:ref=\"#f17\"/>
+                            </gml:topoSolid>
+                        </gml:solidMember>
+                        <gml:solidMember>
+                            <gml:Solid gml:id=\"s4\">
+                                <gml:name>Yellow Box part 2</gml:name>
+                                <gml:description>
+                                    Portion of the Yellow box outside blue box, 
+                                    dim( I(Yellow Box) ∩ E(Blue Box) = 2), ST_Disjoint
+                                </gml:description>
+                                <gml:exterior>
+                                    <gml:Shell>
+                                        <gml:surfaceMember>
+                                            <gml:OrientableSurface orientation=\"-\">
+                                                <gml:baseSurface xlink:href=\"#intersection_blue_yellow\"/>
+                                            </gml:OrientableSurface>
+                                        </gml:surfaceMember>
+                                        <gml:surfaceMember xlink:href=\"#yellow_front\"/>
+                                        <gml:surfaceMember xlink:href=\"#yellow_top\"/>
+                                        <gml:surfaceMember xlink:href=\"#yellow_right\"/>
+                                        <gml:surfaceMember xlink:href=\"#yellow_rear\"/>
+                                        <gml:surfaceMember xlink:href=\"#yellow_bottom\"/>
+                                    </gml:Shell>
+                                </gml:exterior>
+                            </gml:Solid> 
+                            <gml:topoSolid gml:id=\"ts4\">
+                                <gml:directedFace orientation=\"-\" xlink:ref=\"#f17\"/>
+                                <gml:directedFace orientation=\"+\" xlink:ref=\"#f18\"/>
+                                <gml:directedFace orientation=\"+\" xlink:ref=\"#f19\"/>
+                                <gml:directedFace orientation=\"+\" xlink:ref=\"#f20\"/>
+                                <gml:directedFace orientation=\"+\" xlink:ref=\"#f21\"/>
+                                <gml:directedFace orientation=\"+\" xlink:ref=\"#f22\"/>
+                            </gml:topoSolid>
+                        </gml:solidMember>  
+                    </gml:CompositeSolid>"""^^geo:gmlLiteral ;
+  geo:dimension 3 ;
+  geo:sfTouches :s1 ;
+  rdfs:label "Yellow Box" ;
+  skos:editorialNote "topological constraints embedded in the geometry - are these necessary of can we have all the directedFaces?" ;
+.
+:subsurface_default_extent
+  a geometry:ExtensionRule ;
+  dc:description "Subsurface extent of a parcel is relative to the triangulated surface (TIN)." ;
+  geo:extension "10"^^xsd:decimal ;
+  geo:isOutward false ;
+  rdfs:comment "This is a rule for describing subsurface limits of parcels based on extruded surface. Typically these rules will be jurisdiction specific and common to parcel type and may be absent and inferred by contextual business rules. The data model allows for explicit reference to allow calculation of truncated solid representations of parcels.. " ;
+  rdfs:label "subsurface_default" ;
+.

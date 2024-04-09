@@ -1,0 +1,55 @@
+# baseURI: https://www.opengis.net/def/csdm/examples/codelists/surveymark_condition_NZ
+# imports: http://www.w3.org/2004/02/skos/core
+# imports: https://linked.data.gov.au/def/csdm/commonpatterns.shapes
+# imports: https://linked.data.gov.au/def/csdm/surveyfeatures.shapes
+
+@prefix : <https://www.opengis.net/def/csdm/examples/codelists/surveymark_condition_NZ/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix surv: <https://linked.data.gov.au/def/csdm/surveyfeatures/> .
+@prefix unnamed: <https://www.opengis.net/def/profiles/unnamed#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://www.opengis.net/def/csdm/examples/codelists/surveymark_condition_NZ>
+  a owl:Ontology ;
+  owl:imports <http://www.w3.org/2004/02/skos/core> ;
+  owl:imports <https://linked.data.gov.au/def/csdm/commonpatterns.shapes> ;
+  owl:imports <https://linked.data.gov.au/def/csdm/surveyfeatures.shapes> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+:Damaged
+  a surv:ConditionCode ;
+  rdfs:label "Damaged" ;
+.
+:New
+  a surv:SurveyPointState ;
+  rdfs:label "New" ;
+.
+:Original
+  a surv:SurveyPointState ;
+  rdfs:label "Original" ;
+.
+:Reliable
+  a surv:MonumentCondition ;
+  rdfs:label "Reliable" ;
+.
+:SurveyMarkCondition_NZ
+  a surv:SurveyMarkCondition ;
+  rdfs:label "NZ Survey Mark Condition Codes" ;
+  skos:hasTopConcept :Damaged ;
+  skos:hasTopConcept :Reliable ;
+.
+:bound
+  a surv:SurveyPointPurpose ;
+  rdfs:label "boundary defined by survey" ;
+.
+:ironspike
+  a surv:MonumentForm ;
+  rdfs:label "Iron Spike" ;
+.
+:nonbound
+  a surv:SurveyPointPurpose ;
+  rdfs:label "non-boundary" ;
+.

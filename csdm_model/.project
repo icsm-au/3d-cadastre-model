@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>csdm_model</name>
+	<comment>3D Cadastre Survey Data Model Knowledge Graph. This graph will depend on generic document and Use Case models, and multiple componentised resuable "componentised document" data sources.</comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+</projectDescription>

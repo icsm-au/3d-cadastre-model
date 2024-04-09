@@ -1,0 +1,60 @@
+= 3D Cadastral Survey Data Model
+
+== 2023 Standard - Rebuild
+
+This is the index page of the 2023 rebuild of the 3D Cadastral Survey Data Model (3D CSDM).
+
+This work builds on the 2022 documented form of the model that contains both model components and requirements. It has been archived online at:
+
+* https://icsm-au.github.io/3d-csdm-design/2022/spec.html[https://linked.data.gov.au/def/csdm/2022]
+
+*A new build on a pre-release version of pyLODE supporting the documentation of profiles is at:*
+
+* https://icsm-au.github.io/3d-csdm/docs 🟢
+* https://icsm-au.github.io/3d-csdm/docs/icsm-profile 🟢
+* https://icsm-au.github.io/3d-csdm/docs/nz-profile 🟢
+* https://icsm-au.github.io/3d-csdm/docs/wa-profile 🟢
+* https://icsm-au.github.io/3d-csdm/docs/vic-profile 🟢
+
+Below are links to _in development_ documented forms of the current version of this model using pyLODE's OntPub profile.
+
+
+=== Modules
+
+[%header,cols="1,1,1"]
+|===
+|Module | Description | IRI
+
+|Cadastral Parcels Model | A model for cadastral parcels | `https://linked.data.gov.au/def/csdm/parcels`
+
+|Common Patterns | Common implementation patterns not directly supported by other standards | `https://linked.data.gov.au/def/csdm/commonpatterns`
+
+|Container | Import closure for 3D model packages and aggregation containers for exchange objects | `https://linked.data.gov.au/def/csdm/container`
+
+|Geometry Primitives | Extends GeoSPARQL to provide a named subset of ISO 19107 concepts for 3D solids and support for 3D topology amongst features. It is a companion to the Simple Features model for interoperability between 3D applications | `https://linked.data.gov.au/def/csdm/geometryprim`
+
+|GeoSPARQL 3D
+| Empty profile declaration for the possible GeoSPARQL evolutions which cater for 3D
+| `+https://www.opengis.net/def/profiles/geosparql3d+` +
+_not yet available_
+
+|Survey Features | Surveys Feature Types modelling for Cadastral Surveys | `https://linked.data.gov.au/def/csdm/surveyfeatures`
+
+|Survey Provenance | Survey Provenance modelling for Cadastral Surveys | `https://linked.data.gov.au/def/csdm/surveyprov`
+
+|Survey Observations | Survey Observations modelling for Cadastral Surveys | `https://linked.data.gov.au/def/csdm/surveyobs`
+
+|===
+
+=== Vocabularies
+
+[%header,cols="1,1,1"]
+|===
+|Vocabulary | Description | IRI
+|Attributions | Persons, Organisations & Groups for attributions. | https://icsm-au.github.io/3d-csdm/vocab-attributions.html[`+https://linked.data.gov.au/def/csdm/attributions+`]
+|Implementation Specifications | Specifications to describe type of implementation example. | https://icsm-au.github.io/3d-csdm/vocab-impspecs.html[`+https://linked.data.gov.au/def/csdm/impspecs+`]
+|===
+
+See this documentation's repository main page for licensing and use information:
+
+* https://github.com/icsm-au/3d-csdm _(not yet publicly available!)_

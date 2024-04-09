@@ -1,0 +1,98 @@
+# baseURI: https://linked.data.gov.au/def/csdm/surveyactivity/examples
+# imports: https://linked.data.gov.au/def/csdm/commonpatterns
+# imports: https://linked.data.gov.au/def/csdm/surveyprov
+
+@prefix : <https://linked.data.gov.au/def/csdm/surveyactivity/examples/> .
+@prefix com: <https://linked.data.gov.au/def/csdm/commonpatterns/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix survprov: <https://linked.data.gov.au/def/csdm/surveyprov/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://linked.data.gov.au/def/csdm/surveyactivity/examples>
+  a owl:Ontology ;
+  rdfs:comment "Provides a set of arbitrary examples showing the use of the PROV model as a logical model for a sequence of activities influencing a data object" ;
+  rdfs:label "Survey Activity model examples" ;
+  owl:imports <https://linked.data.gov.au/def/csdm/commonpatterns> ;
+  owl:imports <https://linked.data.gov.au/def/csdm/surveyprov> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+:AH
+  a survprov:CadastralSurveyor ;
+  rdfs:label "Andrew Hunter" ;
+.
+:LINZ
+  a prov:Organization ;
+  rdfs:label "LINZ" ;
+.
+:LandOnlineNZ
+  a prov:SoftwareAgent ;
+  rdfs:label "LandOnline NZ" ;
+  prov:actedOnBehalfOf :LINZ ;
+.
+:NZ_TA_223
+  a skos:Concept ;
+  rdfs:label "NZ TA Certification - section 223" ;
+  skos:scopeNote "Section 223 certification expires after 3 years." ;
+.
+:SurveyActivities_ICSM_common
+  a survprov:SurveyActivityType ;
+  rdfs:label "SurveyActivityType - ICSM common" ;
+  skos:hasTopConcept :SurveyLodgement ;
+  skos:hasTopConcept :SurveyRegistration ;
+.
+:SurveyActivityType_NZ
+  a survprov:SurveyActivityType ;
+  rdfs:label "Survey ActivityNZ" ;
+  skos:hasTopConcept :SurveyApprovalDate ;
+  skos:hasTopConcept :SurveyLodgement ;
+  skos:hasTopConcept :SurveyRegistration ;
+  skos:hasTopConcept :TACert ;
+.
+:SurveyApprovalDate
+  a skos:Concept ;
+  rdfs:label "NZ Survey Approval Date" ;
+  skos:definition "LINZ when survey information is approved to be integrated into the cadastre." ;
+.
+:SurveyApproval_1
+  a survprov:SurveyApproval ;
+  rdfs:label "Survey Approval" ;
+  prov:endedAtTime "2021-01-01"^^xsd:date ;
+  prov:generated :SurveyExample ;
+  prov:wasInfluencedBy :SurveyLodged_1 ;
+.
+:SurveyExample
+  a survprov:CSD ;
+  rdfs:label "Survey 1 submitted CSD" ;
+  prov:wasAttributedTo :AH ;
+  prov:wasGeneratedBy :SurveyLodged_1 ;
+  prov:wasInfluencedBy :SurveyApproval_1 ;
+.
+:SurveyLodged_1
+  a survprov:SurveyLodged ;
+  rdfs:label "LandOnlineLodgement" ;
+  prov:endedAtTime "2020-06-22"^^xsd:date ;
+  prov:generated :SurveyExample ;
+  prov:wasAssociatedWith :LandOnlineNZ ;
+  prov:wasAttributedTo :AH ;
+.
+:SurveyLodgement
+  a skos:Concept ;
+  rdfs:label "Survey Lodgement" ;
+.
+:SurveyRegistration
+  a skos:Concept ;
+  rdfs:label "Survey Registration" ;
+  skos:definition "Plan is registered and titles issued." ;
+  skos:editorialNote "This is an example of a candidate for common ICSM terminology - this process has not been done - and does no affect data model directly, but will need to be considered as part of an implementation phase." ;
+.
+:TACert
+  a skos:Concept ;
+  rdfs:label "NZ TA Certification" ;
+  skos:narrower :NZ_TA_223 ;
+  skos:scopeNote "Certification is attached as a supporting document." ;
+.
