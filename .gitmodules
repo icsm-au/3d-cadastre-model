@@ -1,3 +1,3 @@
-[submodule "3d-csdm-schema"]
-	path = 3d-csdm-schema
-	url = https://github.com/icsm-au/3d-csdm-schema.git
+[submodule "3d-csdm-common"]
+	path = 3d-csdm-common
+	url = https://github.com/icsm-au/3d-csdm-common.git

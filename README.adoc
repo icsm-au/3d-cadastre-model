@@ -13,13 +13,13 @@ The 2023 next-generation model documentation is in development but available onl
 
 * This repository
 ** master data for the model, includes the encoding specification as a submodule
-* https://github.com/icsm-au/3d-csdm-schema
+* https://github.com/icsm-au/3d-csdm-common
 ** the CSDM encoding specification in the form of an OGC API "building block"
 
 
 == Related resources
 
-* Documentation co-design at https://github.com/icsm-au/3d-csdm-schema
+* Documentation co-design at https://github.com/icsm-au/3d-csdm-common
 * https://github.com/icsm-au/3d-csdm-req Requirements model for extended documentation and design process support
 * https://github.com/icsm-au/3d-csdm-doc Document knowledge base
 
